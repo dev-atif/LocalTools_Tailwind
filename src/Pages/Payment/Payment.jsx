@@ -24,6 +24,63 @@ const Table_head = [
     name: "Status ",
   },
 ];
+const Table_body=[
+  {
+    Pid:'#316',
+    Date:'1st May 2021',
+    Paymethod:'Cedit card 4839',
+    orderdescription:'hammer',
+    quantity:'10',
+    Payment:'100',
+    Status:'Completed',
+    textcolor:'text-[#369768]',
+    bgcolor:'bg-[#D0E7DC]'
+  },
+  {
+    Pid:'#317',
+    Date:'5th May 2021',
+    Paymethod:'Cedit card 4839',
+    orderdescription:'Skrew Driver',
+    quantity:'7',
+    Payment:'80',
+    Status:'Completed',
+    textcolor:'text-[#369768]',
+    bgcolor:'bg-[#D0E7DC]'
+  },
+  {
+    Pid:'#318',
+    Date:'5th May 2021',
+    Paymethod:'Cedit card 4839',
+    orderdescription:'Pliers',
+    quantity:'5',
+    Payment:'40',
+    Status:'Completed',
+    textcolor:'text-[#369768]',
+    bgcolor:'bg-[#D0E7DC]'
+  },
+  {
+    Pid:'#319',
+    Date:'9th May 2021',
+    Paymethod:'Cedit card 4839',
+    orderdescription:'Tape Measure',
+    quantity:'12',
+    Payment:'85',
+    Status:'Pending',
+    textcolor:'text-[#A228B6]',
+    bgcolor:'bg-purple-200'
+  },
+  {
+    Pid:'#320',
+    Date:'21th May 2021',
+    Paymethod:'Cedit card 4839',
+    orderdescription:'Power Drill',
+    quantity:'20',
+    Payment:'130',
+    Status:'Cancelled',
+    textcolor:"text-red-600",
+    bgcolor:"bg-red-200",
+  },
+]
 const Payment = () => {
   return (
     <Dashboard>
@@ -50,40 +107,42 @@ const Payment = () => {
                   </thead>
 
                   <tbody>
-                    <tr className="bg-white  ">
-                      <td className="px-3 py-3 whitespace-nowrap text-sm font-Robot font-semibold rounded-s-lg">
-                        #316
-                      </td>
+                   {Table_body.map((item,index)=>(
+                     <tr className="bg-white  ">
+                     <td className="px-3 py-3 whitespace-nowrap text-sm font-Robot font-semibold rounded-s-lg">
+                       {item.Pid}
+                     </td>
 
-                      <td className="px-3 py-3 whitespace-nowrap text-sm  ">
-                        <h2 className="2xl:text-base xl:text-sm font-Robot font-semibold text-[#92929D]">
-                          1st May 2021
-                        </h2>
-                      </td>
-                      <td className="px-3 py-3 whitespace-nowrap text-center ">
-                        <h1 className=" 2xl:text-base xl:text-sm font-Robot font-medium ">
-                          Cedit card 4839
-                        </h1>
-                      </td>
-                      <td className="px-3 py-3 whitespace-nowrap  text-center">
-                        <p className="font-medium font-Robot 2xl:text-base xl:text-xs text-black">
-                          hammer
-                        </p>
-                      </td>
-                      <td className="px-3 py-3 whitespace-nowrap 2xl:text-base xl:text-xs font-Robot font-medium text-center">
-                        10
-                      </td>
-                      <td className="px-3 py-3 whitespace-nowrap 2xl:text-base xl:text-xs font-Robot font-medium text-center">
-                        100
-                      </td>
-                      <td className="px-3 py-3 whitespace-nowrap text-sm  text-center rounded-r-lg">
-                        <button
-                          className={`bg-[#D0E7DC] rounded-lg w-[100px] 2xl:w-[140px] font-semibold py-2 text-[#369768] xl:text-sm 2xl:text-lg`}
-                        >
-                          Completed
-                        </button>
-                      </td>
-                    </tr>
+                     <td className="px-3 py-3 whitespace-nowrap text-sm  ">
+                       <h2 className="2xl:text-base xl:text-sm font-Robot font-semibold text-[#92929D]">
+                        {item.Date}
+                       </h2>
+                     </td>
+                     <td className="px-3 py-3 whitespace-nowrap text-center ">
+                       <h1 className=" 2xl:text-base xl:text-sm font-Robot font-medium ">
+                       {item.Paymethod}
+                       </h1>
+                     </td>
+                     <td className="px-3 py-3 whitespace-nowrap  text-center">
+                       <p className="font-medium font-Robot 2xl:text-base xl:text-xs text-black">
+                         {item.orderdescription}
+                       </p>
+                     </td>
+                     <td className="px-3 py-3 whitespace-nowrap 2xl:text-base xl:text-xs font-Robot font-medium text-center">
+                       {item.quantity}
+                     </td>
+                     <td className="px-3 py-3 whitespace-nowrap 2xl:text-base xl:text-xs font-Robot font-medium text-center">
+                      {item.Payment}
+                     </td>
+                     <td className="px-3 py-3 whitespace-nowrap text-sm  text-center rounded-r-lg">
+                       <button
+                         className={`${item.bgcolor} rounded-lg w-[100px] 2xl:w-[140px] font-semibold py-2 ${item.textcolor} xl:text-sm 2xl:text-lg`}
+                       >
+                        {item.Status}
+                       </button>
+                     </td>
+                   </tr>
+                   ))}
                   </tbody>
                 </table>
               </div>
