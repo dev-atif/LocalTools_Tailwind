@@ -49,6 +49,7 @@ const TabsMenuArray = () => {
 
   const tabsContainerRef = useRef(null);
 
+
   const handleClick = (tabId) => {
     setActiveTab(tabId);
     //this is for when user click on tab it display other tab and clicked tab as a first tab
@@ -56,12 +57,17 @@ const TabsMenuArray = () => {
     if (tabButton && tabsContainerRef.current) {
       tabsContainerRef.current.scrollLeft = tabButton.offsetLeft - 10;
     }
-  };
+    
+  }; 
+ 
+
+
 
   return (
     <div>
       <div >
-        <div  ref={tabsContainerRef} className="md:flex flex-wrap  inline-block  w-full  gap-3 pt-7 border-gray-200 whitespace-nowrap  overflow-x-scroll md:overflow-hidden  ">
+        <div  ref={tabsContainerRef}
+        className="md:flex flex-wrap  inline-block  w-full  gap-3 pt-7 border-gray-200 whitespace-nowrap  overflow-x-scroll md:overflow-hidden  ">
           {tabs.map((tab) => (
             <button
               key={tab.id}
@@ -71,7 +77,7 @@ const TabsMenuArray = () => {
                 tab.id === activeTab
                   ? "bg-black text-white"
                   : "bg-white text-black"
-              } md:py-2 py-3 transition-all duration-500   text-sm xl:w-44 lg:w-[8.4rem] 2xl:w-[18.8%] rounded-lg  w-36 mr-3 md:mr-0 font-semibold `}
+              } md:py-2 py-3 transition-all duration-150   text-sm xl:w-44 lg:w-[8.4rem] 2xl:w-[18.8%] rounded-lg  w-36 mr-3 md:mr-0 font-semibold `}
             >
               <span className="flex items-center  gap-2 justify-start pl-4">
               {React.cloneElement(<tab.icon/>, {

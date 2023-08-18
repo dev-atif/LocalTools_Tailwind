@@ -98,6 +98,7 @@ const Payment = () => {
                       {Table_head.map((item, index) => (
                         <th
                           scope="col"
+                          key={index}
                           className=" text-white first:rounded-s-lg last:rounded-e-lg px-4 text-center py-3  text-xs md:text-sm font-Robot first:text-left first:pl-7 font-semibold capitalize tracking-wider"
                         >
                           {item.name}
@@ -108,7 +109,7 @@ const Payment = () => {
 
                   <tbody>
                    {Table_body.map((item,index)=>(
-                     <tr className="bg-white  ">
+                     <tr className="bg-white  " key={index}>
                      <td className="px-3 py-3 whitespace-nowrap text-sm font-Robot font-semibold rounded-s-lg">
                        {item.Pid}
                      </td>

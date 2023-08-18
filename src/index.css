@@ -4,6 +4,9 @@
 body{
     background-color: #F6F7FB;
 }
+body::-webkit-scrollbar{
+  display: none;
+}
 
 /* Tab Animation */
 @keyframes fadeInSlideUp {
@@ -20,5 +23,3 @@ body{
   .fade-in-slide-up {
     animation: fadeInSlideUp 0.5s ease-out;
   }
- 
-  

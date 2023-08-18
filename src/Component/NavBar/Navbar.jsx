@@ -5,6 +5,7 @@ import {BsSearch } from "react-icons/bs";
 
 import profile from "../../assets/profile.png";
 import Searbars from "./Searchbars";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [Open, setOpen] = useState(false);
@@ -114,8 +115,9 @@ const Navbar = () => {
           <button
             className="font-Mont bg-color-primary-yel
             font-[600] text-white px-5 py-2 rounded-lg "
-          >
+          ><Link to='/addpost'>
             Post Ad
+            </Link>
           </button>
         </div>
             </div>

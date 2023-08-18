@@ -22,7 +22,7 @@ const Changepassword = () => {
                       type="text"
                       className="bg-transparent
                                 w-full border-[#00005B] border rounded-lg 
-                                mt-1 font-Mont text-sm text-black focus:outline-none p-2"
+                                mt-1 font-Mont  text-black focus:outline-none p-2"
                       placeholder="Enter Old Password"
                     />
                   </div>
@@ -34,7 +34,7 @@ const Changepassword = () => {
                       type="text"
                       className="bg-transparent
                                 w-full border-[#00005B] border rounded-lg 
-                                mt-1 font-Mont text-sm text-black focus:outline-none p-2"
+                                mt-1 font-Mont  text-black focus:outline-none p-2"
                       placeholder="Enter New Password"
                     />
                   </div>
@@ -46,7 +46,7 @@ const Changepassword = () => {
                       type="text"
                       className="bg-transparent
                                 w-full border-[#00005B] border rounded-lg 
-                                mt-1 font-Mont text-sm text-black focus:outline-none p-2"
+                                mt-1 font-Mont  text-black focus:outline-none p-2"
                       placeholder="Confirm New Password"
                     />
                   </div>

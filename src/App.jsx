@@ -9,6 +9,7 @@ import SellerAccount from "./Pages/SellerAccount/SellerAccount";
 import Payment from "./Pages/Payment/Payment";
 import Buyer from "./Pages/BuyerAccount/Buyer";
 import SubNav from "./Component/SubNav";
+import AddPost from "./Pages/Add Post/AddPost";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/selleraccount" element={<SellerAccount />} />
           <Route path="/buyeraccount" element={<Buyer/>} />
           <Route path="/payments" element={<Payment />} />
+          <Route path="/addpost" element={<AddPost />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -123,7 +123,7 @@ const Searbars = () => {
 };
 
 export default Searbars;
-const selectStyle = {
+ const selectStyle = {
     control: (styles) => ({
       ...styles,
       backgroundColor: "transparent",
