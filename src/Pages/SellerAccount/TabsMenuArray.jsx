@@ -3,7 +3,7 @@ import Dashboard from "../../Dashboard";
 import Seller_tab from "./Seller_tab";
 import Order_Tab from "./Order_Tab";
 import Message_tab from "./Message_tab";
-import Invetory_Tab from "./Invetory_Tab";
+import Invetory_Tab from "../SellerAccount/Invoice/Invetory_Tab";
 import Analytics_tabs from "./Analytics_tabs";
 import Seller_Tab_SVG from "./Tabs SVG/Seller_Tab_SVG";
 import Order_Tab_SVG from "./Tabs SVG/Order_Tab_SVG";

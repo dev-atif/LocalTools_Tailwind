@@ -72,7 +72,7 @@ const Section3 = () => {
           </div>
         </div>
       </div>
-      <div className="md:px-4">
+      <div className="">
         <div className="md:grid grid-cols-3 gap-4">
           <div>
             <h1 className="font-Mont font-semibold text-xl 2xl:text-2xl text-black py-2">

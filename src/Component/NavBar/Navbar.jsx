@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Logo from "../../assets/Logo.png";
 import { RxCross2 } from "react-icons/rx";
-import {BsSearch } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 
 import profile from "../../assets/profile.png";
 import Searbars from "./Searchbars";
@@ -10,11 +10,30 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   const [Open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+
+  //This ref connect to the dropdown profile below
+  let dropdown = useRef();
+  //this function is used to hide menue when we click outside the menu or anywhere on the  screen
+  useEffect(() => {
+    let handle = (e) => {
+      if (!dropdown.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handle);
+    return () => {
+      document.removeEventListener("mousedown", handle);
+    };
+  });
+
   return (
     <div className="border-b py-2 bg-white">
       <div className="flex items-center justify-between  2xl:max-w-full px-5 xs:px-0 mx-auto 2xl:justify-evenly lg:max-w-7xl">
         <div className="hidden md:block">
-          <img src={Logo} alt="LocalTools" />
+          <Link to={"/"}>
+            {" "}
+            <img src={Logo} alt="LocalTools" />
+          </Link>
         </div>
         {/* DropDown Section-------------------------------------- */}
         <div className="hidden lg:block ">
@@ -36,7 +55,7 @@ const Navbar = () => {
                   d="M11.98 4.64094C11.8026 3.15337 10.5367 2 9.0013 2C7.46596 2 6.2 3.15337 6.02257 4.64094C3.5199 5.77546 1.77908 8.29555 1.77908 11.2222V16.2399L0.108582 19.5494C-0.227141 20.2145 0.25626 21 1.0013 21H6.17201C6.58385 22.1652 7.69509 23 9.0013 23C10.3075 23 11.4188 22.1652 11.8306 21H17.0013C17.7463 21 18.2297 20.2145 17.894 19.5494L16.2235 16.2399V11.2222C16.2235 8.29555 14.4827 5.77546 11.98 4.64094ZM14.3308 16.9286L15.3764 19H2.62623L3.6718 16.9286C3.74234 16.7888 3.77908 16.6345 3.77908 16.478V11.2222C3.77908 8.33807 6.11715 6 9.0013 6C11.8855 6 14.2235 8.33807 14.2235 11.2222V16.478C14.2235 16.6345 14.2603 16.7888 14.3308 16.9286Z"
                   fill="#92929D"
                 />
-                <path 
+                <path
                   fill-rule="evenodd"
                   clip-rule="evenodd"
                   d="M16 8C18.2091 8 20 6.20914 20 4C20 1.79086 18.2091 0 16 0C13.7909 0 12 1.79086 12 4C12 6.20914 13.7909 8 16 8Z"
@@ -92,7 +111,10 @@ const Navbar = () => {
                   </svg>
                 </span>
                 {Open && (
-                  <div className="absolute bg-white rounded-lg w-32 2xl:w-40 text-center z-10 -translate-x-14 top-7">
+                  <div
+                    ref={dropdown}
+                    className="absolute bg-white rounded-lg w-32 2xl:w-40 text-center z-10 -translate-x-14 top-10"
+                  >
                     <ul
                       onClick={() => {
                         setOpen(false);
@@ -112,14 +134,13 @@ const Navbar = () => {
                 )}
               </div>
               <div>
-          <button
-            className="font-Mont bg-color-primary-yel
+                <button
+                  className="font-Mont bg-color-primary-yel
             font-[600] text-white px-5 py-2 rounded-lg "
-          ><Link to='/addpost'>
-            Post Ad
-            </Link>
-          </button>
-        </div>
+                >
+                  <Link to="/addpost">Post Ad</Link>
+                </button>
+              </div>
             </div>
           </div>
         </div>

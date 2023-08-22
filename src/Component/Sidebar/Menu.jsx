@@ -58,14 +58,14 @@ import sellerAccount from "../NavBar/SVG/sellerAcoount";
       id:7,
       name: "Notifications",
       icon:notification,
-      path: "/notifications",
-      'bread':'Notifications',
+      path: "/notification",
+      'bread':'notifications',
     },
     {
       id:8,
       name: "Log Out",
       icon:logout,
-      path: "/logOut",
+      path: "/logout",
       
     },
   ];

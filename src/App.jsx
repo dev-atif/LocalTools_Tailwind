@@ -10,14 +10,16 @@ import Payment from "./Pages/Payment/Payment";
 import Buyer from "./Pages/BuyerAccount/Buyer";
 import SubNav from "./Component/SubNav";
 import AddPost from "./Pages/Add Post/AddPost";
+import Notification from './Pages/Notification/Notification';
+import LogOut from "./Pages/LogOut/LogOut";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-      <div>
+     {/*  <div>
         <Navbar />
-      </div>
+      </div> */}
      
         <Routes>
           <Route path="/dashboard" element={<Dashboard />} />
@@ -28,6 +30,8 @@ function App() {
           <Route path="/buyeraccount" element={<Buyer/>} />
           <Route path="/payments" element={<Payment />} />
           <Route path="/addpost" element={<AddPost />} />
+          <Route path="/notification" element={<Notification />} />
+          <Route path="/logout" element={<LogOut />} />
         </Routes>
       </BrowserRouter>
     </>

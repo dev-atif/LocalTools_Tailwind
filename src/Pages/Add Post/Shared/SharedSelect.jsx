@@ -1,6 +1,6 @@
 import React from 'react'
 import Select, { components } from "react-select";
-const SharedSelect = ({ Value,label,textsize,placeholder,textcolor,bordercolor,stroke,text}) => {
+const SharedSelect = ({ Value,label,textsize,placeholder,textcolor,bordercolor,stroke,bg}) => {
  
       const DropdownIndicator = (props) => {
         return (
@@ -29,7 +29,7 @@ const SharedSelect = ({ Value,label,textsize,placeholder,textcolor,bordercolor,s
         <label className={`${textsize} 2xl:text-lg font-semibold font-Mont ${textcolor}`}>
         {label} 
         </label>
-     <div className={`border ${bordercolor==='white' ?"border-white":"border-[#92929D]"} rounded-lg w-full`}>
+     <div  className={`border ${bordercolor === 'white' ? 'border-white' : bordercolor === 'none' ? 'border-0' : bordercolor === 'blue' ? 'border-[#00005B]' :'border-[#92929D]'} rounded-lg w-full ${bg}`}>
          <Select 
                 options={ Value}
                 styles={selectStyle}

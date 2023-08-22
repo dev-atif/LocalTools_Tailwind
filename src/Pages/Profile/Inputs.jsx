@@ -44,7 +44,7 @@ const Inputs = () => {
               <span className="text-color-primary-gr">{item.label}</span>
               <input
                 type="text"
-                className="border border-[#00005B] rounded-lg focus:outline-none p-2 mt-1 text-black"
+                className="border border-[#00005B] rounded-lg focus:outline-none p-2 mt-1 text-black placeholder:text-sm"
               placeholder={item.placeholder}/>
             </div>
 

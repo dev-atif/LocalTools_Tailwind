@@ -38,7 +38,7 @@ const Searbars = () => {
       <div className="flex flex-col lg:flex-row items-center gap-3">
       
           {/* DropDown....... */}
-          <div className="border border-[#F1F1F5] rounded-2xl px-3  w-full  2xl:w-44 xl:w-[170px]   text-sm bg-[#F6F7FB] font-Robot text-color-primary-gr flex items-center">
+          <div className="border border-[#F1F1F5] rounded-2xl md:pl-3 px-3 md:px-0  w-full  2xl:w-44 xl:w-[170px]   text-sm bg-[#F6F7FB] font-Robot text-color-primary-gr flex items-center">
             <span>
               <svg
                 width="20"
@@ -63,7 +63,7 @@ const Searbars = () => {
                 />
               </svg>
             </span>
-            <div className="flex-grow">
+            <div className="w-full">
               <Select
                 options={countryOptions}
                 styles={selectStyle}

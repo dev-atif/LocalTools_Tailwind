@@ -12,6 +12,7 @@ import ListingLocation from "./ListingLocation";
 import CallenderSection from "./CallenderSection";
 import PublishSection from "./PublishSection";
 import PublishFooter from "./PublishFooter";
+import Navbar from './../../Component/NavBar/Navbar';
 const Stocks = [
   { value: "1", label: "01" },
   { value: "2", label: "02" },
@@ -22,8 +23,9 @@ const AddPost = () => {
   const [check, setCheck] = useState(false);
   const [check2, setCheck2] = useState(false);
   return (
-    <div className="  md:px-10 px-3">
-      <div>
+    <div >
+      <div><Navbar/></div>
+      <div className="  md:px-10 px-3">
         <div>
           <div className="flex items-center gap-6 pt-3">
             <div className="md:w-2/5 w-full">

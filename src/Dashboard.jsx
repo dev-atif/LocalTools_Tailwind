@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./Component/NavBar/Navbar";
 import SideBar from "./Component/Sidebar/SideBar";
 import SubNav from "./Component/SubNav";
 
 const Dashboard = ({ children }) => {
+  const [open,setOpen] = useState(true)
+  const profileToggle = ()=>{
+    setOpen(!open);
+  }
   return (
     <div>
-      <div className="w-full md:hidde  ">
+     
+     <div><Navbar profileToggle={profileToggle}/></div>
+     <div className="w-full md:hidden  ">
       <SubNav/>
      </div>
       <div className="lg:px-2 xl:px-9 px-3">
@@ -15,7 +21,7 @@ const Dashboard = ({ children }) => {
           <div className="w-1/4 lg:block hidden">
             <SideBar />
           </div>
-          <div className=" lg:w-3/4 w-full">{children}</div>
+          <div className=" lg:w-3/4 w-full" >{children}</div>
         </div>
       </div>
     </div>

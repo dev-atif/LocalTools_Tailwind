@@ -3,6 +3,8 @@ import Dashboard from "../../Dashboard";
 import Order_Tab from "../SellerAccount/Order_Tab";
 import BreadCrums from "../../Component/BreadCrums";
 
+import BuyerTabs from './BuyerTabs';
+
 const Buyer = () => {
   return (
     <Dashboard>
@@ -10,8 +12,11 @@ const Buyer = () => {
         <div>
           <BreadCrums Crums="/ My Profile" Bread="Orders" />
         </div>
-        <div className="md:pt-0 pt-3">
+        {/* <div className="md:pt-0 pt-3">
         <Order_Tab />
+        </div> */}
+        <div>
+         <BuyerTabs/>
         </div>
       </div>
     </Dashboard>
