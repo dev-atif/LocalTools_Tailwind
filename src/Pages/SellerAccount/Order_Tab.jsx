@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import Product from "../../assets/Tabs Ass/Order_product.png";
+import TableDropdown from "./TableDropdown";
+import InvoiceDetails from "./InvoiceDetails";
 const Order_Tab = () => {
+  const [expandedRow, setExpandedRow] = useState(null);
+  
   const Table_head = [
     {
       name: "Product ",
@@ -37,7 +41,7 @@ const Order_Tab = () => {
       bgColor: "bg-green-200",
     },
     {
-      id: 1,
+      id: 2,
       image: Product,
       imgDescription: "Morgan Drill Concrete",
       imgSeller: "John Doe",
@@ -51,7 +55,7 @@ const Order_Tab = () => {
       bgColor: "bg-red-200",
     },
     {
-      id: 1,
+      id: 3,
       image: Product,
       imgDescription: "Morgan Drill Concrete",
       imgSeller: "John Doe",
@@ -66,21 +70,30 @@ const Order_Tab = () => {
     },
     // Add more data as needed
   ];
+
+ const Collaps = (BitemId) => {
+    if (expandedRow === BitemId) {
+      setExpandedRow(null); // Collapse the row if it's already open
+    } else {
+      setExpandedRow(BitemId); // Expand the clicked row
+    }
+  };
+  
   return (
     <div>
       <div>
-      <div className="flex flex-col">
-      <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-        <div className="py-2 align-middle inline-block lg:block min-w-full sm:px-6 lg:px-8">
-          <div className=" overflow-hidden border-b  sm:rounded-lg">
-           
+        <div className="flex flex-col">
+          <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div className="py-2 align-middle inline-block lg:block min-w-full sm:px-6 lg:px-8">
+              <div className=" overflow-hidden border-b  sm:rounded-lg">
                 <table className="min-w-full table-auto w-full 	  border-separate border-spacing-y-4  ">
                   <thead className="">
                     <tr className="bg-color-primary-yel  ">
                       {Table_head.map((item, index) => (
                         <th
                           scope="col"
-                          className=" text-white first:rounded-s-lg last:rounded-e-lg px-4 text-center py-3  text-xs md:text-sm font-Mont first:text-left first:pl-14 font-semibold capitalize tracking-wider"
+                          className=" 
+                           text-white first:rounded-s-lg last:rounded-e-lg  text-center py-3  text-xs md:text-sm font-Mont first:text-left first:pl-14 font-semibold capitalize tracking-wider"
                         >
                           {item.name}
                         </th>
@@ -89,7 +102,8 @@ const Order_Tab = () => {
                   </thead>
                   <tbody>
                     {data.map((Bitem, index) => (
-                      <tr className="bg-white  " key={index}>
+                     <>
+                      <tr className="bg-white cursor-pointer " key={index} onClick={() => Collaps(Bitem.id)}>
                         <td className="px-3 py-3 whitespace-nowrap text-sm rounded-s-lg">
                           {/* wE USE iNLINE BLOCK AND THEN WE USE FLEX BECAUSE IF WE USE DIRECLTY FLEX
                       THE RADIUS ON LEFT SIDE IS NOT WORK THATS WHY WE USE THIS APPROACH */}
@@ -140,7 +154,18 @@ const Order_Tab = () => {
                           </button>
                         </td>
                       </tr>
+                      {expandedRow === Bitem.id  && (
+                      <tr>
+                            <td colSpan="12" >
+                             <TableDropdown/>
+                            </td>
+                          </tr>
+                           )}
+                     </>
+                      
+                      
                     ))}
+                    
                   </tbody>
                 </table>
               </div>

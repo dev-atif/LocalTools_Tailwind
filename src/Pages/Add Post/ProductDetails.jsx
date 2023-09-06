@@ -1,5 +1,5 @@
 import React from "react";
-import TextArea from "./Shared/TextArea";
+import TextArea from "../../Component/NavBar/TextArea";
 
 const ProductDetails = ( {heading1,heading2}) => {
   return (

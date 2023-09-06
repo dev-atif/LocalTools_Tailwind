@@ -13,7 +13,7 @@ const OrderTab = () => {
           
             </div>
             <div className='md:w-1/3 py-3 w-full'>
-            <Search/>
+            <Search placeholder={'Search by Listing Name'}/>
             </div>
             <div>
                 <Order_Tab/>

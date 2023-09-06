@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import BlackButton from "./Shared/BlackButton";
-import ShareField from "./Shared/ShareField";
-import SharedSelect from "./Shared/SharedSelect";
+import BlackButton from "../../Component/Shared/BlackButton";
+import ShareField from "../../Component/Shared/ShareField";
+import SharedSelect from "../../Component/Shared/SharedSelect";
 import SecondCol from "./SecondCol";
 import Section3 from "./Section3";
 import Section4 from "./Section4";

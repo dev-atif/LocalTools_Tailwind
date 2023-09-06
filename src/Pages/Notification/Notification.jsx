@@ -1,18 +1,18 @@
 import React from "react";
 import Dashboard from "./../../Dashboard";
 import BreadCrums from "../../Component/BreadCrums";
-import SharedSelect from "../Add Post/Shared/SharedSelect";
-import BlackButton from "../Add Post/Shared/BlackButton";
+import SharedSelect from "../../Component/Shared/SharedSelect";
+import BlackButton from "../../Component/Shared/BlackButton";
 
 const Notification = () => {
   return (
     <Dashboard>
-      <div>
+      <div className="px-2">
         <div>
           <BreadCrums Crums={"/ Manage Profile"} Bread={"Notification"} />
         </div>
         <div>
-          <div className="pt-10 pb-6">
+          <div className="pt-7 pb-6">
             <h1 className="font-Mont text-black font-semibold 2xl:text-2xl text-xl">
               Notification
             </h1>
@@ -30,10 +30,10 @@ const Notification = () => {
               </p>
             </div>
             <div className="md:flex items-center gap-4">
-              <div className="lg:w-1/3 w-full">
+              <div className="lg:w-2/5 w-full">
                 <SharedSelect bordercolor={"blue"} />
               </div>
-              <div className="lg:w-1/3 w-full">
+              <div className="lg:w-2/5 w-full">
                 <SharedSelect bordercolor={"blue"} />
               </div>
             </div>
@@ -72,7 +72,7 @@ const Notification = () => {
                 </label>
               </div>
            <div className="md:mt-9 mt-5">
-            <div className="md:w-2/5  mx-auto">
+            <div className="md:w-[40%]  mx-auto">
               <BlackButton label={'Save'}/>
             </div>
            </div>

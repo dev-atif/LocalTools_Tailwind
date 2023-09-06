@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import Logo from "../../assets/Logo.png";
+import Logo from "../../assets/Logo-16.png";
 import { RxCross2 } from "react-icons/rx";
 import { BsSearch } from "react-icons/bs";
 
@@ -27,8 +27,8 @@ const Navbar = () => {
   });
 
   return (
-    <div className="border-b py-2 bg-white">
-      <div className="flex items-center justify-between  2xl:max-w-full px-5 xs:px-0 mx-auto 2xl:justify-evenly lg:max-w-7xl">
+    <div className="border-b py-1 bg-white">
+      <div className="flex items-center justify-between  2xl:max-w-full px-5 xs:px-0 mx-auto 2xl:justify-evenly ">
         <div className="hidden md:block">
           <Link to={"/"}>
             {" "}
@@ -86,7 +86,14 @@ const Navbar = () => {
               </svg>
             </span>
             <div className="flex lg:flex-row flex-row-reverse  items-center gap-4">
-              <img src={profile} />
+              <div>
+                <Link to={'/Login'}>
+                <h1 className="font-Mont font-semibold text-lg">
+                Login
+                </h1>
+                </Link>
+              </div>
+              {/* <img src={profile} />
               <div className="relative">
                 <span
                   className="cursor-pointer "
@@ -132,7 +139,7 @@ const Navbar = () => {
                     </ul>
                   </div>
                 )}
-              </div>
+              </div> */}
               <div>
                 <button
                   className="font-Mont bg-color-primary-yel
@@ -155,7 +162,7 @@ const Navbar = () => {
             {!searchOpen ? <BsSearch /> : <RxCross2 />}
           </span>
           {searchOpen && (
-            <div className="absolute left-0 z-30 bg-white top-16 md:top-24 p-4 w-full border rounded-b-lg">
+            <div className="absolute left-0 z-30 bg-white top-[60px] md:top-24 p-4 w-full border rounded-b-lg">
               <Searbars />
             </div>
           )}

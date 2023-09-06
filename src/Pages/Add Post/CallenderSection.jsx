@@ -1,5 +1,5 @@
 import React from "react";
-import SharedSelect from "./Shared/SharedSelect";
+import SharedSelect from "../../Component/Shared/SharedSelect";
 import Calender from "./Shared/Calender";
 const time = [
   { value: 1, label: "Hourly" },

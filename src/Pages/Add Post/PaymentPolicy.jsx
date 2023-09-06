@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import SharedSelect from "./Shared/SharedSelect";
+import SharedSelect from "../../Component/Shared/SharedSelect";
 
 const PaymentPolicy = () => {
   const [isYes, setYes] = useState(true);

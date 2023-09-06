@@ -1,6 +1,6 @@
 import React from "react";
-import SharedSelect from "./Shared/SharedSelect";
-import ShareField from "./Shared/ShareField";
+import SharedSelect from "../../Component/Shared/SharedSelect";
+import ShareField from "../../Component/Shared/ShareField";
 const Currency = [
   { value: "1", label: "Euro" },
   { value: "2", label: "Dollar" },

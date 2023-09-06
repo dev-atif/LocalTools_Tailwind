@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useState } from 'react'
+import InvoiceDetails from '../InvoiceDetails'
 const Table_head=[
     {
         name:'Invoice'
@@ -25,7 +26,7 @@ const Table_head=[
 
 ]
 const data=[
-    {
+    {    id:1,
         invoice:'123456',
         orderid:'123456',
         date:'February 5, 2023',
@@ -35,6 +36,7 @@ const data=[
         btntext:'View Details'
     },
     {
+      id:2,
         invoice:'123456',
         orderid:'123456',
         date:'February 5, 2023',
@@ -44,6 +46,7 @@ const data=[
         btntext:'View Details'
     },
     {
+      id:3,
         invoice:'123456',
         orderid:'123456',
         date:'February 5, 2023',
@@ -52,44 +55,17 @@ const data=[
         price:'$ 155.00',
         btntext:'View Details'
     },
-    {
-        invoice:'123456',
-        orderid:'123456',
-        date:'February 5, 2023',
-        type:'Product',
-        status:'Amount Paid',
-        price:'$ 155.00',
-        btntext:'View Details'
-    },
-    {
-        invoice:'123456',
-        orderid:'123456',
-        date:'February 5, 2023',
-        type:'Product',
-        status:'Amount Paid',
-        price:'$ 155.00',
-        btntext:'View Details'
-    },
-    {
-        invoice:'123456',
-        orderid:'123456',
-        date:'February 5, 2023',
-        type:'Highlight Plan',
-        status:'Amount Paid',
-        price:'$ 155.00',
-        btntext:'View Details'
-    },
-    {
-        invoice:'123456',
-        orderid:'123456',
-        date:'February 5, 2023',
-        type:'Product',
-        status:'Amount Paid',
-        price:'$ 155.00',
-        btntext:'View Details'
-    },
+   
 ]
 const InvoiceTable = () => {
+  const [invoice,setInvoice] = useState(null)
+  const invoiveCollaps = (itemid)=>{
+    if (invoice === itemid) {
+      setInvoice(null); // Collapse the row if it's already open
+    } else {
+      setInvoice(itemid); // Expand the clicked row
+    }
+  }
   return (
     <div>
         <div>
@@ -123,8 +99,10 @@ const InvoiceTable = () => {
                   </thead>
 
                   <tbody>
+                    
                    {data.map((item,index)=>(
-                     <tr className="bg-white  " key={index}>
+                    <>
+                     <tr className="bg-white  " key={index} >
                      <td className="px-3 py-3 whitespace-nowrap text-sm font-Robot font-semibold rounded-s-lg">
                       {item.invoice}
                      </td>
@@ -151,13 +129,24 @@ const InvoiceTable = () => {
                     {item.price}
                      </td>
                      <td className="px-3 py-3 whitespace-nowrap text-sm  text-center rounded-r-lg">
-                       <button
+                       <button onClick={()=>{invoiveCollaps(item.id)}}
                          className={`bg-color-primary-yel rounded-lg w-[100px] 2xl:w-[140px] font-semibold py-2 text-white xl:text-sm 2xl:text-lg`}
                        >
                        {item.btntext}
                        </button>
                      </td>
+                   
                    </tr>
+                   {
+                    invoice === item.id && (
+                      <tr  >
+                        <td colSpan="12" >
+                          <InvoiceDetails/>
+                        </td>
+                      </tr>
+                    )
+                  }
+                  </>
                    ))}
                   </tbody>
                 </table>

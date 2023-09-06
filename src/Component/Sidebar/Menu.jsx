@@ -12,7 +12,7 @@ import sellerAccount from "../NavBar/SVG/sellerAcoount";
       id:1,
       name: "Profile Information",
       icon: profile,
-      path: "/",
+      path: "/profile",
       'bread':'Manage Profile'
     },
     {

@@ -9,7 +9,7 @@ const SellerAccount = () => {
         <div className='lg:pl-3'>
             <div>
                 <div>
-                    <BreadCrums Crums='/ My Profile' Bread='Documents'/>
+                    <BreadCrums Crums='/ Manage Profile' Bread='Seller Account'/>
                 </div>
                 <div>
                     <TabsMenuArray/>

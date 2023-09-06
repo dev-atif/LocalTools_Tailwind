@@ -1,6 +1,6 @@
 import React from "react";
-import ShareField from "./../../Add Post/Shared/ShareField";
-import SharedSelect from "../../Add Post/Shared/SharedSelect";
+import ShareField from "../../../Component/Shared/ShareField";
+import SharedSelect from "../../../Component/Shared/SharedSelect";
 import InvoiceTable from "./InvoiceTable";
 
 const Invetory_Tab = () => {

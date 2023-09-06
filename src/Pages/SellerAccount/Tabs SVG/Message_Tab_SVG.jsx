@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Message_Tab_SVG = ({props,fill}) => {
+const Message_Tab_SVG = ({fill}) => {
     return (
         <svg
           width={20}

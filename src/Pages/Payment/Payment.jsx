@@ -88,7 +88,7 @@ const Payment = () => {
         <div>
           <BreadCrums Bread={' Orders'} Crums={'/ My Profile'}/>
         </div>
-       <div className="!h-4/5 overflow-y-scroll overflow-x-hidden">
+       <div className="!h-4/5 overflow-y-scroll overflow-x-hidden lg:mt-2">
        <div className="flex flex-col md:pt-0 pt-3">
           <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

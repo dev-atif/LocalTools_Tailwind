@@ -1,12 +1,12 @@
 import React from "react";
 
-const Search = () => {
+const Search = ({placeholder}) => {
   return (
     <div>
       <div className="bg-white py-3 px-4 rounded-lg flex  justify-between">
         <input
           type="text"
-          placeholder="Search by Customer Name"
+          placeholder={placeholder}
           className="w-full  placeholder:text-sm placeholder:font-Robot placeholder:text-[#92929D] placeholder:font-normal
           outline-none"
         />

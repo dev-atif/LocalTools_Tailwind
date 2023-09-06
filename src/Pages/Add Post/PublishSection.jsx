@@ -1,6 +1,6 @@
 import React from "react";
-import ShareField from "./Shared/ShareField";
-import SharedSelect from "./Shared/SharedSelect";
+import ShareField from "../../Component/Shared/ShareField";
+import SharedSelect from "../../Component/Shared/SharedSelect";
 const DaysPlan = [
   { value: 1, label: "5 Days" },
   { value: 2, label: "6 Days" },

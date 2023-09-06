@@ -13,7 +13,7 @@ const Message_tab = () => {
           </h1>
         </div>
         <div className='md:inline-block py-4'>
-          <Search/>
+          <Search placeholder={'Search by Name'}/>
         </div>
         <div className='md:grid grid-cols-12   gap-8 pb-5' >
             <div className='col-span-5 2xl:col-span-4 bg-white rounded-lg'>

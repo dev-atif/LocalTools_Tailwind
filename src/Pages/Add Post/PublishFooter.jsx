@@ -1,5 +1,5 @@
 import React from "react";
-import BlackButton from "./Shared/BlackButton";
+import BlackButton from "../../Component/Shared/BlackButton";
 
 const PublishFooter = () => {
   return (

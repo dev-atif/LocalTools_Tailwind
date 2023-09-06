@@ -1,5 +1,6 @@
 import React from "react";
 import Select, { components } from "react-select";
+import SharedSelect from "../Shared/SharedSelect";
 const Category = [
   { value: "heavymachine", label: "Heavy Machine" },
   { value: "All", label: "All Category" },
@@ -34,8 +35,8 @@ const DropdownIndicator = (props) => {
 };
 const Searbars = () => {
   return (
-    <div>
-      <div className="flex flex-col lg:flex-row items-center gap-3">
+    <div className="">
+      <div className="flex flex-col lg:flex-row items-center gap-3 justify-between">
       
           {/* DropDown....... */}
           <div className="border border-[#F1F1F5] rounded-2xl md:pl-3 px-3 md:px-0  w-full  2xl:w-44 xl:w-[170px]   text-sm bg-[#F6F7FB] font-Robot text-color-primary-gr flex items-center">
@@ -63,8 +64,23 @@ const Searbars = () => {
                 />
               </svg>
             </span>
-            <div className="w-full">
+            <div className="w-full ">
               <Select
+                options={countryOptions}
+                styles={selectStyle}
+                components={{ DropdownIndicator }}
+              />
+            </div>
+          </div>
+          <div className="border border-[#F1F1F5] rounded-2xl md:pl-3 px-3 md:px-0  w-full  2xl:w-44 xl:w-[170px]   text-sm bg-[#F6F7FB] font-Robot text-color-primary-gr flex items-center">
+            <span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 7.63636C9.58909 7.63636 7.63636 9.58909 7.63636 12C7.63636 14.4109 9.58909 16.3636 12 16.3636C14.4109 16.3636 16.3636 14.4109 16.3636 12C16.3636 9.58909 14.4109 7.63636 12 7.63636ZM21.7527 10.9091C21.5056 8.69686 20.5136 6.63441 18.9396 5.06039C17.3656 3.48638 15.3031 2.49438 13.0909 2.24727V0H10.9091V2.24727C8.69686 2.49438 6.63441 3.48638 5.06039 5.06039C3.48638 6.63441 2.49438 8.69686 2.24727 10.9091H0V13.0909H2.24727C2.49438 15.3031 3.48638 17.3656 5.06039 18.9396C6.63441 20.5136 8.69686 21.5056 10.9091 21.7527V24H13.0909V21.7527C15.3031 21.5056 17.3656 20.5136 18.9396 18.9396C20.5136 17.3656 21.5056 15.3031 21.7527 13.0909H24V10.9091H21.7527ZM12 19.6364C7.77818 19.6364 4.36364 16.2218 4.36364 12C4.36364 7.77818 7.77818 4.36364 12 4.36364C16.2218 4.36364 19.6364 7.77818 19.6364 12C19.6364 16.2218 16.2218 19.6364 12 19.6364Z" fill="#92929D"/>
+</svg>
+
+            </span>
+            <div className="w-full">
+              <Select placeholder={'Distance '}
                 options={countryOptions}
                 styles={selectStyle}
                 components={{ DropdownIndicator }}
@@ -89,12 +105,12 @@ const Searbars = () => {
             <div className="w-full md:w-auto pt-4 pb-4 lg:pt-0 lg:pb-0">
               <input
                 type="text"
-                className="bg-transparent text-black text-sm lg:border-l-2 px-2  md:w-auto  xl:w-[300px] 2xl:w-[600px]  border-black font-Robot focus:outline-none "
+                className="bg-transparent text-black text-sm lg:border-l-2 px-2  md:w-auto  xl:w-[320px] 2xl:w-[470px]  lg:w-[100px] border-black font-Robot focus:outline-none "
                 placeholder="Search in All "
               />
             </div>
             <div>
-              <span className="absolute top-[70%] right-10  lg:relative lg:top-auto lg:right-auto">
+              <span className="absolute top-[78%] right-10  lg:relative lg:top-auto lg:right-auto">
                 <svg
                   width="20"
                   height="20"

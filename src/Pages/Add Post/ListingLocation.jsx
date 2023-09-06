@@ -1,6 +1,6 @@
 import React from "react";
-import ShareField from "./Shared/ShareField";
-import SharedSelect from "./Shared/SharedSelect";
+import ShareField from "../../Component/Shared/ShareField";
+import SharedSelect from "../../Component/Shared/SharedSelect";
 import GoogleMapApi from "./Shared/GoogleMapAPi";
 
 

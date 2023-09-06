@@ -9,9 +9,11 @@ const SideBar = () => {
     <div className=" ">
       <div>
         <div className="py-3 lg:px-0 px-5">
-          <button className="text-sm text-white font-semibold leading-5 bg-black w-full font-Mont py-3 rounded-lg hover:bg-color-primary-yel hover:text-black transition-all duration-300">
+         <Link to={'/BusinessProfile'}>
+         <button  className="text-sm text-white font-semibold leading-5  bg-black w-full font-Mont py-3 rounded-lg hover:bg-color-primary-yel hover:text-black transition-all duration-300">
             My Account
           </button>
+         </Link>
         </div>
         <div className="lg:bg-white  rounded-xl ">
           <ul>
@@ -35,17 +37,7 @@ const SideBar = () => {
                       } ${item.id ===1 && location.pathname === item.path ? 'stroke-white fill-yellow-400' : ""}   `,
                     })}
                   </span> 
-                  {/*  <span>
-                    {React.createElement(item.icon, {
-                      className: `group-hover:fill-white ${
-                        location.pathname === item.path ? " fill-white " : ""
-                      }   `,
-                    })}
-                  </span> */}
-                  {/*  {React.cloneElement(<item.icon/>, {
-                  stroke:  location.pathname === item.path ? 'white' : 'black', 
                  
-                })} */}
 
                   
                   {item.name}

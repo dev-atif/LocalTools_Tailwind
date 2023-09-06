@@ -1,6 +1,6 @@
 import React from "react";
-import ShareField from "./Shared/ShareField";
-import BlackButton from "./Shared/BlackButton";
+import ShareField from "../../Component/Shared/ShareField";
+import BlackButton from "../../Component/Shared/BlackButton";
 
 const CustomDetails = () => {
   return (
