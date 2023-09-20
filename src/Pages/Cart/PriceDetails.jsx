@@ -53,7 +53,7 @@ const PriceDetails = () => {
                  className="border-none focus:outline-none bg-transparent w-full placeholder:font-Mont placeholder:text-sm"  />
             </div>
             <div className="w-1/4">
-                <button className="bg-color-primary-yel p-3  text-white rounded-lg font-Mont font-semibold w-full">
+                <button className="bg-color-primary-yel py-3  text-white rounded-lg font-Mont font-semibold w-full">
                 coupon
                 </button>
             </div>

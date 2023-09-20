@@ -14,7 +14,7 @@ const About = () => {
     const Missionp2='Quisque ipsum erat, eleifend et placerat vel, lacinia ac arcu. Nam feugiat ut urna vitae porta Aliquam faucibus lacus id magna vestibulum, a auctor erat blandit. Suspendisse ut lectu feugiat eros. Phasellus mauris odio,convallis ac libero vitae, feugiat tempor odio. Nulla facilisi.'
     return (
     <>
-      <div>
+      <div className="bg-white">
         <div>
           <Navbar />
         </div>
