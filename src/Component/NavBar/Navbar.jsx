@@ -5,12 +5,13 @@ import { BsSearch } from "react-icons/bs";
 
 import profile from "../../assets/profile.png";
 import Searbars from "./Searchbars";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [Open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
-
+  const auth = localStorage.getItem("user");
+  const navigate = useNavigate();
   //This ref connect to the dropdown profile below
   let dropdown = useRef();
   //this function is used to hide menue when we click outside the menu or anywhere on the  screen
@@ -25,6 +26,11 @@ const Navbar = () => {
       document.removeEventListener("mousedown", handle);
     };
   });
+  //LogOUT FUnction --------------------
+  const logOut = () => {
+    localStorage.clear();
+    navigate("/Login");
+  };
 
   return (
     <div className="border-b py-1 bg-white">
@@ -86,60 +92,71 @@ const Navbar = () => {
               </svg>
             </span>
             <div className="flex lg:flex-row flex-row-reverse  items-center gap-4">
-              <div>
-                <Link to={'/Login'}>
-                <h1 className="font-Mont font-semibold text-lg">
-                Login
-                </h1>
-                </Link>
-              </div>
-              {/* <img src={profile} />
-              <div className="relative">
-                <span
-                  className="cursor-pointer "
-                  onClick={() => {
-                    setOpen(!Open);
-                  }}
-                >
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M4 9L12 17L20 9"
-                      stroke="#92929D"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-                {Open && (
-                  <div
-                    ref={dropdown}
-                    className="absolute bg-white rounded-lg w-32 2xl:w-40 text-center z-10 -translate-x-14 top-10"
-                  >
-                    <ul
+              {auth ? (
+                <>
+                  <img src={profile} />
+                  <div className="relative">
+                    <span
+                      className="cursor-pointer "
                       onClick={() => {
-                        setOpen(false);
+                        setOpen(!Open);
                       }}
                     >
-                      <li className=" hover:bg-[#F6F7FB] hover:rounded-t-lg p-2">
-                        <a href="#">Profile</a>
-                      </li>
-                      <li className="p-2  hover:bg-[#F6F7FB]">
-                        <a href="#">Setting</a>
-                      </li>
-                      <li className="p-2  hover:bg-[#F6F7FB] hover:rounded-b-lg">
-                        <a href="#">LogOut</a>
-                      </li>
-                    </ul>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M4 9L12 17L20 9"
+                          stroke="#92929D"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    {Open && (
+                      <div
+                        ref={dropdown}
+                        className="absolute bg-white rounded-lg w-32 2xl:w-40 text-center z-10 -translate-x-14 top-10"
+                      >
+                        <ul
+                          onClick={() => {
+                            setOpen(false);
+                          }}
+                        >
+                          <li className=" hover:bg-[#F6F7FB] hover:rounded-t-lg p-2">
+                            <a href="#">Profile</a>
+                          </li>
+                          <li className="p-2  hover:bg-[#F6F7FB]">
+                            <a href="#">Setting</a>
+                          </li>
+                          <li
+                            onClick={() => {
+                              logOut();
+                            }}
+                            className="p-2  hover:bg-[#F6F7FB] hover:rounded-b-lg"
+                          >
+                            <a href="#">LogOut</a>
+                          </li>
+                        </ul>
+                      </div>
+                    )}
                   </div>
-                )}
-              </div> */}
+                </>
+              ) : (
+                <>
+                  <div>
+                    <Link to={"/Login"}>
+                      <h1 className="font-Mont font-semibold text-lg">Login</h1>
+                    </Link>
+                  </div>
+                </>
+              )}
+
               <div>
                 <button
                   className="font-Mont bg-color-primary-yel

@@ -10,14 +10,14 @@ import Payment from "./Pages/Payment/Payment";
 import Buyer from "./Pages/BuyerAccount/Buyer";
 
 import AddPost from "./Pages/Add Post/AddPost";
-import Notification from './Pages/Notification/Notification';
+import Notification from "./Pages/Notification/Notification";
 import LogOut from "./Pages/LogOut/LogOut";
-import BusinessProfile from './Pages/BusinessProfile/BusinessProfile';
+import BusinessProfile from "./Pages/BusinessProfile/BusinessProfile";
 
 import Signin from "./Pages/LogIn & Registration/Signin";
 import ForgetPassword from "./Pages/LogIn & Registration/ForgetPassword";
 import Registration from "./Pages/LogIn & Registration/Registration";
-import ResetPassword from './Pages/LogIn & Registration/ResetPassword';
+import ResetPassword from "./Pages/LogIn & Registration/ResetPassword";
 import MainDashboard from "./Pages/MainDashboard/LandingPage";
 import InnerPage from "./Pages/FiltersPage/InnerPage";
 import SingleProduct from "./Pages/SingleProduct/SingleProduct";
@@ -34,49 +34,51 @@ import Help_3 from "./Pages/Help/Help_3";
 import SaftyTip from "./Pages/SaftyTip/SaftyTip";
 import DataProtection from "./Pages/DataProtection/DataProtection";
 import CurrentNotice from "./Pages/CurrentNotice/CurrentNotice";
-
-
+import Protected from "./Pages/Protected/Protected";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-     {/*  <div>
+        {/*  <div>
         <Navbar />
       </div> */}
-     
+
         <Routes>
-          {/* <Route path="/" element={<Dashboard />} /> */}
-          <Route path="/" element={<MainDashboard />} />
-          <Route path="/notice" element={<CurrentNotice/>} />
-          <Route path="/dataprotection" element={<DataProtection/>} />
-          <Route path="/saftytips" element={<SaftyTip/>} />
-          <Route path="/help3" element={<Help_3/>} />
-          <Route path="/help2" element={<Help_2/>} />
-          <Route path="/help" element={<Help/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/notification" element={<GNotification/>} />
-          <Route path="/checkout" element={<CheckOut/>} />
-          <Route path="/cart" element={<ProductCart/>} />
-          <Route path="/filter" element={<InnerPage/>} />
-          <Route path="/singleproduct" element={<SingleProduct/>} />
-          
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/changepassword" element={<Changepassword />} />
-          <Route path="/documents" element={<Documents />} />
-          <Route path="/selleraccount" element={<SellerAccount />} />
-          <Route path="/buyeraccount" element={<Buyer/>} />
-          <Route path="/payments" element={<Payment />} />
-          <Route path="/addpost" element={<AddPost />} />
-          <Route path="/notification" element={<Notification />} />
-          <Route path="/logout" element={<LogOut />} />
-          <Route path="/BusinessProfile" element={<BusinessProfile />} />
+          {/* Protected routes */}
+          <Route element={<Protected />}>
+            {/* <Route path="/" element={<Dashboard />} /> */}
+            <Route path="/" element={<MainDashboard />} />
+            <Route path="/notice" element={<CurrentNotice />} />
+            <Route path="/dataprotection" element={<DataProtection />} />
+            <Route path="/saftytips" element={<SaftyTip />} />
+            <Route path="/help3" element={<Help_3 />} />
+            <Route path="/help2" element={<Help_2 />} />
+            <Route path="/help" element={<Help />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/notification" element={<GNotification />} />
+            <Route path="/checkout" element={<CheckOut />} />
+            <Route path="/cart" element={<ProductCart />} />
+            <Route path="/filter" element={<InnerPage />} />
+            <Route path="/singleproduct" element={<SingleProduct />} />
+
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/changepassword" element={<Changepassword />} />
+            <Route path="/documents" element={<Documents />} />
+            <Route path="/selleraccount" element={<SellerAccount />} />
+            <Route path="/buyeraccount" element={<Buyer />} />
+            <Route path="/payments" element={<Payment />} />
+            <Route path="/addpost" element={<AddPost />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route path="/logout" element={<LogOut />} />
+            <Route path="/BusinessProfile" element={<BusinessProfile />} />
+          </Route>
           <Route path="/Login" element={<Signin />} />
-          <Route path="/ForgetPassword" element={<ForgetPassword/>} />
-          <Route path="/Registration" element={<Registration/>} />
-          <Route path="/resetpassword" element={<ResetPassword/>} />
-          <Route path="/505" element={<Error_505/>} />
-          <Route path="*" element={<Error_404/>} />
+          <Route path="/ForgetPassword" element={<ForgetPassword />} />
+          <Route path="/Registration" element={<Registration />} />
+          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/505" element={<Error_505 />} />
+          <Route path="*" element={<Error_404 />} />
         </Routes>
       </BrowserRouter>
     </>

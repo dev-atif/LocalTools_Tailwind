@@ -1,7 +1,7 @@
 import React from "react";
 import Select, { components } from "react-select";
 const SharedSelect = ({
-  Value,
+  Values,
   label,
   textsize,
   placeholder,
@@ -9,6 +9,9 @@ const SharedSelect = ({
   bordercolor,
   stroke,
   bg,
+  onChange,
+  name,
+  Value
 }) => {
   const DropdownIndicator = (props) => {
     return (
@@ -31,6 +34,7 @@ const SharedSelect = ({
       </components.DropdownIndicator>
     );
   };
+
   return (
     <div>
       <div className="flex flex-col py-2">
@@ -53,10 +57,12 @@ const SharedSelect = ({
           } rounded-lg w-full ${bg}`}
         >
           <Select
-            options={Value}
+            options={Values}
             styles={selectStyle}
             components={{ DropdownIndicator }}
             placeholder={placeholder}
+            onChange={onChange}
+          
           />
         </div>
       </div>

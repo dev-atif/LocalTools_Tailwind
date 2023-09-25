@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 
 import signin from "../../assets/signin.png";
 
@@ -8,10 +8,68 @@ import { BiLogoGoogle } from "react-icons/bi";
 import { AiFillFacebook } from "react-icons/ai";
 import logo from "../../assets/Logo-16.png";
 import FormInput from "./FormInput";
+import { Formik, useFormik } from "formik";
+import { loginSchema } from "../../Schemas";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
+
+const initialValues = {
+  email: "",
+  pasword: "",
+};
+
 const Signin = () => {
- 
+  const Formik = useFormik({
+    initialValues: initialValues,
+    validationSchema: loginSchema,
+    onSubmit: (values) => {
+      console.warn(values);
+    },
+  });
+  console.warn(Formik.values);
+
+  /* Api Call Function And Login           */
+  const navigate = useNavigate();
+
+  const logIn = async () => {
+    if (!Formik.values.email || !Formik.values.pasword) {
+      toast.error("Please fill in all the fields", {
+        autoClose: 2000, // Set the duration to 3000 milliseconds (2 seconds)
+      });
+      return false;
+    }
+
+    const response = await axios.post(
+      "http://localhost:3000/login",
+      {
+        email: Formik.values.email,
+        pasword: Formik.values.pasword,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    const result = response.data;
+
+    if (result.auth) {
+      localStorage.setItem("user", JSON.stringify(result.user));
+      localStorage.setItem("token", JSON.stringify(result.auth));
+      navigate("/");
+    } else {
+      toast.error("Dont Find Account First Register ", {
+        autoClose: 2000,
+      });
+    }
+   
+  };
   return (
     <>
+      <div>
+        <ToastContainer />
+      </div>
       <div className="bg-color-primary-yel  flex items-center  h-full justify-center pb-32">
         <div className="md:px-12 px-2  ">
           <div className="md:p-8 p-4">
@@ -33,14 +91,45 @@ const Signin = () => {
                   Just sign in if you have an account in here. Enjoy our Website
                 </p>
               </div>
+              {/* -------------------------------------------------------------- */}
               <div className="md:px-10 ">
                 <div className="bg-white md:p-10  p-5 rounded-2xl">
-                  <div>
-                    <FormInput placeholder={"Enter e mail"} />
-                  </div>
-                  <div className="py-5">
-                    <FormInput placeholder={"Enter Password "} />
-                  </div>
+                  <form onSubmit={Formik.handleSubmit}>
+                    <div>
+                      <FormInput
+                        value={Formik.values.email}
+                        onChange={Formik.handleChange}
+                        name="email"
+                        placeholder={"Enter email"}
+                        onBlur={Formik.handleBlur}
+                      />
+                      {Formik.errors.email && Formik.touched.email ? (
+                        <>
+                          <p className="text-red-800 font-Mont text-xs mt-1 font-semibold">
+                            {Formik.errors.email}
+                          </p>
+                        </>
+                      ) : null}
+                    </div>
+                    <div className="py-5">
+                      <FormInput
+                        onChange={Formik.handleChange}
+                        value={Formik.values.pasword}
+                        name={"pasword"}
+                        placeholder={"Enter Password "}
+                        onBlur={Formik.handleBlur}
+                        type={"password"}
+                      />
+                      {Formik.errors.pasword && Formik.touched.pasword ? (
+                        <>
+                          <p className="text-red-800 font-Mont text-xs mt-1 font-semibold">
+                            {Formik.errors.pasword}
+                          </p>
+                        </>
+                      ) : null}
+                    </div>
+                  </form>
+                  {/* -------------------------------------------------------------- */}
                   <div className="flex items-center justify-between">
                     <div class="inline-flex items-center gap-1 mt-1">
                       <label
@@ -83,7 +172,9 @@ const Signin = () => {
                   </div>
                   <div className="my-4">
                     <button
-                     
+                      onClick={() => {
+                        logIn();
+                      }}
                       className="bg-black text-white w-full py-3 rounded-lg font-Mont text-sm "
                     >
                       Login{" "}

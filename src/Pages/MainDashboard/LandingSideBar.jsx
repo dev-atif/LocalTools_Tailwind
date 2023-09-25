@@ -33,7 +33,7 @@ const LandingSideBar = () => {
                     {React.cloneElement(<item.svg />, {
                       className: `group-hover:fill-white group-hover:stroke-white ${
                         item.id === 7
-                          ? "group-hover:stroke-white group-hover:fill-color-primary-yel "
+                          ? "group-hover:stroke-white group-hover:fill-none "
                           : ""
                       } `,
                     })}
