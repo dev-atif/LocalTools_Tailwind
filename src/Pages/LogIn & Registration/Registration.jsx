@@ -68,7 +68,8 @@ const Registration = () => {
       !Formik.values.email ||
       !Formik.values.pasword ||
       !Formik.values.confirm_pasword ||
-      !isChecked
+      !isChecked ||
+      Formik.values.pasword !== Formik.values.confirm_pasword
     ) {
       toast.error("Please fill in all the fields", {
         autoClose: 2000, // Set the duration to 3000 milliseconds (2 seconds)
@@ -101,16 +102,19 @@ const Registration = () => {
 
       if (result) {
         localStorage.setItem("user", JSON.stringify(result.result));
-        localStorage.setItem('token',JSON.stringify(result.auth))
+        localStorage.setItem("token", JSON.stringify(result.auth));
         Formik.resetForm();
         navigate("/Login");
       }
     } catch (error) {
       console.error("Error:", error);
       // Handle error here, e.g., display an error message to the user
-      toast.error("An error occurred while processing your request. Please try again later.", {
-        autoClose: 2000,
-      });
+      toast.error(
+        "An error occurred while processing your request. Please try again later.",
+        {
+          autoClose: 2000,
+        }
+      );
     }
   };
 
@@ -159,6 +163,7 @@ const Registration = () => {
                                   onChange={Formik.handleChange}
                                   placeholder={"First Name"}
                                   type={"text"}
+                                  onBlur={Formik.handleBlur}
                                 />
                                 {Formik.errors.name && Formik.touched.name ? (
                                   <p className="text-red-800 font-Mont text-xs mt-1 absolute -top-6">
@@ -173,6 +178,7 @@ const Registration = () => {
                                   onChange={Formik.handleChange}
                                   type={"text"}
                                   placeholder={"Last Name"}
+                                  onBlur={Formik.handleBlur}
                                 />
                                 {Formik.errors.lastname &&
                                 Formik.touched.lastname ? (
@@ -193,6 +199,7 @@ const Registration = () => {
                                       onChange={Formik.handleChange}
                                       type={"text"}
                                       placeholder={"+92"}
+                                      onBlur={Formik.handleBlur}
                                     />
                                     {Formik.errors.country_code &&
                                     Formik.touched.country_code ? (
@@ -208,6 +215,7 @@ const Registration = () => {
                                       onChange={Formik.handleChange}
                                       type={"text"}
                                       placeholder={"Phone Number"}
+                                      onBlur={Formik.handleBlur}
                                     />
                                     {Formik.errors.number &&
                                     Formik.touched.number ? (
@@ -240,6 +248,7 @@ const Registration = () => {
                                 type={"text"}
                                 placeholder={"Mail Address "}
                                 pr={"pr-24"}
+                                onBlur={Formik.handleBlur}
                               />
                               {Formik.errors.email && Formik.touched.email ? (
                                 <p className="text-red-900 font-Mont text-xs mt-1 absolute -bottom-4">
@@ -257,6 +266,7 @@ const Registration = () => {
                                   type={password ? "text" : "password"}
                                   placeholder={"Password "}
                                   pr={"pr-12"}
+                                  onBlur={Formik.handleBlur}
                                 />
                                 {Formik.errors.pasword &&
                                 Formik.touched.pasword ? (
@@ -314,9 +324,12 @@ const Registration = () => {
                                   type={cPassword ? "text" : "password"}
                                   placeholder={"Confirm Password "}
                                   pr={"pr-12"}
+                                  onBlur={Formik.handleBlur}
                                 />
                                 {Formik.errors.confirm_pasword &&
-                                Formik.touched.confirm_pasword ? (
+                                Formik.touched.confirm_pasword &&
+                                Formik.values.pasword !==
+                                  Formik.values.confirm_pasword ? (
                                   <p className="text-red-900 font-Mont text-xs mt-1 absolute -bottom-4">
                                     {Formik.errors.confirm_pasword}
                                   </p>

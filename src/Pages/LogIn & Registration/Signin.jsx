@@ -73,7 +73,9 @@ const Signin = () => {
       <div className="bg-color-primary-yel  flex items-center  h-full justify-center pb-32">
         <div className="md:px-12 px-2  ">
           <div className="md:p-8 p-4">
-            <img src={logo} />
+           <Link to={'/'}>
+           <img src={logo} />
+           </Link>
           </div>
           <div className="lg:grid grid-cols-2 xl:gap-6 items-center">
             <div /* className="mt-10" */ className="flex items-center">

@@ -48,7 +48,7 @@ function App() {
           {/* Protected routes */}
           <Route element={<Protected />}>
             {/* <Route path="/" element={<Dashboard />} /> */}
-            <Route path="/" element={<MainDashboard />} />
+           
             <Route path="/notice" element={<CurrentNotice />} />
             <Route path="/dataprotection" element={<DataProtection />} />
             <Route path="/saftytips" element={<SaftyTip />} />
@@ -79,6 +79,7 @@ function App() {
           <Route path="/resetpassword" element={<ResetPassword />} />
           <Route path="/505" element={<Error_505 />} />
           <Route path="*" element={<Error_404 />} />
+          <Route path="/" element={<MainDashboard />} />
         </Routes>
       </BrowserRouter>
     </>

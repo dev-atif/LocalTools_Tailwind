@@ -6,12 +6,20 @@ import { BsSearch } from "react-icons/bs";
 import profile from "../../assets/profile.png";
 import Searbars from "./Searchbars";
 import { Link, useNavigate } from "react-router-dom";
+import Not_auth_Model from "../Not_auth_Model";
+import AddPost from './../../Pages/Add Post/AddPost';
+
 
 const Navbar = () => {
   const [Open, setOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const auth = localStorage.getItem("user");
   const navigate = useNavigate();
+
+  //Auth Check For Model of Post Add
+  const [checkauth,setAuth] =useState(false)
+  
+  
   //This ref connect to the dropdown profile below
   let dropdown = useRef();
   //this function is used to hide menue when we click outside the menu or anywhere on the  screen
@@ -31,6 +39,14 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/Login");
   };
+  const authCheck = ()=>{
+if(!auth){
+ setAuth(true)
+}
+else{
+  navigate('/addpost')
+}
+  }
 
   return (
     <div className="border-b py-1 bg-white">
@@ -158,11 +174,14 @@ const Navbar = () => {
               )}
 
               <div>
-                <button
+                 {checkauth? (<><Not_auth_Model check={checkauth} setCheck={setAuth}/></>):null}
+                 
+                <button onClick={()=>{authCheck()}}
                   className="font-Mont bg-color-primary-yel
             font-[600] text-white px-5 py-2 rounded-lg "
                 >
-                  <Link to="/addpost">Post Ad</Link>
+                  {/* <Link to="/addpost">Post Ad</Link> */}
+                  Post Ad
                 </button>
               </div>
             </div>

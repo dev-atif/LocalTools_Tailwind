@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-export const signUpSchema = Yup.object({
+export const signUpSchema = Yup.object().shape({
   name: Yup.string().min(3).max(25).required("Please Enter First Name"),
   lastname: Yup.string().min(3).max(25).required("Please Enter last Name"),
   country_code: Yup.string()
@@ -9,13 +9,14 @@ export const signUpSchema = Yup.object({
     .required("Please Enter Country code"),
   number: Yup.string().min(10).max(12).required("Please Enter Number"),
   email: Yup.string().email().required("Please Enter Email"),
-  pasword: Yup.string().min(6).required("Please Enter Pasword"),
+
+  pasword: Yup.string().required("Please enter your Password"),
   confirm_pasword: Yup.string()
-    .required("Please Confirm your Pasword")
-    .oneOf([Yup.ref("pasword"), null], "Pasword Does not Match"),
+    .oneOf([Yup.ref("password"), null], "Password Does not Match")
+    .required("Please confirm your Password"),
 });
 
-export const loginSchema =  Yup.object({
-  email:Yup.string().email().required("Please Enter Email"),
-  pasword:Yup.string().min(6).required("Please Enter Pasword")
-})
+export const loginSchema = Yup.object({
+  email: Yup.string().email().required("Please Enter Email"),
+  pasword: Yup.string().min(6).required("Please Enter Pasword"),
+});
