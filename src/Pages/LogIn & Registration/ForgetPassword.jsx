@@ -6,6 +6,7 @@ import FormInput from "./FormInput";
 import axios from "axios";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { Link } from "react-router-dom";
 
 const ForgetPassword = () => {
   const [email, setEmail] = useState("");
@@ -48,7 +49,9 @@ const ForgetPassword = () => {
       <ToastContainer />
         <div className="xl:w-2/5   2xl:w-1/3 w-full px-2">
           <div className="flex justify-center mb-8">
-            <img src={logo} />
+           <Link to={'/'}>
+           <img src={logo} />
+           </Link>
           </div>
           <div>
             <h1 className="font-Mont font-bold md:text-[56px] text-4xl mt-4 md:mt-0 text-center">

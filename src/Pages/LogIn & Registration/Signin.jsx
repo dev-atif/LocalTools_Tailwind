@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import signin from "../../assets/signin.png";
 
@@ -73,6 +73,22 @@ const Signin = () => {
       });
     }
   };
+  // When user Chnage password it show toast on login
+  useEffect(() => {
+    const updateSuccess = localStorage.getItem("updateSuccess");
+    if (updateSuccess === "true") {
+     // Show a success notification
+     toast.success("Password Change successfully!", {
+      position: "top-right",
+      autoClose: 3000, // Automatically close after 3 seconds
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      progressClassName: "toastify-progress-left-to-right",
+    });
+    localStorage.removeItem("updateSuccess");
+    }
+  }, );
   return (
     <>
       <div>

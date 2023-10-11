@@ -89,7 +89,6 @@ app.get("/user/:id/verify/:token", async (req, res) => {
     await Token.findByIdAndRemove(token._id);
     res.redirect("http://localhost:5173/Login");
   } catch (error) {
-    
     res.status(500).send("Error verifying email");
   }
 });
@@ -100,10 +99,10 @@ app.post("/resetlink", async (req, res) => {
   let user = await User.findOne({ email: req.body.email });
   if (!user) {
     // Handle the case where the user is not found
-    return res.status(404).json({ message: 'User not found' });
+    return res.status(404).json({ message: "User not found" });
   }
   //Generate Token using JWT
-  const token = Jwt.sign({ _id: user._id }, Jwtkey, { expiresIn: "1d" });
+  const token = Jwt.sign({ _id: user._id }, Jwtkey, { expiresIn: "2m" });
   //Update data store token in field user Schema
   const usertoken = await User.findByIdAndUpdate(
     { _id: user._id },
@@ -130,9 +129,66 @@ app.post("/resetlink", async (req, res) => {
       text: `this link is valid for 2 Minutes http://localhost:5173/resetpassword/${user.id}?token=${usertoken.reset_pasword_token}`,
     });
     console.log("Message Sent: %s", info.messageId);
-    res.status(200).json({ message: 'Email sent successfully' });
+    res.status(200).json({ message: "Email sent successfully" });
+  } else {
+    res.status(500).json({ message: "Error sending email" });
+  }
+});
+
+//verify user for pasword reset is he is verified or not
+app.get("/forgotpasword/:id/:token", async (req, res) => {
+  //get id and token from frontend params
+  const { id, token } = req.params;
+
+  try {
+    //check if id and token available in db
+    const validUser = await User.findOne({
+      _id: id,
+      reset_pasword_token: token,
+    });
+    //check token exxpires or not and tokenVeify._id means we have id in token or not
+    const tokenVerify = Jwt.verify(token, Jwtkey);
+    if (validUser && tokenVerify._id) {
+      res.status(201);
     } else {
-      res.status(500).json({ message: 'Error sending email' });
+      res.status(401).json({ status: 401, message: "User is not exists" });
+    }
+  } catch (error) {
+    res.status(401).json({ status: 401, error });
+  }
+});
+
+//Update password with new password
+app.post("/:id/:token", async (req, res) => {
+  //get id token password and token using params from frontend
+  const { id, token } = req.params;
+  const { pasword, confirm_pasword } = req.body;
+  try {
+    //verify User
+    const validUser = await User.findOne({
+      _id: id,
+      reset_pasword_token: token,
+    });
+    // check for valid token
+    const tokenVerify = Jwt.verify(token, Jwtkey);
+    //validation if both are correct
+    if (validUser && tokenVerify._id) {
+      const newPassword = await User.findByIdAndUpdate(
+        { _id: id },
+        { pasword: pasword, confirmpasword: confirm_pasword },
+        { new: true }
+      );
+      if (newPassword) {
+        res.status(200).json({ message: 'Password updated successfully' });
+        newPassword.save();
+      } else {
+        res.status(500).json({ message: 'Failed to update password' });
+      }
+    } else {
+      res.status(401).json({ message: 'Invalid user or token' });
+    }
+    } catch (error) {
+      res.status(500).json({ message: 'Link Is expired' });
     }
 });
 

@@ -17,8 +17,8 @@ const VerifyEmail = async(email,link,name)=>{
     let info = await transport.sendMail({
         from:'<atifali5410@gmail.com>', 
         to: email ,
-        subject:"Atif Jan",
-        text:`"this is testing mail `,
+        subject:"Email Verification",
+        text:`"To Login In to Your Account Please Verify Your Email `,
         html: `<div>
         <h3> Dear ${name} Thank You  for Chosing Us Please Click Below to Verify Your-Self </h3>
         <a href="${link}">Click here to Verify</a></div>`
