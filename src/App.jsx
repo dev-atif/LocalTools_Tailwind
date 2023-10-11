@@ -76,7 +76,7 @@ function App() {
           <Route path="/Login" element={<Signin />} />
           <Route path="/ForgetPassword" element={<ForgetPassword />} />
           <Route path="/Registration" element={<Registration />} />
-          <Route path="/resetpassword" element={<ResetPassword />} />
+          <Route path="/resetpassword/:id" element={<ResetPassword />} />
           <Route path="/505" element={<Error_505 />} />
           <Route path="*" element={<Error_404 />} />
           <Route path="/" element={<MainDashboard />} />

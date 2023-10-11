@@ -55,15 +55,23 @@ const Signin = () => {
     const result = response.data;
 
     if (result.auth) {
-      localStorage.setItem("user", JSON.stringify(result.user));
-      localStorage.setItem("token", JSON.stringify(result.auth));
-      navigate("/");
+      if (result.user.verified) {
+        // User is verified, proceed with login
+        localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("token", JSON.stringify(result.auth));
+        navigate("/");
+      } else {
+        // User is not verified, display an error message
+        toast.error("User is not verified. Please check your email for verification.", {
+          autoClose: 2000,
+        });
+      }
     } else {
-      toast.error("Dont Find Account First Register ", {
+      // Handle login failure, e.g., incorrect password or user not found
+      toast.error("Login failed. Please check your credentials.", {
         autoClose: 2000,
       });
     }
-   
   };
   return (
     <>

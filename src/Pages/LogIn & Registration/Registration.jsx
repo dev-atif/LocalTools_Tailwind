@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../assets/Logo-16.png";
 import display from "../../assets/signin.png";
 import ShareField from "../../Component/Shared/ShareField";
@@ -101,8 +101,8 @@ const Registration = () => {
       const result = response.data;
 
       if (result) {
-        localStorage.setItem("user", JSON.stringify(result.result));
-        localStorage.setItem("token", JSON.stringify(result.auth));
+        /* localStorage.setItem("user", JSON.stringify(result.result));
+        localStorage.setItem("token", JSON.stringify(result.auth)); */
         Formik.resetForm();
         navigate("/Login");
       }
@@ -117,7 +117,7 @@ const Registration = () => {
       );
     }
   };
-
+ 
   /* ------------------------------------------------------------------------------ */
   return (
     <>

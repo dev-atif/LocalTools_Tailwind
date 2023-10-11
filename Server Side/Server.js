@@ -5,22 +5,38 @@ const User = require("./DataBase/User");
 const cors = require("cors");
 app.use(express.json());
 app.use(cors());
+const nodemailer = require("nodemailer");
+const sendEmail = require("./Emailverification/Regemail");
+const bodyParser = require("body-parser");
+const Token = require("./Models/tokenModel");
+const crypto = require("crypto");
+const VerifyEmail = require("./DataBase/Email");
 
 //JASON WEB TOKEN
 const Jwt = require("jsonwebtoken");
 const Jwtkey = "local";
-
+app.use(bodyParser.json());
 //Registration Code ---------------------------------------------------------
 
 app.post("/register", async (req, resp) => {
   try {
     let user = new User(req.body);
     let result = await user.save();
+    //Token Schema ------------
+    const token = new Token({
+      userId: user._id,
+      token: crypto.randomBytes(16).toString("hex"),
+    });
+    await token.save();
+    console.log(token);
+    //-------------------------------------
+    const link = `http://localhost:3000/user/${user._id}/verify/${token.token}`;
+    await VerifyEmail(req.body.email, link, req.body.name);
     result = result.toObject();
     delete result.pasword;
     delete result.confirmpasword;
-    Jwt.sign({  result }, Jwtkey, (err, token) => {
-      resp.send({  result, auth: token });
+    Jwt.sign({ result }, Jwtkey, (err, token) => {
+      resp.send({ result, auth: token });
     });
   } catch (error) {
     console.error("Error creating user:", error);
@@ -48,10 +64,76 @@ app.post("/login", async (req, resp) => {
 });
 
 /* ------------------------------------------------------------------------------------------------- */
+//Active Account or Verify to Active
 
-//Middle Wear  Function For Jwt  -----------------------------------------------------
+app.get("/user/:id/verify/:token", async (req, res) => {
+  try {
+    const token = await Token.findOne({
+      userId: req.params.id, // Use req.params.id to find the user by ID
+      token: req.params.token,
+    });
 
-function Protection(req, res, next) {
-  let token = req.headers["authorization"];
-}
+    if (!token) {
+      return res.status(404).send("Token not found");
+    }
+
+    // Update the user's verified status
+    await User.updateOne(
+      {
+        _id: req.params.id,
+      },
+      { $set: { verified: true } }
+    );
+
+    // Remove the token after it has been used
+    await Token.findByIdAndRemove(token._id);
+    res.redirect("http://localhost:5173/Login");
+  } catch (error) {
+    
+    res.status(500).send("Error verifying email");
+  }
+});
+//---------------------------------------------------------------------------------------------------------------------
+//Pasword Reset Apis------------------------
+
+app.post("/resetlink", async (req, res) => {
+  let user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    // Handle the case where the user is not found
+    return res.status(404).json({ message: 'User not found' });
+  }
+  //Generate Token using JWT
+  const token = Jwt.sign({ _id: user._id }, Jwtkey, { expiresIn: "1d" });
+  //Update data store token in field user Schema
+  const usertoken = await User.findByIdAndUpdate(
+    { _id: user._id },
+    { reset_pasword_token: token },
+    { new: true }
+  );
+  // generate mail option
+  if (usertoken) {
+    let transport = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      service: "gmail",
+      port: 587,
+      secure: false,
+      auth: {
+        user: "atifali5410@gmail.com",
+        pass: "uvcmbfjoqznxeopb",
+      },
+    });
+
+    let info = await transport.sendMail({
+      from: "<atifali5410@gmail.com>",
+      to: req.body.email,
+      subject: "reset link",
+      text: `this link is valid for 2 Minutes http://localhost:5173/resetpassword/${user.id}?token=${usertoken.reset_pasword_token}`,
+    });
+    console.log("Message Sent: %s", info.messageId);
+    res.status(200).json({ message: 'Email sent successfully' });
+    } else {
+      res.status(500).json({ message: 'Error sending email' });
+    }
+});
+
 app.listen(3000);
