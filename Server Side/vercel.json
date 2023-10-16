@@ -2,7 +2,7 @@
     "version": 2,
     "name": "local-tools",
     "builds": [
-       { "src": "app.js", "use": "@vercel/node" }
+       { "src": "Server.js", "use": "@vercel/node" }
     ],
     "routes": [
        { "src": "/(.*)", "dest": "/Server.js" }
