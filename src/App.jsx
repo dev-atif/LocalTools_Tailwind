@@ -40,15 +40,13 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {/*  <div>
-        <Navbar />
-      </div> */}
+       
 
         <Routes>
-          {/* Protected routes */}
+         
           <Route element={<Protected />}>
             {/* <Route path="/" element={<Dashboard />} /> */}
-           
+
             <Route path="/notice" element={<CurrentNotice />} />
             <Route path="/dataprotection" element={<DataProtection />} />
             <Route path="/saftytips" element={<SaftyTip />} />

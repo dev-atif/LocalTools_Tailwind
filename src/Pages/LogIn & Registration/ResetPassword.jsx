@@ -70,7 +70,7 @@ const ResetPassword = () => {
           <div className="lg:w-1/2 mx-auto md:w-full xl:w-full ">
             <div className="bg-white md:p-8 p-4 rounded-2xl mt-6 ">
               <div>
-                <FormInput
+                <FormInput type={"password"}
                   onChange={(e) => {
                     setPasword(e.target.value);
                   }}
@@ -78,7 +78,7 @@ const ResetPassword = () => {
                 />
               </div>
               <div className="my-4">
-                <FormInput
+                <FormInput type={"password"}
                   onChange={(e) => {
                     setConfirm_pasword(e.target.value);
                   }}
