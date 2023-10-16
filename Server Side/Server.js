@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 
 app.get('/',async(req,res)=>{
-res.send('Successfully')
+res.send(req.body)
 })
 //Registration Code ---------------------------------------------------------
 
