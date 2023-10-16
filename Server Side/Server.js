@@ -16,6 +16,11 @@ const VerifyEmail = require("./DataBase/Email");
 const Jwt = require("jsonwebtoken");
 const Jwtkey = "local";
 app.use(bodyParser.json());
+
+
+app.get('/',async(req,res)=>{
+res.send('Successfully')
+})
 //Registration Code ---------------------------------------------------------
 
 app.post("/register", async (req, resp) => {
