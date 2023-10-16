@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 
 
 app.get('/',async(req,res)=>{
-res.send(req.body)
+res.send('Upload successfully')
 })
 //Registration Code ---------------------------------------------------------
 
@@ -35,14 +35,14 @@ app.post("/register", async (req, resp) => {
     await token.save();
     console.log(token);
     //-------------------------------------
-   /*  const link = `http://localhost:3000/user/${user._id}/verify/${token.token}`;
+    const link = `http://localhost:3000/user/${user._id}/verify/${token.token}`;
     await VerifyEmail(req.body.email, link, req.body.name);
     result = result.toObject();
     delete result.pasword;
     delete result.confirmpasword;
     Jwt.sign({ result }, Jwtkey, (err, token) => {
       resp.send({ result, auth: token });
-    }); */
+    });
   } catch (error) {
     console.error("Error creating user:", error);
     resp.status(500).send("Error creating user");
