@@ -5,7 +5,9 @@
   "main": "Server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js" 
+    "start": "node index.js",
+    "dev":"nodemon ./api/index.js",
+    "vercel-build":"echo hello"
   },
   "author": "Dev",
   "license": "ISC",
