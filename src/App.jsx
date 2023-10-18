@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Navbar from "./Component/NavBar/Navbar";
-import Dashboard from "./Dashboard";
+
 import Documents from "./Pages/Documents";
 import Profile from "./Pages/Profile/Profile";
 import Changepassword from "./Pages/Changepassword";
@@ -11,7 +10,7 @@ import Buyer from "./Pages/BuyerAccount/Buyer";
 
 import AddPost from "./Pages/Add Post/AddPost";
 import Notification from "./Pages/Notification/Notification";
-import LogOut from "./Pages/LogOut/LogOut";
+
 import BusinessProfile from "./Pages/BusinessProfile/BusinessProfile";
 
 import Signin from "./Pages/LogIn & Registration/Signin";
@@ -68,7 +67,7 @@ function App() {
             <Route path="/payments" element={<Payment />} />
             <Route path="/addpost" element={<AddPost />} />
             <Route path="/notification" element={<Notification />} />
-            <Route path="/logout" element={<LogOut />} />
+          
             <Route path="/BusinessProfile" element={<BusinessProfile />} />
           </Route>
           <Route path="/Login" element={<Signin />} />
