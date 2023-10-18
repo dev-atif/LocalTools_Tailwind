@@ -15,7 +15,7 @@ const ForgetPassword = () => {
   const handleSubmit = async () => {
    
     try {
-      let response = await axios.post("http://localhost:3000/resetlink", {
+      let response = await axios.post("https://backend-two-blush-62.vercel.app/resetlink", {
         email,
       });
      
@@ -27,7 +27,7 @@ const ForgetPassword = () => {
         setEmail("")
         setDisable(true)
       }
-      else{
+      else if(response.status ===500){
         toast.error('Error sending Email',  {
           autoClose: 5000, // Set the duration in milliseconds
       }
