@@ -27,6 +27,11 @@ const ForgetPassword = () => {
         setEmail("")
         setDisable(true)
       }
+      else{
+        toast.error('Error sending Email',  {
+          autoClose: 5000, // Set the duration in milliseconds
+      }
+      )}
 
     }catch (error) {
      // Display an error message if there was any problem while sending the mail
