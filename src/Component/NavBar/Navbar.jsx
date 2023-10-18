@@ -145,7 +145,7 @@ else{
                           }}
                         >
                           <li className=" hover:bg-[#F6F7FB] hover:rounded-t-lg p-2">
-                            <a href="#">Profile</a>
+                            <Link to={'/profile'}>Profile</Link>
                           </li>
                           <li className="p-2  hover:bg-[#F6F7FB]">
                             <a href="#">Setting</a>
