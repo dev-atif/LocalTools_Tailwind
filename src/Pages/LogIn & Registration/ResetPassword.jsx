@@ -21,7 +21,7 @@ const ResetPassword = () => {
   //User Validation Api
   const userValid = async () => {
     const response = await axios.get(
-      `http://localhost:3000/forgotpasword/${id}/${token}`
+      `https://backend-two-blush-62.vercel.app/forgotpasword/${id}/${token}`
     );
 
     if (response.data !== 201) {
@@ -36,7 +36,7 @@ const ResetPassword = () => {
     try {
       if(pasword === confirm_pasword){
         const response = await axios.post(
-          `http://localhost:3000/${id}/${token}`,{
+          `https://backend-two-blush-62.vercel.app/${id}/${token}`,{
             pasword:pasword,
             confirm_pasword:confirm_pasword,
           }

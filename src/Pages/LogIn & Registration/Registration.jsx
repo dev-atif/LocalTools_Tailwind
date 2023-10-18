@@ -79,7 +79,7 @@ const Registration = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/register",
+        "https://backend-two-blush-62.vercel.app/register",
         {
           name: Formik.values.name,
           lastname: Formik.values.lastname,
@@ -109,12 +109,24 @@ const Registration = () => {
     } catch (error) {
       console.error("Error:", error);
       // Handle error here, e.g., display an error message to the user
-      toast.error(
-        "An error occurred while processing your request. Please try again later.",
-        {
-          autoClose: 2000,
-        }
-      );
+      if(error.response.status === 500){
+        toast.error('Internal Server Error try again ',{autoClose : 2000})
+      }
+      else if(error.response.status===400){
+        toast.error('Email already exist',{autoClose : 2000})
+      }
+      else if(error.response.status===105){
+        toast.error('Email ServerFails Try again',{autoClose : 2000})
+      }
+      else{
+        toast.error(
+          "An error occurred while processing your request. Please try again later.",
+          {
+            autoClose: 2000,
+          }
+        );
+      }
+     
     }
   };
  
