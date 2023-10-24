@@ -67,9 +67,11 @@ const ForgetPassword = () => {
             <div className="bg-white md:p-8 p-4 rounded-2xl mt-6 ]">
               <div>
                 <FormInput
+                type={'email'}
                   placeholder={"Email ID"}
                   onChange={(e) => {
                     setEmail(e.target.value);
+                  
                   }}
                 />
               </div>
@@ -83,6 +85,9 @@ const ForgetPassword = () => {
                     Forgot Password
                   </button>
                
+              </div>
+              <div className="mt-2 text-end" >
+                <Link to={'/Login'} className="font-Mont font-semibold text-gray-500">Back to Login</Link>
               </div>
             </div>
           </div>

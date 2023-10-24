@@ -128,6 +128,7 @@ const Signin = () => {
                         name="email"
                         placeholder={"Enter email"}
                         onBlur={Formik.handleBlur}
+                         type={"email"}
                       />
                       {Formik.errors.email && Formik.touched.email ? (
                         <>
