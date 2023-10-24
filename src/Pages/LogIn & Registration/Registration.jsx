@@ -14,6 +14,7 @@ import { signUpSchema } from "../../Schemas";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Loading from 'react-loading';
 const Country = [
   {
     value: 1,
@@ -46,6 +47,7 @@ const Registration = () => {
   const [cPassword, showCpassword] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
   const [country, setCountry] = useState("");
+  const [isloading,setLoading]= useState(false);
   const navigate = useNavigate();
 
   //Form Validation
@@ -76,7 +78,8 @@ const Registration = () => {
       });
       return false;
     }
-
+        //start Loader 
+        setLoading(true);
     try {
       const response = await axios.post(
         "https://backend-two-blush-62.vercel.app/register",
@@ -127,6 +130,10 @@ const Registration = () => {
         );
       }
      
+    }
+    //hide loader button
+    finally{
+      setLoading(false)
     }
   };
  
@@ -552,7 +559,15 @@ const Registration = () => {
                               </div>
                               <div className="w-2/3">
                                 <BlackButton
-                                  label={"Get Started"}
+                                  label={
+                                    isloading ? (
+                                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                                        <Loading type="spin" color="#ffffff" width={25} height={25} />
+                                      </div>
+                                    ) : (
+                                      'Get Started'
+                                    )
+                                  }
                                   type={"submit"}
                                   Onclick={() => {
                                     submitHandle();

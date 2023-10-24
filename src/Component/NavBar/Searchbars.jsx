@@ -1,6 +1,6 @@
 import React from "react";
 import Select, { components } from "react-select";
-import SharedSelect from "../Shared/SharedSelect";
+
 const Category = [
   { value: "heavymachine", label: "Heavy Machine" },
   { value: "All", label: "All Category" },
