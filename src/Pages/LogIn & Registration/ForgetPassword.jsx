@@ -86,9 +86,11 @@ const ForgetPassword = () => {
                   </button>
                
               </div>
-              <div className="mt-2 text-end" >
-                <Link to={'/Login'} className="font-Mont font-semibold text-gray-500">Back to Login</Link>
+              <div className="mt-3">
+                <p className="font-Cairo text-sm text-gray-500">Note : Please wait for email and verify then 
+                <Link to={'/Login'} className="font-Mont font-semibold text-blue-500 underline ml-1"> Login</Link></p>
               </div>
+              
             </div>
           </div>
         </div>
