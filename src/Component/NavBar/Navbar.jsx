@@ -3,11 +3,10 @@ import Logo from "../../assets/Logo-16.png";
 import { RxCross2 } from "react-icons/rx";
 import { BsSearch } from "react-icons/bs";
 
-import profile from "../../assets/profile.png";
+import profile from "../../assets/ahmad.png";
 import Searbars from "./Searchbars";
 import { Link, useNavigate } from "react-router-dom";
 import Not_auth_Model from "../Not_auth_Model";
-import AddPost from './../../Pages/Add Post/AddPost';
 
 
 const Navbar = () => {
@@ -15,11 +14,21 @@ const Navbar = () => {
   const [searchOpen, setSearchOpen] = useState(false);
   const auth = localStorage.getItem("user");
   const navigate = useNavigate();
+  const [profileimage, setProfileimage] = useState(profile);
 
   //Auth Check For Model of Post Add
-  const [checkauth,setAuth] =useState(false)
-  
-  
+  const [checkauth, setAuth] = useState(false);
+
+  const imageLoad = () => {
+    //get data from localStorage
+    const userdata = JSON.parse(localStorage.getItem("user"));
+    if (userdata && userdata.image) {
+      setProfileimage(userdata.image);
+    }
+  };
+  useEffect(()=>{
+    imageLoad()
+  })
   //This ref connect to the dropdown profile below
   let dropdown = useRef();
   //this function is used to hide menue when we click outside the menu or anywhere on the  screen
@@ -39,14 +48,13 @@ const Navbar = () => {
     localStorage.clear();
     navigate("/Login");
   };
-  const authCheck = ()=>{
-if(!auth){
- setAuth(true)
-}
-else{
-  navigate('/addpost')
-}
-  }
+  const authCheck = () => {
+    if (!auth) {
+      setAuth(true);
+    } else {
+      navigate("/addpost");
+    }
+  };
 
   return (
     <div className="border-b py-1 bg-white">
@@ -110,7 +118,7 @@ else{
             <div className="flex lg:flex-row flex-row-reverse  items-center gap-4">
               {auth ? (
                 <>
-                  <img src={profile} />
+                  <img  src={profileimage} className=" w-12 h-12 rounded-full" />
                   <div className="relative">
                     <span
                       className="cursor-pointer "
@@ -145,7 +153,7 @@ else{
                           }}
                         >
                           <li className=" hover:bg-[#F6F7FB] hover:rounded-t-lg p-2">
-                            <Link to={'/profile'}>Profile</Link>
+                            <Link to={"/profile"}>Profile</Link>
                           </li>
                           <li className="p-2  hover:bg-[#F6F7FB]">
                             <a href="#">Setting</a>
@@ -174,9 +182,16 @@ else{
               )}
 
               <div>
-                 {checkauth? (<><Not_auth_Model check={checkauth} setCheck={setAuth}/></>):null}
-                 
-                <button onClick={()=>{authCheck()}}
+                {checkauth ? (
+                  <>
+                    <Not_auth_Model check={checkauth} setCheck={setAuth} />
+                  </>
+                ) : null}
+
+                <button
+                  onClick={() => {
+                    authCheck();
+                  }}
                   className="font-Mont bg-color-primary-yel
             font-[600] text-white px-5 py-2 rounded-lg "
                 >
