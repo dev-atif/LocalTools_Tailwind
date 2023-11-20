@@ -2,11 +2,11 @@ import React from "react";
 import SharedSelect from "../../Component/Shared/SharedSelect";
 import Calender from "./Shared/Calender";
 const time = [
-  { value: 1, label: "Hourly" },
-  { value: 2, label: "Weekly" },
-  { value: 3, label: "Monthly" },
+  { value: "Hourly" , label: "Hourly" },
+  { value: "Weekly", label: "Weekly" },
+  { value: "Monthly", label: "Monthly" },
 ];
-const CallenderSection = () => {
+const CallenderSection = ({formik}) => {
   return (
     <div >
       <div>
@@ -30,7 +30,7 @@ const CallenderSection = () => {
                     Selected as
                   </h1>
                   <div className="w-full">
-                    <SharedSelect Value={time} />
+                    <SharedSelect Values={time} onChange={(selectedOption)=>(formik.setFieldValue('Booking_Selected',selectedOption.value))} />
                   </div>
                 </div>
 
@@ -54,7 +54,7 @@ const CallenderSection = () => {
                 </div>
               </div>
               <div className="py-3">
-                <Calender />
+                <Calender  formik={formik}/>
               </div>
             </div>
           </div>

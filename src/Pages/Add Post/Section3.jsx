@@ -2,33 +2,34 @@ import React from "react";
 import SharedSelect from "../../Component/Shared/SharedSelect";
 import ShareField from "../../Component/Shared/ShareField";
 const Currency = [
-  { value: "1", label: "Euro" },
-  { value: "2", label: "Dollar" },
-  { value: "3", label: "Rupees" },
+  { value: "Euro", label: "Euro" },
+  { value: "Dollar", label: "Dollar" },
+  { value: "Rupees", label: "Rupees" },
 ];
 const Time = [
-  { value: "1", label: "Hourly" },
-  { value: "2", label: "Daily" },
-  { value: "3", label: "Weekly" },
-  { value: "4", label: "Monthly" },
+  { value: "Hourly", label: "Hourly" },
+  { value: "Daily", label: "Daily" },
+  { value: "Weekly", label: "Weekly" },
+  { value: "Monthly", label: "Monthly" },
 ];
 const Cat = [
-  { value: "1", label: "Heavy Machine" },
-  { value: "2", label: "Light Machine" },
+  { value: "Heavy Machine", label: "Heavy Machine" },
+  { value: "Light Machine", label: "Light Machine" },
 ];
 
 const SubCat = [
-  { value: "1", label: "Heavy Machine" },
-  { value: "2", label: "Light Machine" },
+  { value: "Drill", label: "Drill" },
+  { value: "Crawler Excavators", label: "Crawler Excavators" },
 ];
 const Brand = [
-  { value: "1", label: "Heavy Machine" },
-  { value: "2", label: "Light Machine" },
+  { value: "Caterpillar", label: "Caterpillar" },
+  { value: "Komatsu", label: "Komatsu" },
+  { value: "Volvo", label: "Volvo" },
 ];
 
-const Section3 = () => {
+const Section3 = ({ formik }) => {
   return (
-    <div >
+    <div>
       <div className="py-3">
         <h1 className="text-xl 2xl:text-2xl font-Mont font-semibold text-black">
           Price
@@ -38,16 +39,31 @@ const Section3 = () => {
         <div className="md:grid grid-cols-5 items-center gap-4">
           <div>
             <SharedSelect
+              name="Currency"
               label="Currency"
-              Value={Currency}
+              onChange={(selectedOption) =>
+                formik.setFieldValue("Currency", selectedOption.value)
+              }
+              Values={Currency}
               textsize="text-sm"
             />
           </div>
           <div>
-            <SharedSelect label="Rented As a" Value={Time} textsize="text-sm" />
+            <SharedSelect
+              name="Rented_as"
+              onChange={(selectedOption) =>
+                formik.setFieldValue("Rented_as", selectedOption.value)
+              }
+              label="Rented As a"
+              Values={Time}
+              textsize="text-sm"
+            />
           </div>
           <div>
             <ShareField
+              name="Rented_Price"
+              value={formik.values.Rented_Price}
+              onChange={formik.handleChange}
               label="Rent Price"
               color={"text-black"}
               textsize={"text-sm"}
@@ -56,6 +72,9 @@ const Section3 = () => {
           </div>
           <div>
             <ShareField
+              name="Taxes"
+              onChange={formik.handleChange}
+              value={formik.values.Taxes}
               label="Taxes"
               color={"text-black"}
               textsize={"text-sm"}
@@ -64,6 +83,9 @@ const Section3 = () => {
           </div>
           <div>
             <ShareField
+              name="Service_fee"
+              onChange={formik.handleChange}
+              value={formik.values.Service_fee}
               label="Service Fee"
               color={"text-black"}
               textsize={"text-sm"}
@@ -78,25 +100,42 @@ const Section3 = () => {
             <h1 className="font-Mont font-semibold text-xl 2xl:text-2xl text-black py-2">
               Category
             </h1>
-           <div className="px-4 bg-white rounded-lg py-2">
-           <SharedSelect Value={Cat} placeholder={"Select Categories"} />
-           </div>
+            <div className="px-4 bg-white rounded-lg py-2">
+              <SharedSelect
+                onChange={(selectedOption) =>
+                  formik.setFieldValue("Category", selectedOption.value)
+                }
+                Values={Cat}
+                placeholder={"Select Categories"}
+              />
+            </div>
           </div>
           <div>
             <h1 className="font-Mont font-semibold text-xl 2xl:text-2xl text-black py-2">
-            Sub - Category
+              Sub - Category
             </h1>
-           <div className="px-4 bg-white rounded-lg py-2">
-           <SharedSelect Value={Cat} placeholder={"Select Sub - Categories"} />
-           </div>
+            <div className="px-4 bg-white rounded-lg py-2">
+              <SharedSelect
+              onChange={(selectedOption) =>
+                formik.setFieldValue("Sub_Category", selectedOption.value)
+              }
+                Values={SubCat}
+                placeholder={"Select Sub - Categories"}
+              />
+            </div>
           </div>
           <div>
             <h1 className="font-Mont font-semibold text-xl 2xl:text-2xl text-black py-2">
-            Brand
+              Brand
             </h1>
-           <div className="px-4 bg-white rounded-lg py-2">
-           <SharedSelect Value={Cat} placeholder={"Select Brand"} />{/*  */}
-           </div>
+            <div className="px-4 bg-white rounded-lg py-2">
+              <SharedSelect
+              onChange={(selectedOption) =>
+                formik.setFieldValue("Brand", selectedOption.value)
+              } 
+              Values={Brand} placeholder={"Select Brand"} />
+              {/*  */}
+            </div>
           </div>
         </div>
       </div>

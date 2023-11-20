@@ -2,12 +2,12 @@ import React from "react";
 import ShareField from "../../Component/Shared/ShareField";
 import SharedSelect from "../../Component/Shared/SharedSelect";
 const DaysPlan = [
-  { value: 1, label: "5 Days" },
-  { value: 2, label: "6 Days" },
-  { value: 3, label: "7 Days" },
-  { value: 4, label: "8 Days" },
+  { value: "5 Days", label: "5 Days" },
+  { value: "6 Days", label: "6 Days" },
+  { value: "7 Days", label: "7 Days" },
+  { value: "8 Days", label: "8 Days" },
 ];
-const PublishSection = () => {
+const PublishSection = ({formik}) => {
   return (
     <div>
       <div >
@@ -44,7 +44,9 @@ const PublishSection = () => {
                     </h2>
                   </div>
                   <div className="w-1/2">
-                    <SharedSelect Value={DaysPlan} />
+                    <SharedSelect Values={DaysPlan} 
+                   
+                    onChange={(selectedOption)=>(formik.setFieldValue('Push_up_Plan',selectedOption.value))} />
                   </div>
                 </div>
               </div>
@@ -71,7 +73,8 @@ const PublishSection = () => {
                   </div>
                   <div className="w-1/2">
                     <SharedSelect
-                      Value={DaysPlan}
+                    onChange={(selectedOption)=>(formik.setFieldValue('Highlight',selectedOption.value))}
+                      Values={DaysPlan}
                       bordercolor={"white"}
                       stroke={"white"}
                       text={'text'}
@@ -146,7 +149,9 @@ const PublishSection = () => {
                     </h2>
                   </div>
                   <div className="w-1/2">
-                    <SharedSelect Value={DaysPlan} />
+                    <SharedSelect
+                     onChange={(selectedOption)=>(formik.setFieldValue('Top_Plan',selectedOption.value))}
+                    Values={DaysPlan} />
                   </div>
                   <div className="py-4">
                     <h2 className="font-Mont font-semibold text-xl 2xl:text-2xl text-black">
