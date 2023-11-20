@@ -1,7 +1,7 @@
 import React from "react";
 import BlackButton from "../../Component/Shared/BlackButton";
 
-const PublishFooter = () => {
+const PublishFooter = ({formik}) => {
   return (
     <div >
       <div>
@@ -17,16 +17,14 @@ const PublishFooter = () => {
                         <p className="text-center text-sm 2xl:text-lg font-Mont font-light">
                             Our <span className={'text-[#FFC10E]'}>terms of use</span> apply . You can find information on the processing of your data in our <span className={'text-[#FFC10E]'}>privacy policy</span>.</p>
                     </div>
-                    <div className="md:grid grid-cols-3 items-center gap-3 md:px-14 mt-4">
+                    <div className="md:grid grid-cols-2 items-center gap-3 md:px-14 mt-4">
                             <div>
-                                <BlackButton label={'Place an Ad'} bgColor={'transparent'} textColor={'black'} BorderColor={'black'}/>
+                                <BlackButton type='submit' label={'Place an Ad'} bgColor={'transparent'} textColor={'black'} BorderColor={'black'}/>
                             </div>
                             <div className="md:my-0 my-4"> 
-                                <BlackButton label={'Pay & Place an Ad'}/>
+                                <BlackButton type='submit' label={'Pay & Place an Ad'}/>
                             </div>
-                            <div>
-                                <BlackButton label={'Preview'} bgColor={'transparent'} textColor={'black'} BorderColor={'black'}/>
-                            </div>
+                          
                     </div>
             </div>
 

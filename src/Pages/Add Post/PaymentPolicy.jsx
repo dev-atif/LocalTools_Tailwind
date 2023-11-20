@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import SharedSelect from "../../Component/Shared/SharedSelect";
 
 const PaymentPolicy = ({ formik }) => {
-  const [isYes, setYes] = useState(true);
-  const [isNo, setNo] = useState(false);
+  const [isYes, setYes] = useState(null);
+  const [isNo, setNo] = useState(null);
   const Time = [
     { value: "Hourly", label: "Hourly" },
     { value: "Weekly", label: "Weekly" },
@@ -15,6 +15,15 @@ const PaymentPolicy = ({ formik }) => {
     { value: "300", label: "300" },
     { value: "900", label: "900" },
   ];
+  useEffect(() => {
+    if (isYes === true) {
+      const yes = "Yes";
+      formik.setFieldValue("Payment_Deposit", yes);
+    } else if (isNo === true) {
+      const no = "No";
+      formik.setFieldValue("Payment_Deposit", no);
+    }
+  }, [isYes, isNo]);
   return (
     <div>
       <div>
@@ -102,7 +111,10 @@ const PaymentPolicy = ({ formik }) => {
               <div>
                 <SharedSelect
                   onChange={(selectedOption) =>
-                    formik.setFieldValue("Rented_Amount_per", selectedOption.value)
+                    formik.setFieldValue(
+                      "Rented_Amount_per",
+                      selectedOption.value
+                    )
                   }
                   Values={Time}
                   label={"Rented Amount per"}

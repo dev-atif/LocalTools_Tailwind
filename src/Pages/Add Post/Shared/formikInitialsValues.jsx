@@ -1,4 +1,5 @@
 export const initialValues = {
+  Post_type:'',
   tittle: "",
   description: "",
   quantity: "",
@@ -20,7 +21,8 @@ export const initialValues = {
   Vendor_Postcode: "",
   Vendor_Country: "",
   Vendor_City: "",
-  //Rented Amount per--------------
+  //Payment Policy--------------
+  Payment_Deposit:'',
   Rented_Amount_per: "",
   Payment_Amount: "",
   //Product Details--------------

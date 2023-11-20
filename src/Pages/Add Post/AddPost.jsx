@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BlackButton from "../../Component/Shared/BlackButton";
 import ShareField from "../../Component/Shared/ShareField";
 import SharedSelect from "../../Component/Shared/SharedSelect";
@@ -22,10 +22,8 @@ const Stocks = [
 ];
 
 const AddPost = () => {
-  const [check, setCheck] = useState(false);
-  const [check2, setCheck2] = useState(false);
-  const [selectedStock, setSelectedStock] = useState(null); // State to store the selected value
-
+  const [check, setCheck] = useState(null);
+  const [check2, setCheck2] = useState(null);
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: (values) => {
@@ -33,6 +31,15 @@ const AddPost = () => {
       console.warn(values);
     },
   });
+  useEffect(() => {
+    if (check === true) {
+      const type1 = "offer";
+      formik.setFieldValue("Post_type", type1);
+    } else if (check2 === true) {
+      const type2 = "Looking_For";
+      formik.setFieldValue("Post_type", type2);
+    }
+  }, [check, check2]);
 
   return (
     <div>
@@ -152,8 +159,7 @@ const AddPost = () => {
                           </div>
                           <div>
                             <h1 className="text-base 2xl:text-lg font-Mont font-medium">
-                              {/*  I’m looking for{" "} */}{" "}
-                              {formik.values.ProductDetails_Description}
+                              I’m looking for{" "}
                             </h1>
                           </div>
                         </div>
@@ -245,51 +251,8 @@ const AddPost = () => {
                 <PublishSection formik={formik} />
               </div>
               {/* ----------Section 10 -------------------------------------------------------------------- */}
-              {/* <div>
-           <PublishFooter/>
-          </div> */}
               <div>
-                <div className=" md:py-7 py-4">
-                  <h1 className="text-xl 2xl:text-2xl font-Mont font-semibold text-black">
-                    Publish your ad
-                  </h1>
-                </div>
-                <div className="bg-white py-6  rounded-lg mb-3">
-                  <div className="2xl:max-w-4xl lg:max-w-2xl 2xl:px-4 mx-auto md:px-1 px-4">
-                    <div>
-                      <p className="text-center text-sm 2xl:text-lg font-Mont font-light">
-                        Our{" "}
-                        <span className={"text-[#FFC10E]"}>terms of use</span>{" "}
-                        apply . You can find information on the processing of
-                        your data in our{" "}
-                        <span className={"text-[#FFC10E]"}>privacy policy</span>
-                        .
-                      </p>
-                    </div>
-                    <div className="md:grid grid-cols-3 items-center gap-3 md:px-14 mt-4">
-                      <div>
-                        <BlackButton
-                          type={"submit"}
-                          label={"Place an Ad"}
-                          bgColor={"transparent"}
-                          textColor={"black"}
-                          BorderColor={"black"}
-                        />
-                      </div>
-                      <div className="md:my-0 my-4">
-                        <BlackButton label={"Pay & Place an Ad"} />
-                      </div>
-                      <div>
-                        <BlackButton
-                          label={"Preview"}
-                          bgColor={"transparent"}
-                          textColor={"black"}
-                          BorderColor={"black"}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <PublishFooter formik={formik} />
               </div>
             </div>
           </div>
