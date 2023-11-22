@@ -205,7 +205,7 @@ const Thumbnail = [
     imageUrl: null,
   },
 ];
-const SecondCol = () => {
+const SecondCol = ({formik}) => {
   const [check, setCheck] = useState(false);
   const [selectedThumbnail, setSelectedThumbnail] = useState(null);
   const [thumbnails, setThumbnails] = useState(Thumbnail); // Use state to manage thumbnails
@@ -233,7 +233,7 @@ const SecondCol = () => {
   }, [thumbnails]);
 
   // this function is used to get imagesurl from input on onchange condition
-  const handleImageUpload = (file) => {
+  const handleImageUpload = (file,index) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       const updatedThumbnails = [...thumbnails];
@@ -241,10 +241,13 @@ const SecondCol = () => {
         ...updatedThumbnails[selectedThumbnail],
         imageUrl: imageUrl,
       };
-      setThumbnails(updatedThumbnails);
+      setThumbnails(updatedThumbnails);s
+      // to upload images in formik ..................
+     /*  formik.setFieldValue(`Product_images[${index}].images`, imageUrl); */
     }
     setSelectedThumbnail(null);
-  };
+    
+  }
   // this function is used to upload images if index is not last if index is last it call new svg creater function
   const handleThumbnailClick = (index) => {
     if (index !== thumbnails.length - 1) {
@@ -328,7 +331,12 @@ const SecondCol = () => {
           type="file"
           ref={fileInputRef}
           style={{ display: "none" }}
-          onChange={(e) => handleImageUpload(e.target.files[0])}
+         /*  onChange={(e) => handleImageUpload(e.target.files[0])} */
+        /*  onChange={(e) => handleImageUpload(e.target.files[0], selectedThumbnail)} */
+        onChange={(e) => {
+          handleImageUpload(e.target.files[0], selectedThumbnail);
+          console.log("Upload images", e.target.files[0]);
+        }}
         />
       </div>
     </div>

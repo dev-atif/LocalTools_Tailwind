@@ -1,4 +1,7 @@
 export const initialValues = {
+  Product_images:[
+    {images:'',}
+  ],
   Post_type:'',
   tittle: "",
   description: "",

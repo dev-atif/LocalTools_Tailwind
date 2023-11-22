@@ -200,7 +200,7 @@ const AddPost = () => {
                     </div>
                   </div>
                   <div className="md:pl-8">
-                    <SecondCol />
+                    <SecondCol formik={formik} />
                   </div>
                 </div>
               </div>

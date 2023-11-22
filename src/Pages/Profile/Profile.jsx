@@ -6,7 +6,7 @@ import Inputs from "./Inputs";
 import axios from "axios";
 
 import { useFormik } from "formik";
-import { json } from "react-router";
+
 const initialValues = {
   file: "",
 };
@@ -45,7 +45,7 @@ const Profile = () => {
             },
           });
   
-         console.warn('uploaded')
+        
           // Update user data in localStorage after successful upload
           const updatedData = { ...auth, image: response.data.secure_url };
           localStorage.setItem("user", JSON.stringify(updatedData));
