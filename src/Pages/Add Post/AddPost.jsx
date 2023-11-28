@@ -63,7 +63,7 @@ const AddPost = () => {
         console.warn("Server Response", response.data);
         alert("Check");
       } catch (error) {
-        console.error("Error:", error.response);
+        console.warn("Error:", error.response);
       }
      /*  } */
     },
