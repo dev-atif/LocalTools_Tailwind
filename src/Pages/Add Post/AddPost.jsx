@@ -34,7 +34,7 @@ const AddPost = () => {
     onSubmit: async (values) => {
       // Handle form submission here
       console.warn(values);
-      /* if (!Object.values(values).every(Boolean)) {
+    /*   if (!Object.values(values).every(Boolean)) {
         toast.error("Please fill in all the fields", {
           autoClose: 2000, // Set the duration to 3000 milliseconds (2 seconds)
         });
@@ -53,11 +53,11 @@ const AddPost = () => {
 
         // add images.
 
-        const response = await axios.post("http://localhost:5000/postProducts",{
+        const response = await axios.post("https://backend-two-blush-62.vercel.app/postProducts",{
           ...values,
           Product_images:{
             images:updateImages
-          }
+          },User_Id:auth._id
         });
 
         console.warn("Server Response", response.data);
@@ -65,7 +65,7 @@ const AddPost = () => {
       } catch (error) {
         console.error("Error:", error.response);
       }
-      /* } */
+     /*  } */
     },
   });
   useEffect(() => {
