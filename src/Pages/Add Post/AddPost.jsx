@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import BlackButton from "../../Component/Shared/BlackButton";
 import ShareField from "../../Component/Shared/ShareField";
 import SharedSelect from "../../Component/Shared/SharedSelect";
@@ -19,6 +19,7 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fileToBase64 } from "../../utils/filtToBase64";
+import LoadingBar from 'react-top-loading-bar'
 
 const Stocks = [
   { label: "01", value: "1" },
@@ -29,6 +30,8 @@ const Stocks = [
 const AddPost = () => {
   const [check, setCheck] = useState(null);
   const [check2, setCheck2] = useState(null);
+  const [lodaingBar,setLoadingbar]= useState(false)
+  const loadingRef = useRef(null);
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: async (values) => {
@@ -42,12 +45,15 @@ const AddPost = () => {
       } else { */
       try {
         const auth = JSON.parse(localStorage.getItem("user"));
-
+        //Add loadingBar------
+        setLoadingbar(true)
+        
         const updateImages = [];
         for (let i = 0; i < values.Product_images.images.length; i++) {
           const current = values.Product_images.images[i];
           const base64 = await fileToBase64(current);
           updateImages.push(base64);
+          
         }
         // Now formData contains all key-value pairs from the Formik form
 
@@ -61,9 +67,15 @@ const AddPost = () => {
         });
 
         console.warn("Server Response", response.data);
-        alert("Check");
+        
       } catch (error) {
         console.warn("Error:", error.response);
+      } finally{
+        setLoadingbar(false)
+        loadingRef.current.complete(); //Complete the loading bar
+        toast.success("Product Add Successfully", {
+          autoClose: 2000, // Set the duration to 3000 milliseconds (2 seconds)
+        });
       }
      /*  } */
     },
@@ -85,6 +97,7 @@ const AddPost = () => {
       </div>
       <div>
         <ToastContainer />
+        <LoadingBar color='#FFC10E' ref={loadingRef} />
       </div>
       <div>
         <form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
