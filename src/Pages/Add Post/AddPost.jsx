@@ -15,6 +15,11 @@ import PublishFooter from "./PublishFooter";
 import Navbar from "./../../Component/NavBar/Navbar";
 import { initialValues } from "./Shared/formikInitialsValues";
 import { useFormik } from "formik";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { fileToBase64 } from "../../utils/filtToBase64";
+
 const Stocks = [
   { label: "01", value: "1" },
   { value: "2", label: "02" },
@@ -26,9 +31,41 @@ const AddPost = () => {
   const [check2, setCheck2] = useState(null);
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: (values) => {
+    onSubmit: async (values) => {
       // Handle form submission here
       console.warn(values);
+      /* if (!Object.values(values).every(Boolean)) {
+        toast.error("Please fill in all the fields", {
+          autoClose: 2000, // Set the duration to 3000 milliseconds (2 seconds)
+        });
+        return;
+      } else { */
+      try {
+        const auth = JSON.parse(localStorage.getItem("user"));
+
+        const updateImages = [];
+        for (let i = 0; i < values.Product_images.images.length; i++) {
+          const current = values.Product_images.images[i];
+          const base64 = await fileToBase64(current);
+          updateImages.push(base64);
+        }
+        // Now formData contains all key-value pairs from the Formik form
+
+        // add images.
+
+        const response = await axios.post("http://localhost:5000/postProducts",{
+          ...values,
+          Product_images:{
+            images:updateImages
+          }
+        });
+
+        console.warn("Server Response", response.data);
+        alert("Check");
+      } catch (error) {
+        console.error("Error:", error.response);
+      }
+      /* } */
     },
   });
   useEffect(() => {
@@ -47,7 +84,10 @@ const AddPost = () => {
         <Navbar />
       </div>
       <div>
-        <form onSubmit={formik.handleSubmit}>
+        <ToastContainer />
+      </div>
+      <div>
+        <form onSubmit={formik.handleSubmit} enctype="multipart/form-data">
           <div className="  md:px-10 px-3">
             <div>
               <div className="flex items-center gap-6 pt-3">

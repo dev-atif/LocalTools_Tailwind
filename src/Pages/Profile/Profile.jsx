@@ -30,6 +30,7 @@ const Profile = () => {
   const Formik = useFormik({
     initialValues,
     onSubmit: async (values, { setErrors }) => {
+      console.warn(values)
       if (!values.file) {
        return;
       }

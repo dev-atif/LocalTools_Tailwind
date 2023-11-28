@@ -1,8 +1,9 @@
 export const initialValues = {
-  Product_images:[
-    {images:'',}
-  ],
-  Post_type:'',
+  /* Product_images: [{ images: "" }], */
+  Product_images: {
+    images: [], // Initialize as an empty array to store multiple files
+  },
+  Post_type: "",
   tittle: "",
   description: "",
   quantity: "",
@@ -25,7 +26,7 @@ export const initialValues = {
   Vendor_Country: "",
   Vendor_City: "",
   //Payment Policy--------------
-  Payment_Deposit:'',
+  Payment_Deposit: "",
   Rented_Amount_per: "",
   Payment_Amount: "",
   //Product Details--------------

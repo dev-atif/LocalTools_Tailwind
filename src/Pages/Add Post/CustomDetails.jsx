@@ -22,8 +22,9 @@ const CustomDetails = ({ formik }) => {
 
       // Remove the field from formik array without modifying its values
       const updatedFormikArray = formik.values.customDetails.slice();
-      updatedFormikArray.splice(indexToRemove, 1);
+      updatedFormikArray.splice(indexToRemove, 1);  
       formik.setFieldValue("customDetails", updatedFormikArray);
+      
     }
   };
 

@@ -24,7 +24,6 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
   {
     svg: (
@@ -50,7 +49,6 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
   {
     svg: (
@@ -76,7 +74,6 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
   {
     svg: (
@@ -102,7 +99,6 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
   {
     svg: (
@@ -128,7 +124,6 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
   {
     svg: (
@@ -154,7 +149,6 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
   {
     svg: (
@@ -180,7 +174,6 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
   {
     svg: (
@@ -202,10 +195,35 @@ const Thumbnail = [
         />
       </svg>
     ),
-    imageUrl: null,
   },
 ];
-const SecondCol = ({formik}) => {
+//This function returns svg funntion to the array
+function generateNewSvg() {
+  return (
+    <svg
+      class="w-full h-full"
+      viewBox="0 0 194 194"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <rect width="194" height="194" rx="8" fill="#FFC10E" />
+      <rect x="22" y="22" width="150" height="150" rx="8" fill="white" />
+      <path
+        d="M60.3434 63.0426H117.533V93.3382H126.332V63.0426C126.332 58.2689 122.386 54.3867 117.533 54.3867H60.3434C55.491 54.3867 51.5449 58.2689 51.5449 63.0426V114.978C51.5449 119.752 55.491 123.634 60.3434 123.634H95.5372V114.978H60.3434V63.0426Z"
+        fill="#FFC10E"
+      />
+      <path
+        d="M78.2367 88.5494L65.3945 107.015H112.483L95.3597 79.3164L82.5175 97.7823L78.2367 88.5494Z"
+        fill="#FFC10E"
+      />
+      <path
+        d="M126.677 101.477H117.675V114.98H104.172V123.982H117.675V137.485H126.677V123.982H140.18V114.98H126.677V101.477Z"
+        fill="#FFC10E"
+      />
+    </svg>
+  );
+}
+const SecondCol = ({ formik }) => {
   const [check, setCheck] = useState(false);
   const [selectedThumbnail, setSelectedThumbnail] = useState(null);
   const [thumbnails, setThumbnails] = useState(Thumbnail); // Use state to manage thumbnails
@@ -233,7 +251,7 @@ const SecondCol = ({formik}) => {
   }, [thumbnails]);
 
   // this function is used to get imagesurl from input on onchange condition
-  const handleImageUpload = (file,index) => {
+  const handleImageUpload = (file, index) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
       const updatedThumbnails = [...thumbnails];
@@ -241,13 +259,18 @@ const SecondCol = ({formik}) => {
         ...updatedThumbnails[selectedThumbnail],
         imageUrl: imageUrl,
       };
-      setThumbnails(updatedThumbnails);s
+      setThumbnails(updatedThumbnails);
       // to upload images in formik ..................
-     /*  formik.setFieldValue(`Product_images[${index}].images`, imageUrl); */
+      /* formik.setFieldValue(`Product_images[${index}].images`, file); */
+       /* formik.setFieldValue(`Product_images.images`,file) */
+      const currentImages = formik.values.Product_images.images;
+
+      const updatedImages = [...currentImages, file];
+
+      formik.setFieldValue("Product_images.images", updatedImages);
     }
     setSelectedThumbnail(null);
-    
-  }
+  };
   // this function is used to upload images if index is not last if index is last it call new svg creater function
   const handleThumbnailClick = (index) => {
     if (index !== thumbnails.length - 1) {
@@ -305,9 +328,7 @@ const SecondCol = ({formik}) => {
         </div>
         <div
           className={`flex flex-wrap  justify-center md:gap-6 gap-3 py-5 
-          ${
-            !check ? "pointer-events-none" : ""
-          }`}
+          ${!check ? "pointer-events-none" : ""}`}
         >
           {thumbnails.map((item, index) => (
             <div
@@ -328,15 +349,14 @@ const SecondCol = ({formik}) => {
           ))}
         </div>
         <input
+          name="images"
+          multiple
           type="file"
           ref={fileInputRef}
           style={{ display: "none" }}
-         /*  onChange={(e) => handleImageUpload(e.target.files[0])} */
-        /*  onChange={(e) => handleImageUpload(e.target.files[0], selectedThumbnail)} */
-        onChange={(e) => {
-          handleImageUpload(e.target.files[0], selectedThumbnail);
-          console.log("Upload images", e.target.files[0]);
-        }}
+          onChange={(e) =>
+            handleImageUpload(e.target.files[0], selectedThumbnail)
+          }
         />
       </div>
     </div>
@@ -344,29 +364,3 @@ const SecondCol = ({formik}) => {
 };
 
 export default SecondCol;
-//This function returns svg funntion to the array
-function generateNewSvg() {
-  return (
-    <svg
-      class="w-full h-full"
-      viewBox="0 0 194 194"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect width="194" height="194" rx="8" fill="#FFC10E" />
-      <rect x="22" y="22" width="150" height="150" rx="8" fill="white" />
-      <path
-        d="M60.3434 63.0426H117.533V93.3382H126.332V63.0426C126.332 58.2689 122.386 54.3867 117.533 54.3867H60.3434C55.491 54.3867 51.5449 58.2689 51.5449 63.0426V114.978C51.5449 119.752 55.491 123.634 60.3434 123.634H95.5372V114.978H60.3434V63.0426Z"
-        fill="#FFC10E"
-      />
-      <path
-        d="M78.2367 88.5494L65.3945 107.015H112.483L95.3597 79.3164L82.5175 97.7823L78.2367 88.5494Z"
-        fill="#FFC10E"
-      />
-      <path
-        d="M126.677 101.477H117.675V114.98H104.172V123.982H117.675V137.485H126.677V123.982H140.18V114.98H126.677V101.477Z"
-        fill="#FFC10E"
-      />
-    </svg>
-  );
-}
