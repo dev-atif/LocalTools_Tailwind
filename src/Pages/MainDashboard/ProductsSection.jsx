@@ -3,17 +3,20 @@ import React, { useEffect, useState } from "react";
 import ProductCard from "../../Component/Shared/ProductCard";
 import { ProductsCardsArray } from "./ProductsArray";
 import axios from "axios";
-import CustomDetails from './../Add Post/CustomDetails';
+import CustomDetails from "./../Add Post/CustomDetails";
 
 const ProductsSection = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    axios.get("https://backend-two-blush-62.vercel.app/products").then((responce) => {
-      setProducts(responce.data);
-      
-    }).catch(error=>{console.warn(error.message)})
-    console.warn(products)
-  }, []);
+    axios
+      .get("https://backend-two-blush-62.vercel.app/products")
+      .then((responce) => {
+        setProducts(responce.data);
+      })
+      .catch((error) => {
+        console.warn(error.message);
+      });
+  }, [products]);
   return (
     <>
       <div>
@@ -32,28 +35,30 @@ const ProductsSection = () => {
         </div>
       ))}
     </div> */}
-        {products.length>0 ?(
+        {products.length > 0 ? (
           <>
-          <div className="flex  gap-3 flex-wrap">
-          {products.map((item, index) => (
-            <div className="xl:w-[32%] md:w-[32%] w-full  " key={index}>
-              <ProductCard
-                Pname={item.tittle}
-                cat={item.Category}
-                image={item.Product_images[0].images}
-                price={item.Payment_Amount}
-                location={item.Vendor_street}
-                Label={item.customDetails?.[0]?.label ?? ''}
-                LabelColor={'bg-[#EB2424]'}
-              />
+            <div className="flex  gap-3 flex-wrap">
+              {products.map((item, index) => (
+                <div className="xl:w-[32%] md:w-[32%] w-full  " key={index}>
+                  <ProductCard
+                    Pname={item.tittle}
+                    cat={item.Category}
+                    image={item.Product_images[0].images}
+                    price={item.Payment_Amount}
+                    location={item.Vendor_street}
+                    Label={item.customDetails?.[0]?.label ?? ""}
+                    LabelColor={"bg-[#EB2424]"}
+                  />
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
           </>
-        ):(
+        ) : (
           <>
-          <div className="bg-white p-10 rounded-lg text-center">
-          <h1 className="text-lg font-Mont font-semibold">Sorry No products show</h1>
+            <div className="bg-white p-10 rounded-lg text-center">
+              <h1 className="text-lg font-Mont font-semibold">
+                Sorry No products show
+              </h1>
             </div>
           </>
         )}
