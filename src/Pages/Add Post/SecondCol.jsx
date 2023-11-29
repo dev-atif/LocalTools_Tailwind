@@ -261,8 +261,6 @@ const SecondCol = ({ formik }) => {
       };
       setThumbnails(updatedThumbnails);
       // to upload images in formik ..................
-      /* formik.setFieldValue(`Product_images[${index}].images`, file); */
-       /* formik.setFieldValue(`Product_images.images`,file) */
       const currentImages = formik.values.Product_images.images;
 
       const updatedImages = [...currentImages, file];

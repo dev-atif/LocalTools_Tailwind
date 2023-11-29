@@ -243,7 +243,7 @@ const ProductCard = ({
             </div>
 
             <div className="absolute top-[3%] left-0 shadow-xl">
-              <div className={`w-min px-6 py-2 rounded-r-md ${LabelColor} `}>
+              <div className={` px-6 py-2 rounded-r-md ${LabelColor} `}>
                 <h1 className="font-Robot font-bold text-white text-center text-sm">
                   {Label}{" "}
                 </h1>

@@ -34,7 +34,7 @@ const AddPost = () => {
   const loadingRef = useRef(null);
   const formik = useFormik({
     initialValues: initialValues,
-    onSubmit: async (values) => {
+    onSubmit: async (values ,action) => {
       // Handle form submission here
       console.warn(values);
     /*   if (!Object.values(values).every(Boolean)) {
@@ -67,7 +67,7 @@ const AddPost = () => {
         });
 
         console.warn("Server Response", response.data);
-        
+        formik.resetForm()
       } catch (error) {
         console.warn("Error:", error.response);
       } finally{
