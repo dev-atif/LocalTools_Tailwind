@@ -57,7 +57,7 @@ function App() {
             <Route path="/checkout" element={<CheckOut />} />
             <Route path="/cart" element={<ProductCart />} />
             <Route path="/filter" element={<InnerPage />} />
-            <Route path="/singleproduct" element={<SingleProduct />} />
+            <Route path="/singleproduct/:id" element={<SingleProduct />} />
 
             <Route path="/profile" element={<Profile />} />
             <Route path="/changepassword" element={<Changepassword />} />

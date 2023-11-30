@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState ,useEffect } from "react";
 import CategorySelect from "../../Component/Shared/CategorySelect";
 import Slider from "react-slick";
 import image1 from "../../assets/SingleProduct/garden-tool-set-of-8-pcs-cggs-garden-tool-kit-8-tools-ibex-original-imafnm3uzd4gbjez 1.png";
@@ -12,7 +12,7 @@ import CompanyProductDetails from "./CompanyProductDetails";
 import Location from "./Map/Location";
 import CancellationPolicy from "./CancellationPolicy";
 import RelatedProduct from "./RelatedProduct";
-const Pro_Image = [
+/* const Pro_Image = [
   { id: 1, image: image1 },
   { id: 2, image: image2 },
   { id: 3, image: image3 },
@@ -21,12 +21,82 @@ const Pro_Image = [
   { id: 6, image: image2 },
   { id: 7, image: image3 },
   { id: 8, image: image4 },
-];
-const LeftSection = () => {
-  const sliderRef = useRef();
+]; */
+const LeftSection = ({ product }) => {
+  
   const VerticalsliderRef = useRef();
-  const [slideimage, setSlideimage] = useState(0);
+  
+  
+  const [slideIndex, setSlideIndex] = useState(0);
+  
+  console.warn("its Product", product);
+
   const [selectimage, setSelectimage] = useState(0);
+  const totalImages = product?.Product_images.length || 0;
+
+
+  const nextSlide = () => {
+    if (VerticalsliderRef.current) {
+      VerticalsliderRef.current.slickNext();
+      setSlideIndex((prevIndex) => (prevIndex + 1) % totalImages);
+      setSelectimage((prevIndex) => (prevIndex + 1) % totalImages);
+    }
+  };
+
+  const prevSlide = () => {
+    if (VerticalsliderRef.current) {
+      VerticalsliderRef.current.slickPrev();
+      setSlideIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
+      setSelectimage((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
+    }
+  };
+
+ 
+
+  useEffect(() => {
+    if (VerticalsliderRef.current) {
+      VerticalsliderRef.current.slickGoTo(slideIndex);
+    }
+  }, [slideIndex]);
+
+  const sliderContainerStyle = {
+    height: `${totalImages * 170}px`, // Adjust the multiplier based on your image height
+  };
+ 
+  const Verticalsettings = {
+    dots: false,
+    arrows: false,
+   /*  infinite: true, */
+    speed: 400,
+    slidesToShow: 3,
+    
+    slidesToScroll: 1,
+    vertical: true, // Add this to enable vertical sliding (note: not native support)
+    verticalSwiping: true, // Also add this for vertical swiping on touch devices
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 5,
+        },
+      },
+      {
+        breakpoint: 425,
+        settings: {
+          slidesToShow: totalImages === 3 ? 3 : 4,
+          vertical: false, // Add this to enable vertical sliding (note: not native support)
+        },
+      },
+    ],
+  };
+ 
+
   return (
     <>
       <div>
@@ -37,10 +107,11 @@ const LeftSection = () => {
             </div>
             <div className="md:my-0 my-3">
               <h1 className="font-Robot font-normal text-sm text-black">
-                Home / Garden Tools /{" "}
+                Home /{/*  Garden Tools */} {product?.Category || ""} /{" "}
                 <span className="text-color-primary-gr">
-                  Jetfire German style pruner set of 6 & Scissor, Gloves Garden
-                  tools kit (7 tools)
+                  {/* Jetfire German style pruner set of 6 & Scissor, Gloves Garden
+                  tools kit (7 tools) */}
+                  {product?.tittle || ""}
                 </span>
               </h1>
             </div>
@@ -48,8 +119,9 @@ const LeftSection = () => {
           {/* ----------------------------------------------- */}
           <div className="mt-4">
             <h1 className="text-2xl font-Robot font-medium">
-              JetFire German Style Pruner Set of 6 & Scissor, Gloves Garden Tool
-              Kit (7 Tools)
+              {/*  JetFire German Style Pruner Set of 6 & Scissor, Gloves Garden Tool
+              Kit (7 Tools) */}{" "}
+              {product?.tittle || ""}
             </h1>
           </div>
           {/* ---------------------------------------------------- */}
@@ -96,22 +168,23 @@ const LeftSection = () => {
                   />
                 </svg>
               </span>
-              Goerge Colony, California
+              {/* Goerge Colony, California */}{" "}
+              {product?.Listing_Street_No1 || ""}
             </h1>
           </div>
           {/* ----------------------Vertical Slider-------------------------------- */}
-          <div className="grid grid-cols-12 gap-4">
-            <div className=" col-span-2">
-              <div>
+          <div /* className="md:grid grid-cols-12 gap-4 " */ className="flex  flex-col md:flex-row" >
+            <div className="  md:w-48 h-80" >
+              <div /* style={sliderContainerStyle} className={`overflow-hidden `}  */ >
                 <Slider {...Verticalsettings} ref={VerticalsliderRef}>
-                  {Pro_Image.map((item, index) => (
-                    <div key={index}>
-                      <div className="flex justify-center ">
+                  {product?.Product_images.map((item, index) => (
+                    <div key={index} className="mt-3" >
+                      <div className="flex justify-center pt-4 ">
                         {" "}
                         {/* Add padding here */}
                         <img
-                          src={item.image}
-                          className=""
+                          src={item.images}
+                          className={ index === selectimage ? ' border-2 border-color-primary-yel transition-all delay-100 w-46 md:w-32 w-46 h-16' : 'md:w-32 w-46 h-16' }
                           onClick={() => {
                             setSelectimage(index);
                           }}
@@ -121,13 +194,10 @@ const LeftSection = () => {
                   ))}
                 </Slider>
               </div>
-              <div className="flex justify-center mt-5 gap-2">
+              <div className="md:flex justify-center mt-5  gap-2 hidden">
                 <button
-                  onClick={() => {
-                    VerticalsliderRef.current.slickNext();
-                    setSlideimage(slideimage + 1);
-                    setSelectimage(slideimage + 1);
-                  }}
+                 
+                  onClick={nextSlide}
                 >
                   <svg
                     width="24"
@@ -146,11 +216,8 @@ const LeftSection = () => {
                   </svg>
                 </button>
                 <button
-                  onClick={() => {
-                    VerticalsliderRef.current.slickPrev();
-                    setSlideimage(slideimage - 1);
-                    setSelectimage(slideimage - 1);
-                  }}
+                 
+                  onClick={prevSlide}
                 >
                   <svg
                     width="24"
@@ -171,12 +238,12 @@ const LeftSection = () => {
               </div>
             </div>
             {/* -----------------------------Simple Slider---------------------------------------------------------- */}
-            <div className=" col-span-10 bg-white py-8 px-4 rounded-lg">
-              <div className="relative">
+            <div className=" col-span-10 bg-white py-8 px-4 rounded-lg  w-full">
+              <div className="relative"> 
                 {/* ------------------------------------------------- */}
                 <div className="flex items-center justify-center">
                   <img
-                    src={Pro_Image[selectimage]?.image}
+                    src={product?.Product_images[selectimage]?.images}
                     alt={`Selected Slide`}
                     className="md:w-[549px] md:h-[488px] w-[200px] h-[200px]"
                   />
@@ -184,11 +251,8 @@ const LeftSection = () => {
                 {/* ----------------------------------------------------------------------- */}
                 <div className="flex justify-between md:px-3 absolute inset-0 top-1/2">
                   <button
-                    onClick={() => {
-                      VerticalsliderRef.current.slickPrev();
-                    setSlideimage(slideimage + 1);
-                    setSelectimage(slideimage + 1);
-                    }}
+                   
+                    onClick={prevSlide}
                     className="h-min w-min "
                   >
                     <svg
@@ -208,11 +272,8 @@ const LeftSection = () => {
                     </svg>
                   </button>
                   <button
-                    onClick={() => {
-                      VerticalsliderRef.current.slickPrev();
-                      setSlideimage(slideimage - 1);
-                      setSelectimage(slideimage - 1);
-                    }}
+                   
+                    onClick={nextSlide}
                     className="h-min w-min "
                   >
                     <svg
@@ -249,7 +310,7 @@ const LeftSection = () => {
                     <img src={profile} className="rounded-full w-[20%]" />
                     <div>
                       <h1 className="text-black font-Robot font-medium 2xl:text-3xl text-2xl">
-                        John Doe
+                        {/* John Doe */} {product?.Vendor_Name || ''}
                       </h1>
                       <p className="font-Robot font-medium 2xl:text-base text-sm text-[#92929D]">
                         Member Since Apr 2021
@@ -309,61 +370,5 @@ const LeftSection = () => {
 
 export default LeftSection;
 
-const settings = {
-  dots: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  arrows: false, // This will remove the default arrows
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 3,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 2,
-      },
-    },
-    {
-      breakpoint: 425,
-      settings: {
-        slidesToShow: 1,
-      },
-    },
-  ],
-};
-const Verticalsettings = {
-  dots: false,
-  arrows: false,
-  infinite: true,
-  speed: 400,
-  slidesToShow: 5,
-  slidesToScroll: 1,
-  vertical: true, // Add this to enable vertical sliding (note: not native support)
-  verticalSwiping: true, // Also add this for vertical swiping on touch devices
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: {
-        slidesToShow: 5,
-      },
-    },
-    {
-      breakpoint: 768,
-      settings: {
-        slidesToShow: 5,
-      },
-    },
-    {
-      breakpoint: 425,
-      settings: {
-        slidesToShow: 5,
-      },
-    },
-  ],
-};
+/*  */
+
