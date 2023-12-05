@@ -21,11 +21,13 @@ import "react-toastify/dist/ReactToastify.css";
 import { fileToBase64 } from "../../utils/filtToBase64";
 import LoadingBar from 'react-top-loading-bar'
 
-const Stocks = [
-  { label: "01", value: "1" },
-  { value: "2", label: "02" },
-  { value: "3", label: "03" },
-];
+const Stocks = [];
+
+for (let i = 1; i <= 100; i++) {
+  const label = i.toString().padStart(2, '0');
+  const value = i.toString();
+  Stocks.push({ label, value });
+}
 
 const AddPost = () => {
   const [check, setCheck] = useState(null);
@@ -122,7 +124,7 @@ const AddPost = () => {
                       </h1>
                     </div>
                     <div className="bg-white rounded-lg md:px-5 px-4 py-5 2xl:py-10 xl:py-3">
-                      <div>
+                   {/*    <div>
                         <h4 className="2xl:text-lg text-base font-Mont font-medium text-color-primary-gr">
                           Ad type*
                         </h4>
@@ -216,7 +218,7 @@ const AddPost = () => {
                             </h1>
                           </div>
                         </div>
-                      </div>
+                      </div> */}
                       <div className="py-2">
                         <ShareField
                           name="tittle"

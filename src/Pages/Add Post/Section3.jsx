@@ -7,10 +7,11 @@ const Currency = [
   { value: "Rupees", label: "Rupees" },
 ];
 const Time = [
-  { value: "Hourly", label: "Hourly" },
-  { value: "Daily", label: "Daily" },
-  { value: "Weekly", label: "Weekly" },
-  { value: "Monthly", label: "Monthly" },
+  { value: "Hour", label: "Hour" },
+  { value: "Day", label: "Day" },
+  { value: "Week", label: "Week" },
+  { value: "Month", label: "Month" },
+  { value: "Year", label: "Year" },
 ];
 const Cat = [
   { value: "Agricultural machinery", label: "Agricultural machinery" },

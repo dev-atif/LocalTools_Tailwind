@@ -321,8 +321,8 @@ const LeftSection = ({ product }) => {
                     <h1 className="text-[#92929D]  font-Robot font-normal 2xl:text-3xl text-2xl mt-1">
                       Product
                     </h1>
-                    <h1 className="text-black font-Robot font-normal 2xl:text-3xl text-2xl -mt-1">
-                      50
+                    <h1 className="text-black font-Robot font-normal 2xl:text-3xl text-xl -mt-1">
+                      {product?.quantity}
                     </h1>
                   </div>
                 </div>

@@ -287,7 +287,7 @@ const SecondCol = ({ formik }) => {
             Pictures
           </h1>
         </div>
-        <div className="flex items-center gap-2">
+       {/*  <div className="flex items-center gap-2">
           <div>
             {check ? (
               <svg
@@ -323,10 +323,10 @@ const SecondCol = ({ formik }) => {
               Thumbnail
             </h1>
           </div>
-        </div>
+        </div> */}
         <div
           className={`flex flex-wrap  justify-center md:gap-6 gap-3 py-5 
-          ${!check ? "pointer-events-none" : ""}`}
+          `}
         >
           {thumbnails.map((item, index) => (
             <div

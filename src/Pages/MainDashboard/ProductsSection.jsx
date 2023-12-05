@@ -21,21 +21,7 @@ const ProductsSection = () => {
   return (
     <>
       <div>
-        {/*  <div className='flex  gap-3 flex-wrap'>
-    {ProductsCardsArray.map((item, index) => (
-        <div className='xl:w-[32%] md:w-[32%] w-full  ' key={index}>
-          <ProductCard
-            Pname={item.name}
-            cat={item.cat}
-            image={item.image}
-            price={item.price}
-            location={item.location}
-            Label={item.Label}
-            LabelColor={item.LabelColor}
-          />
-        </div>
-      ))}
-    </div> */}
+    
         {products.length > 0 ? (
           <>
             <div className="flex  gap-3 flex-wrap">
@@ -45,11 +31,11 @@ const ProductsSection = () => {
                  <ProductCard
                     Pname={item.tittle}
                     cat={item.Category}
-                    image={item.Product_images[0].images}
+                    image={item.Product_images[0]?.images}
                     price={item.Payment_Amount}
                     location={item.Vendor_street}
-                    Label={item.customDetails?.[0]?.label ?? ""}
-                    LabelColor={"bg-[#EB2424]"}
+                    /* Label={item.customDetails?.[0]?.label ?? ""}
+                    LabelColor={"bg-[#EB2424]"} */
                   />
                  </Link>
                 </div>
