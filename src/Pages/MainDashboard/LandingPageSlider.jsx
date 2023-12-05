@@ -41,7 +41,7 @@ const LandingPageSlider = () => {
       <div>
         <div className="bg-[#FFC10E] rounded-lg p-4">
           <div className=" flex items-center justify-between">
-            <h1 className="font-Mont font-semibold 2xl:text-[32px] text-2xl text-white">
+            <h1 className="font-Mont font-semibold 2xl:text-[32px] text-4xl text-white">
               Highlight
             </h1>
             <div className="flex items-center gap-3">

@@ -4,13 +4,13 @@ const CompService = () => {
   return (
     <>
       <div className="   md:border-b-2 border-[#373737] pb-5">
-        <div className=" grid lg:grid-cols-4 md:grid-cols-2 grid-cols-1 xl:items-center items-start lg:gap-2 gap-6">
+        <div className=" flex flex-col gap-6">
           <div className="">
             <div className="flex xl:items-center md:items-start  items-center gap-2">
               <span>
                 <svg
-                  width="40"
-                  height="40"
+                  width="30"
+                  height="30"
                   viewBox="0 0 50 50"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -36,8 +36,8 @@ const CompService = () => {
             <div className="flex xl:items-center md:items-start items-center gap-2">
               <span>
                 <svg
-                  width="40"
-                  height="40"
+                  width="30"
+                  height="30"
                   viewBox="0 0 51 42"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -64,8 +64,8 @@ const CompService = () => {
             <div className="flex xl:items-center md:items-start items-center gap-2">
               <span>
                 <svg
-                  width="40"
-                  height="40"
+                  width="30"
+                  height="30"
                   viewBox="0 0 44 50"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
@@ -95,8 +95,8 @@ const CompService = () => {
             <div className="flex xl:items-center md:items-start items-center gap-2">
               <span>
                 <svg
-                  width="40"
-                  height="40"
+                  width="30"
+                  height="30"
                   viewBox="0 0 41 50"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

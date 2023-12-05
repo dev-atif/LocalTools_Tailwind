@@ -16,9 +16,9 @@ const ProductCard = ({
       <div>
         <div>
           <div className="relative">
-            <div className="   bg-white  px-3 relative rounded-md pb-5 h-[350px]">
+            <div className="   bg-white  px-3 relative rounded-md pb-5 h-[300px]">
               <div className="flex justify-center ">
-                <img src={image} className="w-[304px] h-[250px] pt-3 pb-6" />
+                <img src={image} className="w-[250px] h-[200px] pt-3 pb-6 " />
               </div>
               <div className="pb-1">
                 <p className="text-[12px] leading-[18px] font-Robot font-normal text-color-primary-gr">
@@ -60,7 +60,7 @@ const ProductCard = ({
                   {location}
                 </p>
               </div>
-              <div
+             {/*  <div
                 onClick={() => {
                   setClick(!isclick);
                 }}
@@ -239,7 +239,7 @@ const ProductCard = ({
                     </span>
                   )}
                 </div>
-              </div>
+              </div> */}
             </div>
 
             <div className="absolute top-[3%] left-0 shadow-xl">

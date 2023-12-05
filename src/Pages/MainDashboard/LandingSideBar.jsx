@@ -60,7 +60,7 @@ const LandingMenu = [
   },
   {
     id: 2,
-    name: "Car / Truck trailer",
+    name: "Car/Truck trailer",
     path: "/Car/Truck trailer",
     svg: Car_Svg,
   },
@@ -108,7 +108,7 @@ const LandingMenu = [
   },
   {
     id: 10,
-    name: "Lift frame / hoist",
+    name: "Lift frame/hoist",
     path: "/Liftframe/hoist",
     svg: LiftFrame_Svg,
   },

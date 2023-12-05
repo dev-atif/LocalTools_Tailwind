@@ -13,8 +13,22 @@ const Time = [
   { value: "Monthly", label: "Monthly" },
 ];
 const Cat = [
-  { value: "Heavy Machine", label: "Heavy Machine" },
-  { value: "Light Machine", label: "Light Machine" },
+  { value: "Agricultural machinery", label: "Agricultural machinery" },
+  { value: "Car/Truck trailer", label: "Car/Truck trailer" },
+  { value: "Concrete Drill", label: "Concrete Drill" },
+  { value: "Construction machinery", label: "Construction machinery" },
+  { value: "Drying and heating devices", label: "Drying and heating devices" },
+  { value: "Foresting machines", label: "Foresting machines" },
+  { value: "Garden tool", label: "Garden tool" },
+  { value: "Hand tools", label: "Hand tools" },
+  { value: "KFZ tool", label: "KFZ tool" },
+  { value: "Lift frame/hoist", label: "Lift frame/hoist" },
+  { value: "Loader & Roller Shutter", label: "Loader & Roller Shutter" },
+  { value: "Measuring device", label: "Measuring device" },
+  { value: "Pump", label: "Pump" },
+  { value: "Röttelplatten & Compaction", label: "Röttelplatten & Compaction" },
+  { value: "Small Appliances for Metal Wood", label: "Measuring device" },
+ 
 ];
 
 const SubCat = [
@@ -22,9 +36,12 @@ const SubCat = [
   { value: "Crawler Excavators", label: "Crawler Excavators" },
 ];
 const Brand = [
-  { value: "Caterpillar", label: "Caterpillar" },
-  { value: "Komatsu", label: "Komatsu" },
-  { value: "Volvo", label: "Volvo" },
+  { value: "Car", label: "Car" },
+  { value: "Kraft Seedings", label: "Kraft Seedings" },
+  { value: "Trumphe", label: "Trumphe" },
+  { value: "Trust Basket", label: "Trust Basket" },
+  { value: "Sharpex", label: "Sharpex" },
+  { value: "Falcon", label: "Falcon" },
 ];
 
 const Section3 = ({ formik }) => {

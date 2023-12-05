@@ -326,7 +326,7 @@ const LeftSection = ({ product }) => {
                     </h1>
                   </div>
                 </div>
-                <div className="flex  items-center justify-end gap-12 md:w-1/2 md:mt-0 mt-2">
+                {/* <div className="flex  items-center justify-end gap-12 md:w-1/2 md:mt-0 mt-2">
                   <div className="xl:w-1/3 w-1/2">
                     <BlackButton
                       label={"Contact with Seller "}
@@ -338,7 +338,7 @@ const LeftSection = ({ product }) => {
                   <div className="w-[25%]">
                     <BlackButton label={"Follow"} />
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
@@ -348,7 +348,7 @@ const LeftSection = ({ product }) => {
           </div>
           {/* -------Company Products details  --------------------- */}
           <div>
-            <CompanyProductDetails />
+            <CompanyProductDetails product={product} />
           </div>
           {/* -------Location/Map  --------------------- */}
           <div>
@@ -356,7 +356,7 @@ const LeftSection = ({ product }) => {
           </div>
           {/* -------Cancelation policy  --------------------- */}
           <div>
-            <CancellationPolicy />
+            <CancellationPolicy product={product} />
           </div>
           {/* -------RelatedProduct  --------------------- */}
           <div>

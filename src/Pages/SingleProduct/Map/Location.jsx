@@ -11,9 +11,7 @@ const Location = () => {
     <div className='my-4'>
         <GoogleMapApi/>
     </div>
-    <div>
-        <h1 className='text-2xl text-black font-Robot font-medium'>Hoppegarten, Märkisch-Oderland, Brandenburg, Germany</h1>
-    </div>
+    
    </div>
    </>
   )
