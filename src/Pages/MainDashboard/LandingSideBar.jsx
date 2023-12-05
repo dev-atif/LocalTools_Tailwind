@@ -27,7 +27,7 @@ const LandingSideBar = () => {
                 className="font-Mont font-semibold text-sm border-b group hover:bg-color-primary-yel 
                hover:text-white  first:rounded-t-lg  last:rounded-b-lg"
               >
-                <Link className="flex items-center gap-3 px-2 2xl:px-6  py-3">
+                <Link to={`/filter/${encodeURIComponent(item.name)}`} className="flex items-center gap-3 px-2 2xl:px-6  py-3">
                   <span>
                     {" "}
                     {React.cloneElement(<item.svg />, {
@@ -108,7 +108,7 @@ const LandingMenu = [
   },
   {
     id: 10,
-    name: "Lift frame/hoist",
+    name: "Lift frame / hoist",
     path: "/Liftframe/hoist",
     svg: LiftFrame_Svg,
   },

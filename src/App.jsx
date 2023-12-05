@@ -56,8 +56,8 @@ function App() {
             <Route path="/notification" element={<GNotification />} />
             <Route path="/checkout" element={<CheckOut />} />
             <Route path="/cart" element={<ProductCart />} />
-            <Route path="/filter" element={<InnerPage />} />
-            <Route path="/singleproduct/:id" element={<SingleProduct />} />
+            
+           
 
             <Route path="/profile" element={<Profile />} />
             <Route path="/changepassword" element={<Changepassword />} />
@@ -70,6 +70,8 @@ function App() {
           
             <Route path="/BusinessProfile" element={<BusinessProfile />} />
           </Route>
+          <Route path="/filter/:category" element={<InnerPage />} />
+          <Route path="/singleproduct/:id" element={<SingleProduct />} />
           <Route path="/Login" element={<Signin />} />
           <Route path="/ForgetPassword" element={<ForgetPassword />} />
           <Route path="/Registration" element={<Registration />} />

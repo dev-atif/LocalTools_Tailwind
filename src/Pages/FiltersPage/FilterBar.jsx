@@ -34,18 +34,27 @@ const Brand = [
     name: "Falcon",
   },
 ];
-const FilterBar = () => {
-  const [brand, setBrand] = useState(0);
+const FilterBar = ({product ,dataFromChild}) => {
+  const [brand, setBrand] = useState(null);
   const [show, showMore] = useState(5);
+  
   /* ---------------------------------------- */
 
-  const [values, setValues] = useState([100, 2500]);
+  const [values, setValues] = useState([100, 4000]);
 
   const handleValuesChange = (newValues) => {
     setValues(newValues);
   };
   const minValue = 0; // Dynamic minimum value
   const maxValue = 6000;
+
+  const handleClick = (index ,name) => {
+    
+    setBrand(index);
+   //Pass it to parent
+    dataFromChild(name);
+  };
+
 
   /* ----------------------------------------- */
   return (
@@ -65,7 +74,11 @@ const FilterBar = () => {
             <h1 className="text-black text-[20px] font-Robot font-bold py-1">
               Department
             </h1>
-            <ul className="text-color-primary-gr font-Robot text-base font-medium space-y-1">
+            <p className="text-sm font-Cairo font-bold -mt-1">{product[0]?.Category}</p>
+            <div>
+              
+            </div>
+          {/*   <ul className="text-color-primary-gr font-Robot text-base font-medium space-y-1">
               <li className="text-black font-Robot text-base font-medium">
                 Gardening
               </li>
@@ -81,7 +94,7 @@ const FilterBar = () => {
               </li>
               <li>Grass Seeds</li>
               <li>Garden & Outdoors</li>
-            </ul>
+            </ul> */}
           </div>
           {/* ---------------------------------------------------------------------------------- */}
           <div className="mt-4">
@@ -94,7 +107,8 @@ const FilterBar = () => {
                   index < (!show ? Brand.length : 5) && (
                     <div
                       key={index}
-                      onClick={() => setBrand(index)}
+                     /*  onClick={() => setBrand(index) } */
+                     onClick={()=>handleClick(index,item.name)}
                       className={`flex items-center gap-3 cursor-pointer`}
                     >
                       <div
