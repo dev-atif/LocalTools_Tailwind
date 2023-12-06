@@ -13,7 +13,7 @@ const Time = [
   { value: "Month", label: "Month" },
   { value: "Year", label: "Year" },
 ];
-const Cat = [
+export const Cat = [
   { value: "Agricultural machinery", label: "Agricultural machinery" },
   { value: "Car/Truck trailer", label: "Car/Truck trailer" },
   { value: "Concrete Drill", label: "Concrete Drill" },

@@ -9,6 +9,7 @@ const ProductCard = ({
   location,
   Label,
   LabelColor,
+  duration
 }) => {
   const [isclick, setClick] = useState();
   return (
@@ -28,7 +29,7 @@ const ProductCard = ({
               <div className="flex items-center justify-between pb-2">
                 <h3 className="font-medium text-base font-Robot">{Pname}</h3>
                 <span className="font-medium text-base font-Robot">
-                  {price}
+                  {price} / {duration}
                 </span>
               </div>
               <div className="flex items-center gap-2">

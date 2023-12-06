@@ -7,7 +7,7 @@ import profile from "../../assets/ahmad.png";
 import Searbars from "./Searchbars";
 import { Link, useNavigate } from "react-router-dom";
 import Not_auth_Model from "../Not_auth_Model";
-
+import { useSelector } from "react-redux";
 
 const Navbar = () => {
   const [Open, setOpen] = useState(false);
@@ -26,9 +26,9 @@ const Navbar = () => {
       setProfileimage(userdata.image);
     }
   };
-  useEffect(()=>{
-    imageLoad()
-  })
+  useEffect(() => {
+    imageLoad();
+  });
   //This ref connect to the dropdown profile below
   let dropdown = useRef();
   //this function is used to hide menue when we click outside the menu or anywhere on the  screen
@@ -55,7 +55,7 @@ const Navbar = () => {
       navigate("/addpost");
     }
   };
-
+  const item = useSelector((state) => state.cart);
   return (
     <div className="border-b py-1 bg-white">
       <div className="flex items-center justify-between  2xl:max-w-full px-5 xs:px-0 mx-auto 2xl:justify-evenly ">
@@ -94,31 +94,44 @@ const Navbar = () => {
               </svg>
             </span>
             <span>
-              <svg
-                width="20"
-                height="20"
-                viewBox="0 0 25 22"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M24.2269 5.41567C24.1144 5.2532 23.9643 5.12041 23.7893 5.02866C23.6144 4.93692 23.4198 4.88896 23.2222 4.88889H6.51811L5.10766 1.50334C4.92273 1.0575 4.60957 0.676613 4.20789 0.408974C3.80622 0.141335 3.33411 -0.00100349 2.85144 5.32551e-06H0V2.44445H2.85144L8.64966 16.3594C8.74253 16.5821 8.89921 16.7722 9.09995 16.906C9.3007 17.0398 9.53654 17.1111 9.77777 17.1111H19.5555C20.0652 17.1111 20.5211 16.7945 20.7008 16.3191L24.3674 6.54133C24.4367 6.35631 24.4601 6.15725 24.4356 5.9612C24.4112 5.76516 24.3395 5.57797 24.2269 5.41567ZM18.7085 14.6667H10.593L7.53744 7.33333H21.4585L18.7085 14.6667Z"
-                  fill="#92929D"
-                />
-                <path
-                  d="M10.3885 22.0002C11.401 22.0002 12.2218 21.1793 12.2218 20.1668C12.2218 19.1543 11.401 18.3335 10.3885 18.3335C9.37599 18.3335 8.55518 19.1543 8.55518 20.1668C8.55518 21.1793 9.37599 22.0002 10.3885 22.0002Z"
-                  fill="#92929D"
-                />
-                <path
-                  d="M18.9447 22.0002C19.9572 22.0002 20.778 21.1793 20.778 20.1668C20.778 19.1543 19.9572 18.3335 18.9447 18.3335C17.9321 18.3335 17.1113 19.1543 17.1113 20.1668C17.1113 21.1793 17.9321 22.0002 18.9447 22.0002Z"
-                  fill="#92929D"
-                />
-              </svg>
+              <span className="relative">
+                <Link to={"/cart"}>
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 25 22"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M24.2269 5.41567C24.1144 5.2532 23.9643 5.12041 23.7893 5.02866C23.6144 4.93692 23.4198 4.88896 23.2222 4.88889H6.51811L5.10766 1.50334C4.92273 1.0575 4.60957 0.676613 4.20789 0.408974C3.80622 0.141335 3.33411 -0.00100349 2.85144 5.32551e-06H0V2.44445H2.85144L8.64966 16.3594C8.74253 16.5821 8.89921 16.7722 9.09995 16.906C9.3007 17.0398 9.53654 17.1111 9.77777 17.1111H19.5555C20.0652 17.1111 20.5211 16.7945 20.7008 16.3191L24.3674 6.54133C24.4367 6.35631 24.4601 6.15725 24.4356 5.9612C24.4112 5.76516 24.3395 5.57797 24.2269 5.41567ZM18.7085 14.6667H10.593L7.53744 7.33333H21.4585L18.7085 14.6667Z"
+                      fill="#92929D"
+                    />
+                    <path
+                      d="M10.3885 22.0002C11.401 22.0002 12.2218 21.1793 12.2218 20.1668C12.2218 19.1543 11.401 18.3335 10.3885 18.3335C9.37599 18.3335 8.55518 19.1543 8.55518 20.1668C8.55518 21.1793 9.37599 22.0002 10.3885 22.0002Z"
+                      fill="#92929D"
+                    />
+                    <path
+                      d="M18.9447 22.0002C19.9572 22.0002 20.778 21.1793 20.778 20.1668C20.778 19.1543 19.9572 18.3335 18.9447 18.3335C17.9321 18.3335 17.1113 19.1543 17.1113 20.1668C17.1113 21.1793 17.9321 22.0002 18.9447 22.0002Z"
+                      fill="#92929D"
+                    />
+                  </svg>
+                </Link>
+                <span className="absolute -top-2 left-2">
+                {item.length>0 ? (
+                  <>
+                  <svg width="8" height="8" className="rounded-full" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="50" height="50" fill="#ff4242" />
+                </svg></>
+                ):(null)}
+              </span>
+              </span>
+              
             </span>
             <div className="flex lg:flex-row flex-row-reverse  items-center gap-4">
               {auth ? (
                 <>
-                  <img  src={profileimage} className=" w-12 h-12 rounded-full" />
+                  <img src={profileimage} className=" w-12 h-12 rounded-full" />
                   <div className="relative">
                     <span
                       className="cursor-pointer "

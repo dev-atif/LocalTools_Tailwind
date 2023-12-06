@@ -14,7 +14,7 @@ const InnerPage = () => {
   const { category } = useParams();
 const [getbrand,setBrand] = useState()
   // Log the category to the console
-  console.log('Category from URL:', category);
+  /* console.log('Category from URL:', category); */
 
   useEffect(() => {
     const fetchData = async () => {

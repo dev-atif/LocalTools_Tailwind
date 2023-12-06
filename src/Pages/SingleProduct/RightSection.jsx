@@ -2,14 +2,24 @@ import React from "react";
 import SharedSelect from "../../Component/Shared/SharedSelect";
 import BlackButton from "../../Component/Shared/BlackButton";
 import Calender from "./../Add Post/Shared/Calender";
+import { useDispatch } from "react-redux";
+import {add} from '../../Store/CartSlice'
 const Stock = [
-  { value: 1, label: "1kit" },
-  { value: 2, label: "2kit" },
-  { value: 3, label: "3kit" },
-  { value: 4, label: "4kit" },
-  { value: 5, label: "5kit" },
+  { value: '1kit', label: "1kit" },
+  { value:"2kit", label: "2kit" },
+  { value: "3kit", label: "3kit" },
+  { value:"4kit", label: "4kit" },
+  { value: "5kit", label: "5kit" },
+  { value: "6kit", label: "6kit" },
+  { value:"7kit", label: "7kit" },
 ];
-const RightSection = () => {
+const RightSection = ({product}) => {
+
+  const dispatch = useDispatch();
+const addtoCart=(product)=>{
+  dispatch(add(product))
+}
+  
   return (
     <>
       <div>
@@ -166,7 +176,7 @@ const RightSection = () => {
                 <SharedSelect
                   bordercolor={"none"}
                   placeholder={"Stock"}
-                  Value={Stock}
+                  Values={Stock}
                 />
               </div>
             </div>
@@ -178,7 +188,9 @@ const RightSection = () => {
                 </button>
               </div>
               <div className="xl:w-1/2">
-                <button className="text-[#92929D] bg-none border border-[#92929D]  py-2 w-full text-center rounded-lg  font-Mont font-semibold text-base  ">
+                <button
+                onClick={()=>{addtoCart(product)}}
+                  className="text-[#92929D] bg-none border border-[#92929D]  py-2 w-full text-center rounded-lg  font-Mont font-semibold text-base  ">
                   Add to Cart
                 </button>
               </div>

@@ -43,7 +43,7 @@ console.warn(product)
                   <LeftSection product={product} />
                 </div>
                 <div className={`lg:w-1/4  w-full h-full  `}>
-                    <RightSection/>
+                    <RightSection product={product}/>
                 </div>
               </div>
             </div>

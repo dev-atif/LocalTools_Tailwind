@@ -3,7 +3,7 @@ import BreadCrums from "../../Component/BreadCrums";
 import { ProductsCardsArray } from "../MainDashboard/ProductsArray";
 import ProductCard from "../../Component/Shared/ProductCard";
 import DetailsSection from "../MainDashboard/DetailsSection";
-import sorry from '../../assets/sorry.png'
+import sorry from "../../assets/sorry.png";
 import { Link } from "react-router-dom";
 const FilterMain = ({ product }) => {
   return (
@@ -12,7 +12,7 @@ const FilterMain = ({ product }) => {
         <div>
           <div className="md:mt-3 my-4">
             <h1 className="font-Robot font-normal text-2xl text-[#92929D]">
-              Home / {product[0]?.Category} 
+              Home / {product[0]?.Category}
             </h1>
           </div>
           {/*  <div className='flex flex-wrap gap-3 2xl:mt-[3.5%] xl:mt-[4%] lg:mt-[5%]'>
@@ -39,14 +39,15 @@ const FilterMain = ({ product }) => {
                     className="xl:w-[32%] 2xl:w-[32%] lg:w-[48%] md:w-[48%] w-full   bg-white relative rounded-md pb-5 h-[350px]"
                     key={index}
                   >
-                    <Link to={'/singleproduct/'+item._id}>
-                    <ProductCard
-                      Pname={item.tittle}
-                      cat={item.Category}
-                      image={item.Product_images[0]?.images}
-                      price={item.Payment_Amount}
-                      location={item.Vendor_street}
-                    />
+                    <Link to={"/singleproduct/" + item._id}>
+                      <ProductCard
+                        Pname={item.tittle}
+                        cat={item.Category}
+                        image={item.Product_images[0]?.images}
+                        price={item.Rented_Price}
+                        duration={item.Rented_as}
+                        location={item.Vendor_street}
+                      />
                     </Link>
                   </div>
                 ))}
@@ -55,8 +56,10 @@ const FilterMain = ({ product }) => {
           ) : (
             <>
               <div className="flex flex-col  items-center">
-                <img src={sorry} className=" w-[50%]"/>
-                <h1 className="text-2xl font-Cairo font-semibold">Sorry no Products to show</h1>
+                <img src={sorry} className=" w-[50%]" />
+                <h1 className="text-2xl font-Cairo font-semibold">
+                  Sorry no Products to show
+                </h1>
               </div>
             </>
           )}

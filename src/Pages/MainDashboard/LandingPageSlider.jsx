@@ -104,6 +104,8 @@ const LandingPageSlider = () => {
                       image={item.image}
                       price={item.price}
                       location={item.location}
+                      duration={item.Rented_as}
+
                     />
                   </div>
                 </div>

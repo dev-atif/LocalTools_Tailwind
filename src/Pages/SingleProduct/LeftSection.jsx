@@ -12,16 +12,8 @@ import CompanyProductDetails from "./CompanyProductDetails";
 import Location from "./Map/Location";
 import CancellationPolicy from "./CancellationPolicy";
 import RelatedProduct from "./RelatedProduct";
-/* const Pro_Image = [
-  { id: 1, image: image1 },
-  { id: 2, image: image2 },
-  { id: 3, image: image3 },
-  { id: 4, image: image4 },
-  { id: 5, image: image1 },
-  { id: 6, image: image2 },
-  { id: 7, image: image3 },
-  { id: 8, image: image4 },
-]; */
+
+
 const LeftSection = ({ product }) => {
   
   const VerticalsliderRef = useRef();
@@ -103,7 +95,7 @@ const LeftSection = ({ product }) => {
         <div>
           <div className=" md:flex items-center gap-4">
             <div className="xl:w-1/4 md:w-1/3 ">
-              <CategorySelect />
+              <CategorySelect defaultVal={product?.Category || ""} />
             </div>
             <div className="md:my-0 my-3">
               <h1 className="font-Robot font-normal text-sm text-black">

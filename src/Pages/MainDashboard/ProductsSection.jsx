@@ -32,8 +32,9 @@ const ProductsSection = () => {
                     Pname={item.tittle}
                     cat={item.Category}
                     image={item.Product_images[0]?.images}
-                    price={item.Payment_Amount}
                     location={item.Vendor_street}
+                    price={item.Rented_Price}
+                    duration={item.Rented_as}
                     /* Label={item.customDetails?.[0]?.label ?? ""}
                     LabelColor={"bg-[#EB2424]"} */
                   />

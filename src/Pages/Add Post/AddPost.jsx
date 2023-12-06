@@ -21,7 +21,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { fileToBase64 } from "../../utils/filtToBase64";
 import LoadingBar from 'react-top-loading-bar'
 
-const Stocks = [];
+export const Stocks = [];
 
 for (let i = 1; i <= 100; i++) {
   const label = i.toString().padStart(2, '0');
