@@ -38,13 +38,15 @@ console.warn(product)
         <div>
           <div  className="pb-16 pt-4">
             <div className="lg:px-2 xl:px-9 px-3 mt-2 relative ">
-              <div className="flex lg:flex-row flex-col lg:gap-3 justify-between ">
-                <div className=" lg:w-3/4 w-full md:mt-0 mt-3 ">
+              <div className="max-w-7xl mx-auto px-8">
+              <div className="flex lg:flex-row flex-col lg:gap-9 justify-between ">
+                <div className=" lg:w-[65%] w-full md:mt-0 mt-3 ">
                   <LeftSection product={product} />
                 </div>
-                <div className={`lg:w-1/4  w-full h-full  `}>
+                <div className={`  w-full h-full  `}>
                     <RightSection product={product}/>
                 </div>
+              </div>
               </div>
             </div>
           </div>

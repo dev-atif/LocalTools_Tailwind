@@ -111,8 +111,7 @@ const LeftSection = ({ product }) => {
           {/* ----------------------------------------------- */}
           <div className="mt-4">
             <h1 className="text-2xl font-Robot font-medium">
-              {/*  JetFire German Style Pruner Set of 6 & Scissor, Gloves Garden Tool
-              Kit (7 Tools) */}{" "}
+             
               {product?.tittle || ""}
             </h1>
           </div>
@@ -160,13 +159,13 @@ const LeftSection = ({ product }) => {
                   />
                 </svg>
               </span>
-              {/* Goerge Colony, California */}{" "}
+             
               {product?.Listing_Street_No1 || ""}
             </h1>
           </div>
           {/* ----------------------Vertical Slider-------------------------------- */}
           <div /* className="md:grid grid-cols-12 gap-4 " */ className="flex  flex-col md:flex-row" >
-            <div className="  md:w-48 h-80" >
+            <div className="  md:w-52 h-80" >
               <div /* style={sliderContainerStyle} className={`overflow-hidden `}  */ >
                 <Slider {...Verticalsettings} ref={VerticalsliderRef}>
                   {product?.Product_images.map((item, index) => (
@@ -176,7 +175,7 @@ const LeftSection = ({ product }) => {
                         {/* Add padding here */}
                         <img
                           src={item.images}
-                          className={ index === selectimage ? ' border-2 border-color-primary-yel transition-all delay-100 w-46 md:w-32 w-46 h-16' : 'md:w-32 w-46 h-16' }
+                          className={ index === selectimage ? ' border-2 border-color-primary-yel transition-all delay-100 w-46 md:w-32 w-46 h-20' : 'md:w-32 w-46 h-20' }
                           onClick={() => {
                             setSelectimage(index);
                           }}
@@ -186,7 +185,7 @@ const LeftSection = ({ product }) => {
                   ))}
                 </Slider>
               </div>
-              <div className="md:flex justify-center mt-5  gap-2 hidden">
+             {/*  <div className="md:flex justify-center mt-5  gap-2 hidden">
                 <button
                  
                   onClick={nextSlide}
@@ -227,17 +226,17 @@ const LeftSection = ({ product }) => {
                     />
                   </svg>
                 </button>
-              </div>
+              </div> */}
             </div>
             {/* -----------------------------Simple Slider---------------------------------------------------------- */}
-            <div className=" col-span-10 bg-white py-8 px-4 rounded-lg  w-full">
+            <div className="  bg-white py-8 px-4 rounded-lg  w-full">
               <div className="relative"> 
                 {/* ------------------------------------------------- */}
                 <div className="flex items-center justify-center">
                   <img
                     src={product?.Product_images[selectimage]?.images}
                     alt={`Selected Slide`}
-                    className="md:w-[549px] md:h-[488px] w-[200px] h-[200px]"
+                    className="md:w-[400px] md:h-[450px] w-[200px] h-[200px]"
                   />
                 </div>
                 {/* ----------------------------------------------------------------------- */}
@@ -248,8 +247,8 @@ const LeftSection = ({ product }) => {
                     className="h-min w-min "
                   >
                     <svg
-                      width="26"
-                      height="46"
+                      width="20"
+                      height="40"
                       viewBox="0 0 26 46"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"
@@ -269,8 +268,8 @@ const LeftSection = ({ product }) => {
                     className="h-min w-min "
                   >
                     <svg
-                      width="26"
-                      height="46"
+                      width="20"
+                      height="40"
                       viewBox="0 0 26 46"
                       fill="none"
                       xmlns="http://www.w3.org/2000/svg"

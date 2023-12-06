@@ -1,5 +1,6 @@
 import React from 'react'
 import emptycart from '../../assets/emptycart.png'
+import { Link } from 'react-router-dom'
 const EmptyCart = () => {
   return (
    <>
@@ -11,9 +12,11 @@ const EmptyCart = () => {
                 Your Cart is currently empty
                 </h1>
                 <div className=''>
-                <button className='bg-black text-white md:text-2xl text-base py-1 px-9 rounded-lg font-Mont font-semibold text-center '>
+                <Link to={'/'}>
+                <button  className='bg-black text-white md:text-2xl text-base py-1 px-9 rounded-lg font-Mont font-semibold text-center '>
                 Book Your Tool
                 </button>
+                </Link>
                </div>
                </div>
               

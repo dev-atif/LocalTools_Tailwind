@@ -3,23 +3,31 @@ import SharedSelect from "../../Component/Shared/SharedSelect";
 import BlackButton from "../../Component/Shared/BlackButton";
 import Calender from "./../Add Post/Shared/Calender";
 import { useDispatch } from "react-redux";
-import {add} from '../../Store/CartSlice'
+import { add } from "../../Store/CartSlice";
+import { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from "react-time-picker";
+import "react-time-picker/dist/TimePicker.css";
 const Stock = [
-  { value: '1kit', label: "1kit" },
-  { value:"2kit", label: "2kit" },
+  { value: "1kit", label: "1kit" },
+  { value: "2kit", label: "2kit" },
   { value: "3kit", label: "3kit" },
-  { value:"4kit", label: "4kit" },
+  { value: "4kit", label: "4kit" },
   { value: "5kit", label: "5kit" },
   { value: "6kit", label: "6kit" },
-  { value:"7kit", label: "7kit" },
+  { value: "7kit", label: "7kit" },
 ];
-const RightSection = ({product}) => {
-
+const RightSection = ({ product }) => {
+  const [startDate, setStartDate] = useState();
+  const [endDate, setEndDate] = useState();
+  const [selectedTime, setSelectedTime] = useState();
   const dispatch = useDispatch();
-const addtoCart=(product)=>{
-  dispatch(add(product))
-}
-  
+  const addtoCart = (product) => {
+    dispatch(add(product));
+  };
+  console.warn("start", startDate);
+  console.warn("end", endDate);
   return (
     <>
       <div>
@@ -125,43 +133,60 @@ const addtoCart=(product)=>{
           <div className="bg-white  px-3 py-4 mt-[4.8%] rounded-lg">
             <div>
               <h1 className=" font-Robot font-medium 2xl:text-3xl text-2xl text-black">
-                $1/Day
+                {product?.Rented_Price}/{product?.Rented_as}
               </h1>
             </div>
             <div className="border border-black rounded-lg  my-4">
               <div className="flex border-b border-black">
-                <div className="p-3 w-1/2 border-r border-black">
+                <div className="p-2 w-1/2 border-r border-black">
                   <p className="2xl:text-base text-sm font-Robot text-[#92929D]">
                     {" "}
                     DATE FROM
                   </p>
-                  <p className=" xl:text-xl text-lg font-Robot text-black">
-                    {" "}
-                    09/15/2021
-                  </p>
+
+                  <div className="mt-1">
+                    <DatePicker
+                      placeholderText="mm/dd/yyy"
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                      dateFormat="MM/dd/yyyy"
+                      className="w-[100%]  md:text-lg font-Mont font-medium text-black placeholder:text-lg placeholder:text-black"
+                    />
+                  </div>
                 </div>
-                <div className="p-3 w-1/2">
+                <div className="p-2 w-1/2">
                   <p className="2xl:text-base text-sm font-Robot text-[#92929D]">
                     {" "}
                     DATE TO
                   </p>
-                  <p className=" xl:text-xl text-lg font-Robot text-black">
-                    {" "}
-                    09/18/2021
-                  </p>
+                  <div className="mt-1">
+                    <DatePicker
+                      placeholderText="mm/dd/yyy"
+                      selected={endDate}
+                      onChange={(date) => setEndDate(date)}
+                      dateFormat="MM/dd/yyyy"
+                      className="w-[100%]  md:text-lg font-Mont font-medium text-black placeholder:text-lg placeholder:text-black"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="flex border-b border-black ">
-                <div className="p-3 w-1/2 border-r border-black">
+                <div className="p-2 w-1/2 border-r border-black">
                   <p className="2xl:text-base text-sm font-Robot text-[#92929D]">
                     {" "}
                     TIME FROM
                   </p>
-                  <p className=" xl:text-xl text-lg font-Robot text-black">
-                    09:00:00 AM
-                  </p>
+                  <div>
+                    <TimePicker
+                      onChange={(time) => setSelectedTime(time)}
+                      value={selectedTime}
+                      clearIcon={null} // Hides the clear icon
+                      className="xl:text-xl text-lg font-Robot text-black w-full"
+                      style={{ border: 'none' }}
+                    />
+                  </div>
                 </div>
-                <div className="p-3 w-1/2">
+                <div className="p-2 w-1/2">
                   <p className="2xl:text-base text-sm font-Robot text-[#92929D]">
                     {" "}
                     TIME TO
@@ -189,8 +214,11 @@ const addtoCart=(product)=>{
               </div>
               <div className="xl:w-1/2">
                 <button
-                onClick={()=>{addtoCart(product)}}
-                  className="text-[#92929D] bg-none border border-[#92929D]  py-2 w-full text-center rounded-lg  font-Mont font-semibold text-base  ">
+                  onClick={() => {
+                    addtoCart(product);
+                  }}
+                  className="text-[#92929D] bg-none border border-[#92929D]  py-2 w-full text-center rounded-lg  font-Mont font-semibold text-base  "
+                >
                   Add to Cart
                 </button>
               </div>
@@ -202,45 +230,43 @@ const addtoCart=(product)=>{
                   You won’t be charged yet
                 </p>
               </div>
-              <div className="mt-8">
+              <div className="mt-2">
                 <div className="flex items-center justify-between">
-                  <h1 className=" text-lg text-black font-Robot font-medium">
+                  <h1 className=" text-base text-black font-Robot font-medium">
                     1kit x $1 x 3 Days
                   </h1>
 
-                  <h1 className=" text-lg text-black font-Robot font-medium">
+                  <h1 className=" text-base text-black font-Robot font-medium">
                     $3
                   </h1>
                 </div>
                 <div className="flex items-center justify-between my-2">
-                  <h1 className=" text-lg text-black font-Robot font-medium">
-                  Service Fees
+                  <h1 className=" text-base text-black font-Robot font-medium">
+                    Service Fees
                   </h1>
 
-                  <h1 className=" text-lg text-black font-Robot font-medium">
-                  $1
-                  </h1>
-                </div>
-                <div className="flex items-center justify-between">
-                  <h1 className=" text-lg text-black font-Robot font-medium">
-                  Occupancy Taxes & Fees
-                  </h1>
-
-                  <h1 className=" text-lg text-black font-Robot font-medium">
+                  <h1 className=" text-base text-black font-Robot font-medium">
                     $1
                   </h1>
                 </div>
-                <div className="flex items-center justify-between mt-8 pt-4 border-t border-[#92929D]">
-                  <h1 className=" text-lg text-black font-Robot font-medium">
-                  Total
+                <div className="flex items-center justify-between">
+                  <h1 className=" text-base text-black font-Robot font-medium">
+                    Occupancy Taxes & Fees
                   </h1>
 
-                  <h1 className="text-lg text-black font-Robot font-medium">
-                  $5
+                  <h1 className=" text-base text-black font-Robot font-medium">
+                    $1
                   </h1>
                 </div>
-                
+                <div className="flex items-center justify-between mt-2 pt-4 border-t border-[#92929D]">
+                  <h1 className=" text-base text-black font-Robot font-medium">
+                    Total
+                  </h1>
 
+                  <h1 className="text-base text-black font-Robot font-medium">
+                    $5
+                  </h1>
+                </div>
               </div>
             </div>
           </div>
