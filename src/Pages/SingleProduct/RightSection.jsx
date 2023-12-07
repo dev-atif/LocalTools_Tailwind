@@ -7,8 +7,11 @@ import { add } from "../../Store/CartSlice";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
+import TimePicker from "react-time-picker";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Stock = [
   { value: "1kit", label: "1kit" },
   { value: "2kit", label: "2kit" },
@@ -21,17 +24,58 @@ const Stock = [
 const RightSection = ({ product }) => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
-  const [selectedTime, setSelectedTime] = useState();
+
+  const [fromTime, setFromtime] = useState();
+  const [timeTo, setTimeto] = useState();
+  const [stock, setStock] = useState();
+  const [error, setError] = useState(false);
+
   const dispatch = useDispatch();
+
   const addtoCart = (product) => {
-    dispatch(add(product));
+    let missingFields = [];
+
+    if (!fromTime) missingFields.push("Time From");
+    if (!timeTo) missingFields.push("Time To");
+    if (!stock) missingFields.push("Stock");
+    if (!startDate) missingFields.push("Date From");
+    if (!endDate) missingFields.push("Date To");
+    if (missingFields.length > 0) {
+      // Display a toast for missing fields
+      toast.error(
+        `Please fill the following fields: ${missingFields.join(", ")}`,
+        {
+          autoClose: 4000, // Set the duration to 3000 milliseconds (2 seconds)
+        }
+      );
+
+      // Set the error state to true for styling or any other purpose
+      setError(true);
+    } else {
+      const cartItem = {
+        startDate:new Date(startDate),
+        endDate:new Date(endDate),
+        fromTime:fromTime,
+        timeTo:timeTo,
+        stock:stock,
+        
+      };
+      const combinedData = {
+        product: product,
+        cartItem: cartItem,
+      };
+
+      dispatch(add(combinedData));
+    }
   };
-  console.warn("start", startDate);
-  console.warn("end", endDate);
+
   return (
     <>
       <div>
         <div>
+          <div>
+            <ToastContainer />
+          </div>
           <div className="flex items-center justify-end gap-2 mt-14">
             <span>
               <svg
@@ -136,9 +180,21 @@ const RightSection = ({ product }) => {
                 {product?.Rented_Price}/{product?.Rented_as}
               </h1>
             </div>
-            <div className="border border-black rounded-lg  my-4">
-              <div className="flex border-b border-black">
-                <div className="p-2 w-1/2 border-r border-black">
+            <div
+              className={`border  rounded-lg  my-4 ${
+                error ? "border-red-600  shake" : "border-black"
+              }`}
+            >
+              <div
+                className={`flex border-b  ${
+                  error ? "border-red-600 " : "border-black"
+                }`}
+              >
+                <div
+                  className={`p-2 w-1/2 border-r ${
+                    error ? "border-red-600 " : "border-black"
+                  }`}
+                >
                   <p className="2xl:text-base text-sm font-Robot text-[#92929D]">
                     {" "}
                     DATE FROM
@@ -170,19 +226,26 @@ const RightSection = ({ product }) => {
                   </div>
                 </div>
               </div>
-              <div className="flex border-b border-black ">
-                <div className="p-2 w-1/2 border-r border-black">
+              <div
+                className={`flex border-b ${
+                  error ? "border-red-600 " : "border-black"
+                } `}
+              >
+                <div
+                  className={`p-2 w-1/2 border-r ${
+                    error ? "border-red-600 " : "border-black"
+                  }`}
+                >
                   <p className="2xl:text-base text-sm font-Robot text-[#92929D]">
                     {" "}
                     TIME FROM
                   </p>
                   <div>
                     <TimePicker
-                      onChange={(time) => setSelectedTime(time)}
-                      value={selectedTime}
-                      clearIcon={null} // Hides the clear icon
-                      className="xl:text-xl text-lg font-Robot text-black w-full"
-                      style={{ border: 'none' }}
+                      onChange={setFromtime}
+                      value={fromTime}
+                      className="react-time-picker "
+                      disableClock={true}
                     />
                   </div>
                 </div>
@@ -191,10 +254,14 @@ const RightSection = ({ product }) => {
                     {" "}
                     TIME TO
                   </p>
-                  <p className=" xl:text-xl text-lg font-Robot text-black">
-                    {" "}
-                    10:00:00 PM
-                  </p>
+                  <div>
+                    <TimePicker
+                      onChange={setTimeto}
+                      value={timeTo}
+                      className="react-time-picker "
+                      disableClock={true}
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -202,13 +269,19 @@ const RightSection = ({ product }) => {
                   bordercolor={"none"}
                   placeholder={"Stock"}
                   Values={Stock}
+                  onChange={(selectedOption) => setStock(selectedOption.value)}
                 />
               </div>
             </div>
             {/* ---------------------------Buttons----------------------------------------- */}
             <div className="flex  xl:flex-row flex-col gap-3">
               <div className="xl:w-1/2">
-                <button className="text-white bg-color-primary-yel py-2 w-full text-center rounded-lg  font-Mont font-semibold text-base  ">
+                <button
+                  onClick={() => {
+                    test(product);
+                  }}
+                  className="text-white bg-color-primary-yel py-2 w-full text-center rounded-lg  font-Mont font-semibold text-base  "
+                >
                   Book
                 </button>
               </div>

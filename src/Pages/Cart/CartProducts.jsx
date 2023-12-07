@@ -517,7 +517,7 @@ const CartProducts = () => {
   };
   //This code is used for Adding price on the base of quantity
   const calculateTotalPrice = (item) => {
-    return item.Quantity * parseFloat(item.Rented_Price);
+    return item.Quantity * parseFloat(item.product.Rented_Price);
   };
 
   const addQuantity = (item) => {
@@ -533,6 +533,11 @@ const CartProducts = () => {
   };
   const RemoveAll = (item) => {
     dispatch(removeFromCart(item));
+  };
+  const calculateDaysDifference = (startDate, endDate) => {
+    const timeDifference = endDate.getTime() - startDate.getTime();
+    const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+    return daysDifference;
   };
   return (
     <>
@@ -566,17 +571,20 @@ const CartProducts = () => {
                               <div className=" flex flex-col lg:flex-row  lg:items-center gap-3 2xl:gap-5">
                                 <div className="inline-block ">
                                   <img
-                                    src={Bitem.Product_images[0]?.images || ""}
+                                    src={
+                                      Bitem.product.Product_images[0]?.images ||
+                                      ""
+                                    }
                                     alt="Product"
                                     className="w-20 h-20"
                                   />
                                 </div>
                                 <div className="inline-block">
                                   <h1 className="2xl:text-base xl:text-sm font-semibold font-Mont">
-                                    {Bitem.tittle}
+                                    {Bitem.product.tittle}
                                   </h1>
                                   <p className="xl:text-xs 2xl:text-sm font-Robot font-medium text-[#92929D]">
-                                    Seller {Bitem.Vendor_Name}
+                                    Seller {Bitem.product.Vendor_Name}
                                   </p>
                                 </div>
                               </div>
@@ -585,15 +593,25 @@ const CartProducts = () => {
                             <td className="px-3 py-3 whitespace-nowrap text-sm  ">
                               <h2 className="2xl:text-base xl:text-sm font-medium">
                                 {" "}
-                                {Bitem.Rented_Price}/{Bitem.Rented_as}
+                                {Bitem.product.Rented_Price}/
+                                {Bitem.product.Rented_as}
                               </h2>
                             </td>
                             <td className="px-3 py-3 whitespace-nowrap text-center ">
                               <h1 className=" 2xl:text-base xl:text-sm font-semibold font-Mont">
-                                {Bitem.Leaseperiod1}
+                              {calculateDaysDifference(Bitem.cartItem.startDate, Bitem.cartItem.endDate)}
+                              &nbsp; {calculateDaysDifference(Bitem.cartItem.startDate, Bitem.cartItem.endDate)>1 ? 'Days':'Day'}
                               </h1>
                               <p className="font-semibold 2xl:text-base xl:text-xs text-color-primary-gr font-Mont">
-                                {Bitem.Leaseperiod2}
+                                {`${Bitem.cartItem.startDate.getDate()} ${Bitem.cartItem.startDate.toLocaleString(
+                                  "en-US",
+                                  { month: "short" }
+                                )}`}
+                                &nbsp;to&nbsp;
+                                {`${Bitem.cartItem.endDate.getDate()} ${Bitem.cartItem.endDate.toLocaleString(
+                                  "en-US",
+                                  { month: "short" }
+                                )}`}
                               </p>
                             </td>
                             <td className="px-3 py-3 whitespace-nowrap 2xl:text-base xl:text-xs font-Mont font-semibold text-center">
@@ -668,7 +686,12 @@ const CartProducts = () => {
                               </div> */}
                             </td>
                             <td className="px-3 py-3 whitespace-nowrap text-sm  text-center rounded-r-lg">
-                              <div className="cursor-pointer" onClick={()=>{RemoveAll(Bitem)}}>
+                              <div
+                                className="cursor-pointer"
+                                onClick={() => {
+                                  RemoveAll(Bitem);
+                                }}
+                              >
                                 <span>
                                   <svg
                                     width="30"
