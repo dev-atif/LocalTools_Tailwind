@@ -27,7 +27,7 @@ const Table_head = [
     name: " ",
   },
 ];
-const data = [
+/* const data = [
   {
     id: 1,
     image: Product,
@@ -503,7 +503,7 @@ const data = [
     ),
   },
   // Add more data as needed
-];
+]; */
 const CartProducts = () => {
   const [fav, setFav] = useState([]);
   const Product = useSelector((state) => state.cart);
@@ -534,11 +534,16 @@ const CartProducts = () => {
   const RemoveAll = (item) => {
     dispatch(removeFromCart(item));
   };
-  const calculateDaysDifference = (startDate, endDate) => {
+  const calculateDaysDifference = (startDateString, endDateString) => {
+    const startDate = new Date(startDateString);
+    const endDate = new Date(endDateString);
+  
     const timeDifference = endDate.getTime() - startDate.getTime();
     const daysDifference = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+  
     return daysDifference;
   };
+  
   return (
     <>
       <div className="flex flex-col">
@@ -603,15 +608,21 @@ const CartProducts = () => {
                               &nbsp; {calculateDaysDifference(Bitem.cartItem.startDate, Bitem.cartItem.endDate)>1 ? 'Days':'Day'}
                               </h1>
                               <p className="font-semibold 2xl:text-base xl:text-xs text-color-primary-gr font-Mont">
-                                {`${Bitem.cartItem.startDate.getDate()} ${Bitem.cartItem.startDate.toLocaleString(
-                                  "en-US",
-                                  { month: "short" }
-                                )}`}
+                                {`${new Date(
+                                  Bitem.cartItem.startDate
+                                ).getDate()} ${new Date(
+                                  Bitem.cartItem.startDate
+                                ).toLocaleString("en-US", {
+                                  month: "short",
+                                })} `}
                                 &nbsp;to&nbsp;
-                                {`${Bitem.cartItem.endDate.getDate()} ${Bitem.cartItem.endDate.toLocaleString(
-                                  "en-US",
-                                  { month: "short" }
-                                )}`}
+                                {`${new Date(
+                                  Bitem.cartItem.endDate
+                                ).getDate()} ${new Date(
+                                  Bitem.cartItem.endDate
+                                ).toLocaleString("en-US", {
+                                  month: "short",
+                                })} `}
                               </p>
                             </td>
                             <td className="px-3 py-3 whitespace-nowrap 2xl:text-base xl:text-xs font-Mont font-semibold text-center">

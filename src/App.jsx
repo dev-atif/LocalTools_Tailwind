@@ -36,12 +36,18 @@ import CurrentNotice from "./Pages/CurrentNotice/CurrentNotice";
 import Protected from "./Pages/Protected/Protected";
 import { Provider } from "react-redux";
 import store from './Store/store';
+import { persistStore } from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
 
+
+
+let persist  = persistStore(store)
 function App() {
   return (
     <>
      <Provider store={store}>
-     <BrowserRouter>
+   <PersistGate persistor={persist}> 
+   <BrowserRouter>
        
 
        <Routes>
@@ -85,6 +91,7 @@ function App() {
          <Route path="/" element={<MainDashboard />} />
        </Routes>
      </BrowserRouter>
+   </PersistGate>
      </Provider>
     </>
   );
