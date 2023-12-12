@@ -4,6 +4,7 @@ import BlackButton from '../../Component/Shared/BlackButton'
 import Navbar from './../../Component/NavBar/Navbar';
 import CartProducts from './CartProducts';
 import PriceDetails from './PriceDetails';
+import { Link } from 'react-router-dom';
 
 const ProductCart = () => {
   return (
@@ -19,7 +20,7 @@ const ProductCart = () => {
                 </div>
                 <div className='w-full'>
                     <h1 className='text-black text-sm font-Robot font-normal'>
-                    Home / <span className='text-color-primary-gr'>Cart</span>
+                   <Link to={'/'}> Home</Link> / <span className='text-color-primary-gr'>Cart</span>
                     </h1>
                 </div>
             </div>

@@ -12,14 +12,15 @@ import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 const Stock = [
-  { value: "1kit", label: "1kit" },
-  { value: "2kit", label: "2kit" },
-  { value: "3kit", label: "3kit" },
-  { value: "4kit", label: "4kit" },
-  { value: "5kit", label: "5kit" },
-  { value: "6kit", label: "6kit" },
-  { value: "7kit", label: "7kit" },
+  { value: "1", label: "1kit" },
+  { value: "2", label: "2kit" },
+  { value: "3", label: "3kit" },
+  { value: "4", label: "4kit" },
+  { value: "5", label: "5kit" },
+  { value: "6", label: "6kit" },
+  { value: "7", label: "7kit" },
 ];
 const RightSection = ({ product }) => {
   const [startDate, setStartDate] = useState();
@@ -31,6 +32,16 @@ const RightSection = ({ product }) => {
   const [error, setError] = useState(false);
 
   const dispatch = useDispatch();
+
+  const StartTimeDate = new Date(startDate).getTime();
+  const EndTimeDate = new Date(endDate).getTime();
+  const DayDifference = Math.ceil(
+    (EndTimeDate - StartTimeDate) / (1000 * 3600 * 24)
+  );
+  const totalPrice = stock * product?.Rented_Price * DayDifference;
+  const serviceFee = parseFloat(product?.Service_fee) || 0; // Convert to number, default to 0 if conversion fails
+  const taxes = parseFloat(product?.Taxes) || 0; // Convert to number, default to 0 if conversion fails
+  const netTotalAmount = totalPrice + serviceFee + taxes;
 
   const addtoCart = (product) => {
     let missingFields = [];
@@ -53,16 +64,16 @@ const RightSection = ({ product }) => {
       setError(true);
     } else {
       const cartItem = {
-        startDate:new Date(startDate),
-        endDate:new Date(endDate),
-        fromTime:fromTime,
-        timeTo:timeTo,
-        stock:stock,
-        
+        startDate: new Date(startDate),
+        endDate: new Date(endDate),
+        fromTime: fromTime,
+        timeTo: timeTo,
+        stock: Number(stock),
       };
       const combinedData = {
         product: product,
         cartItem: cartItem,
+        
       };
 
       dispatch(add(combinedData));
@@ -286,7 +297,8 @@ const RightSection = ({ product }) => {
                 </button>
               </div>
               <div className="xl:w-1/2">
-                <button
+               <Link to={'/cart'}>
+               <button
                   onClick={() => {
                     addtoCart(product);
                   }}
@@ -294,6 +306,7 @@ const RightSection = ({ product }) => {
                 >
                   Add to Cart
                 </button>
+               </Link>
               </div>
             </div>
             {/* ======================================================================================= */}
@@ -305,12 +318,13 @@ const RightSection = ({ product }) => {
               </div>
               <div className="mt-2">
                 <div className="flex items-center justify-between">
-                  <h1 className=" text-base text-black font-Robot font-medium">
-                    1kit x $1 x 3 Days
+                  <h1 className=" text-md text-black font-Robot font-medium">
+                    {stock}kit x ${product?.Rented_Price} x {DayDifference}{" "}
+                    {DayDifference > 1 ? "Day" : "Days"}
                   </h1>
 
-                  <h1 className=" text-base text-black font-Robot font-medium">
-                    $3
+                  <h1 className=" text-md text-black font-Robot font-medium">
+                    ${totalPrice}
                   </h1>
                 </div>
                 <div className="flex items-center justify-between my-2">
@@ -319,8 +333,9 @@ const RightSection = ({ product }) => {
                   </h1>
 
                   <h1 className=" text-base text-black font-Robot font-medium">
-                    $1
-                  </h1>
+                    ${serviceFee}
+                    </h1>
+                    
                 </div>
                 <div className="flex items-center justify-between">
                   <h1 className=" text-base text-black font-Robot font-medium">
@@ -328,7 +343,7 @@ const RightSection = ({ product }) => {
                   </h1>
 
                   <h1 className=" text-base text-black font-Robot font-medium">
-                    $1
+                    ${taxes}
                   </h1>
                 </div>
                 <div className="flex items-center justify-between mt-2 pt-4 border-t border-[#92929D]">
@@ -337,7 +352,7 @@ const RightSection = ({ product }) => {
                   </h1>
 
                   <h1 className="text-base text-black font-Robot font-medium">
-                    $5
+                    ${netTotalAmount}
                   </h1>
                 </div>
               </div>

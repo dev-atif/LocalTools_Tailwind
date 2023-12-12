@@ -1,15 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import { useSelector } from "react-redux";
 const PriceDetails = () => {
+
+  const Product = useSelector((state) => state.cart);
+//find Products length how many products in cart
+  const ItemsINCart = Product.length
+
+
+//calculate All product price 
+const totalRentedPrice = (Product || []).reduce((total, { Quantity, product }) => {
+  const quantity = Quantity || 1; // Default to 1 if Quantity is undefined
+  return total + (Number(product?.Rented_Price) || 0) * quantity;
+}, 0);
+
+
+
+
   return (
     <>
       <div >
         <div>
          <div className="p-3 bg-white rounded-lg mt-4">
-         <div>
-            <h1 className="font-Robot font-medium text-2xl">John Doe</h1>
-          </div>
+        
           <div className="border border-[#00005B] rounded-lg p-2 flex items-center gap-4 my-2">
             <h1 className=" font-Robot font-medium text-sm  text-[#92929D] flex items-center gap-2">
               <span>
@@ -68,10 +81,10 @@ const PriceDetails = () => {
                 <div className="p-3">
                     <div className="flex items-center justify-between">
                         <h1 className="font-Robot font-medium text-lg text-[#92929D]">
-                        Price ( 5 Products )
+                        Price ({ItemsINCart} Products )
                         </h1>
                         <h1 className="font-Robot font-medium text-lg text-black">
-                        $75
+                        ${totalRentedPrice}
                         </h1>
                     </div>
                     {/* --------------------------- */}
