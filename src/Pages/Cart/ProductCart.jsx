@@ -5,6 +5,7 @@ import Navbar from './../../Component/NavBar/Navbar';
 import CartProducts from './CartProducts';
 import PriceDetails from './PriceDetails';
 import { Link } from 'react-router-dom';
+import Footer from '../../Component/Shared/Footer';
 
 const ProductCart = () => {
   return (
@@ -25,10 +26,10 @@ const ProductCart = () => {
                 </div>
             </div>
             <div className="flex lg:flex-row flex-col lg:gap-3 justify-between ">
-                <div className=" lg:w-3/4 w-full md:mt-0 mt-3 ">
+                <div className=" lg:w-[70%] w-full md:mt-0 mt-3 ">
                  <CartProducts/>
                 </div>
-                <div className={`lg:w-1/4  w-full h-full  `}>
+                <div className={`lg:w-[30%]  w-full h-full  `}>
                    <PriceDetails/>
                 </div>
               </div>
@@ -38,7 +39,9 @@ const ProductCart = () => {
             <EmptyCart/>
         </div> */}
         </div>
-        
+        <div>
+            <Footer/>
+        </div>
     </div>
     </>
   )

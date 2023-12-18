@@ -4,6 +4,7 @@ import BlackButton from '../../Component/Shared/BlackButton'
 import BreadCrums from '../../Component/BreadCrums'
 import CheckoutForm from './CheckoutForm'
 import CartSummary from './CartSummary'
+import Footer from '../../Component/Shared/Footer'
 
 const CheckOut = () => {
   return (
@@ -17,9 +18,9 @@ const CheckOut = () => {
             <div className='md:w-1/4 w-1/2'>
                 <BlackButton label={'My Account'}/>
             </div>
-            <div>
+           {/*  <div>
                 <BreadCrums Bread={'Manage Profile'}/>
-            </div>
+            </div> */}
         </div>
         {/* --------------------------------------------------- */}
         <div className='my-3'>
@@ -33,6 +34,9 @@ const CheckOut = () => {
                 
             </div>
         </div>
+    </div>
+    <div>
+        <Footer/>
     </div>
    </div>
    </>

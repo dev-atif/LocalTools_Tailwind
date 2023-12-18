@@ -1,10 +1,10 @@
 import React from "react";
 import ShareField from "../../Component/Shared/ShareField";
 import { useState } from "react";
+import Footer from "../../Component/Shared/Footer";
 
 const CheckoutForm = () => {
- 
-  const [select,setSelect] = useState(0)
+  const [select, setSelect] = useState(0);
   return (
     <>
       <div>
@@ -79,24 +79,25 @@ const CheckoutForm = () => {
             </div>
           </div>
         </div>
-        <div>
+       {/*  <div>
           <h2 className=" font-Mont font-semibold text-2xl">
             Choose Payment Method
           </h2>
-        </div>
+        </div> */}
         <div className="p-3 bg-white rounded-lg my-4">
-            {/* ---------Payments Methods--------------------------------------- */}
-          <div className="grid md:grid-cols-3 grid-cols-1 gap-3  mt-3">
+          {/* ---------Payments Methods--------------------------------------- */}
+         {/*  <div className="grid md:grid-cols-3 grid-cols-1 gap-3  mt-3">
             <div
               onClick={() => {
                 setSelect(select === 0 ? null : 0);
-              
               }}
-              className={` cursor-pointer border-2 ${select===0 ? 'border-[#FFC10E]':'border-[#00005B]'} flex   flex-col gap-2 p-2 rounded-lg`}
+              className={` cursor-pointer border-2 ${
+                select === 0 ? "border-[#FFC10E]" : "border-[#00005B]"
+              } flex   flex-col gap-2 p-2 rounded-lg`}
             >
               <div className="flex items-center gap-2 ">
                 <span>
-                  {select ===0 ? (
+                  {select === 0 ? (
                     <svg
                       width="20"
                       height="20"
@@ -169,13 +170,18 @@ const CheckoutForm = () => {
                 </span>
               </div>
             </div>
-            {/* ---------------------------------------------------------------------------- */}
-            <div onClick={() => {
-                setSelect(select ===1 ? null : 1)
-              }} className={`cursor-pointer border-2 ${select===1 ? 'border-[#FFC10E]':'border-[#00005B]'} flex   flex-col gap-2 p-2 rounded-lg`}>
-              <div className="flex items-center gap-2" >
-              <span>
-                  {select ===1 ? (
+            
+            <div
+              onClick={() => {
+                setSelect(select === 1 ? null : 1);
+              }}
+              className={`cursor-pointer border-2 ${
+                select === 1 ? "border-[#FFC10E]" : "border-[#00005B]"
+              } flex   flex-col gap-2 p-2 rounded-lg`}
+            >
+              <div className="flex items-center gap-2">
+                <span>
+                  {select === 1 ? (
                     <svg
                       width="20"
                       height="20"
@@ -208,7 +214,7 @@ const CheckoutForm = () => {
                   )}
                 </span>
                 <span className=" font-Mont font-semibold  text-black text-sm">
-                Stripe
+                  Stripe
                 </span>
               </div>
               <div>
@@ -228,13 +234,18 @@ const CheckoutForm = () => {
                 </span>
               </div>
             </div>
-            {/* ---------------------------------------------------------------------------- */}
-            <div  onClick={() => {
-              setSelect(select ===2 ? null : 2)
-              }} className={`cursor-pointer border-2 ${select===2 ? 'border-[#FFC10E]':'border-[#00005B]'} flex   flex-col gap-2 p-2 rounded-lg`}>
+           
+            <div
+              onClick={() => {
+                setSelect(select === 2 ? null : 2);
+              }}
+              className={`cursor-pointer border-2 ${
+                select === 2 ? "border-[#FFC10E]" : "border-[#00005B]"
+              } flex   flex-col gap-2 p-2 rounded-lg`}
+            >
               <div className="flex items-center gap-2 ">
-              <span>
-                  {select ===2 ? (
+                <span>
+                  {select === 2 ? (
                     <svg
                       width="20"
                       height="20"
@@ -267,10 +278,10 @@ const CheckoutForm = () => {
                   )}
                 </span>
                 <span className=" font-Mont font-semibold  text-black text-sm">
-                Credit Card
+                  Credit Card
                 </span>
               </div>
-              {/* SVGs--------------------------------------------------- */}
+             
               <div className="flex gap-2">
                 <span>
                   <svg
@@ -572,9 +583,9 @@ const CheckoutForm = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* -------------------------------------------------------------------- */}
-          <div>
+          {/*  <div>
             <div className="grid md:grid-cols-2 grid-cols-1 items-center gap-3 pt-8">
                         <div>
                             <ShareField placeholder={'Enter Card Holder Name'} label={'Card Holder Name'} color={'text-[#92929D]'} textsize={'text-sm'}/>
@@ -589,20 +600,21 @@ const CheckoutForm = () => {
                             <ShareField placeholder={'Enter CVV'} label={'CVV'} color={'text-[#92929D]'} textsize={'text-sm'}/>
                         </div>
             </div>
-          </div>
+          </div> */}
           <div className="my-4">
             <p className="font-Mont font-semibold md:text-base text-sm">
-            By Clicking the Button, you are agree to the <span className="text-[#FFC10E]"> Terms and Conditions </span>
+              By Clicking the Button, you are agree to the{" "}
+              <span className="text-[#FFC10E]"> Terms and Conditions </span>
             </p>
           </div>
-          
+
           <div className="md:w-1/2  mx-auto pb-3">
             <button className="w-full text-white bg-[#FFC10E] text-center  text-xl py-2 rounded-lg">
-            Place Order
+              Place Order
             </button>
           </div>
-          
         </div>
+        
       </div>
     </>
   );

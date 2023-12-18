@@ -8,7 +8,7 @@ const ShareField = ({label,color,textsize,fontweight,placeholder,placeholderColo
       </label>
       <input
         type="text" name={name} onChange={onChange} value={ value}
-        className={`border border-[#00005B] rounded-lg focus:outline-none p-2 ${fontweight}  w-full text-black text-base ${placeholderColor}` }
+        className={`mt-1 border border-[#00005B] rounded-lg focus:outline-none p-2 ${fontweight}  w-full text-black text-base ${placeholderColor}` }
      placeholder={placeholder} />
     </div>
   );
