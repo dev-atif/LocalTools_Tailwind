@@ -1,10 +1,7 @@
-import React, { useRef, useState ,useEffect } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import CategorySelect from "../../Component/Shared/CategorySelect";
 import Slider from "react-slick";
-import image1 from "../../assets/SingleProduct/garden-tool-set-of-8-pcs-cggs-garden-tool-kit-8-tools-ibex-original-imafnm3uzd4gbjez 1.png";
-import image2 from "../../assets/SingleProduct/gardening-tools-set-of-5-ibex-original-imafbxfhce3q57jd 1.png";
-import image3 from "../../assets/SingleProduct/german-style-pruner-garden-tool-set-of-6-scissor-gloves-garden-original-imafnmf5hvdhbhpr 2.png";
-import image4 from "../../assets/SingleProduct/german-style-pruner-garden-tool-set-of-6-scissor-gloves-garden-original-imafy8jrnqfzuyjy .png";
+
 import profile from "../../assets/ahmad.png";
 import BlackButton from "../../Component/Shared/BlackButton";
 import CompService from "./CompService";
@@ -13,19 +10,15 @@ import Location from "./Map/Location";
 import CancellationPolicy from "./CancellationPolicy";
 import RelatedProduct from "./RelatedProduct";
 
-
 const LeftSection = ({ product }) => {
-  
   const VerticalsliderRef = useRef();
-  
-  
+
   const [slideIndex, setSlideIndex] = useState(0);
-  
+
   console.warn("its Product", product);
 
   const [selectimage, setSelectimage] = useState(0);
   const totalImages = product?.Product_images.length || 0;
-
 
   const nextSlide = () => {
     if (VerticalsliderRef.current) {
@@ -39,11 +32,11 @@ const LeftSection = ({ product }) => {
     if (VerticalsliderRef.current) {
       VerticalsliderRef.current.slickPrev();
       setSlideIndex((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
-      setSelectimage((prevIndex) => (prevIndex - 1 + totalImages) % totalImages);
+      setSelectimage(
+        (prevIndex) => (prevIndex - 1 + totalImages) % totalImages
+      );
     }
   };
-
- 
 
   useEffect(() => {
     if (VerticalsliderRef.current) {
@@ -54,40 +47,6 @@ const LeftSection = ({ product }) => {
   const sliderContainerStyle = {
     height: `${totalImages * 170}px`, // Adjust the multiplier based on your image height
   };
- 
-  const Verticalsettings = {
-    dots: false,
-    arrows: false,
-   /*  infinite: true, */
-    speed: 400,
-    slidesToShow: 3,
-    
-    slidesToScroll: 1,
-    vertical: true, // Add this to enable vertical sliding (note: not native support)
-    verticalSwiping: true, // Also add this for vertical swiping on touch devices
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 5,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 5,
-        },
-      },
-      {
-        breakpoint: 425,
-        settings: {
-          slidesToShow: totalImages === 3 ? 3 : 4,
-          vertical: false, // Add this to enable vertical sliding (note: not native support)
-        },
-      },
-    ],
-  };
- 
 
   return (
     <>
@@ -99,10 +58,8 @@ const LeftSection = ({ product }) => {
             </div>
             <div className="md:my-0 my-3">
               <h1 className="font-Robot font-normal text-sm text-black">
-                Home /{/*  Garden Tools */} {product?.Category || ""} /{" "}
+                Home / {product?.Category || ""} /{" "}
                 <span className="text-color-primary-gr">
-                  {/* Jetfire German style pruner set of 6 & Scissor, Gloves Garden
-                  tools kit (7 tools) */}
                   {product?.tittle || ""}
                 </span>
               </h1>
@@ -111,7 +68,6 @@ const LeftSection = ({ product }) => {
           {/* ----------------------------------------------- */}
           <div className="mt-4">
             <h1 className="text-2xl font-Robot font-medium">
-             
               {product?.tittle || ""}
             </h1>
           </div>
@@ -159,130 +115,85 @@ const LeftSection = ({ product }) => {
                   />
                 </svg>
               </span>
-             
+
               {product?.Listing_Street_No1 || ""}
             </h1>
           </div>
           {/* ----------------------Vertical Slider-------------------------------- */}
-          <div /* className="md:grid grid-cols-12 gap-4 " */ className="flex  flex-col md:flex-row" >
-            <div className="  md:w-52 h-80" >
-              <div /* style={sliderContainerStyle} className={`overflow-hidden `}  */ >
-                <Slider {...Verticalsettings} ref={VerticalsliderRef}>
-                  {product?.Product_images.map((item, index) => (
-                    <div key={index} className="mt-3" >
-                      <div className="flex justify-center pt-4 ">
-                        {" "}
-                        {/* Add padding here */}
+          <div>
+            <div className=" md:grid grid-cols-4  md:h-96">
+              <div>
+                <div className=" md:pl-2  pl-0">
+                  <Slider
+                    {...Verticalsettings}
+                    ref={VerticalsliderRef}
+                    className="md:h-[380px] overflow-hidden  "
+                  >
+                    {product?.Product_images.map((item, index) => (
+                      <div key={index}>
                         <img
                           src={item.images}
-                          className={ index === selectimage ? ' border-2 border-color-primary-yel transition-all delay-100 w-46 md:w-32 w-46 h-20' : 'md:w-32 w-46 h-20' }
+                          /*  className={` 
+                          md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0  rounded-lg`} */
+                          className={
+                            index === selectimage
+                              ? " border-2 border-color-primary-yel transition-all delay-100 md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0  rounded-lg"
+                              : "md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0  rounded-lg"
+                          }
                           onClick={() => {
                             setSelectimage(index);
                           }}
                         />
                       </div>
-                    </div>
-                  ))}
-                </Slider>
+                    ))}
+                  </Slider>
+                </div>
               </div>
-             {/*  <div className="md:flex justify-center mt-5  gap-2 hidden">
-                <button
-                 
-                  onClick={nextSlide}
-                >
-                  <svg
-                    width="24"
-                    height="14"
-                    viewBox="0 0 24 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M22 12L12 2L2.00001 12"
-                      stroke="#92929D"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </button>
-                <button
-                 
-                  onClick={prevSlide}
-                >
-                  <svg
-                    width="24"
-                    height="14"
-                    viewBox="0 0 24 14"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M2 2L12 12L22 2"
-                      stroke="#92929D"
-                      stroke-width="3"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </button>
-              </div> */}
-            </div>
-            {/* -----------------------------Simple Slider---------------------------------------------------------- */}
-            <div className="  bg-white py-8 px-4 rounded-lg  w-full">
-              <div className="relative"> 
-                {/* ------------------------------------------------- */}
-                <div className="flex items-center justify-center">
+              <div className=" col-span-3  relative flex items-center mx-auto ">
+                <div>
                   <img
                     src={product?.Product_images[selectimage]?.images}
-                    alt={`Selected Slide`}
-                    className="md:w-[400px] md:h-[450px] w-[200px] h-[200px]"
+                    className="mx-auto md:w-[580px] md:h-[370px] w-[300px] h-[350px]"
                   />
                 </div>
-                {/* ----------------------------------------------------------------------- */}
-                <div className="flex justify-between md:px-3 absolute inset-0 top-1/2">
-                  <button
-                   
-                    onClick={prevSlide}
-                    className="h-min w-min "
-                  >
-                    <svg
-                      width="20"
-                      height="40"
-                      viewBox="0 0 26 46"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M23 3L3 23L23 43"
-                        stroke="#92929D"
-                        stroke-width="5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
-                  <button
-                   
-                    onClick={nextSlide}
-                    className="h-min w-min "
-                  >
-                    <svg
-                      width="20"
-                      height="40"
-                      viewBox="0 0 26 46"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3 43L23 23L3 3"
-                        stroke="#92929D"
-                        stroke-width="5"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                    </svg>
-                  </button>
+                {/* Navigation Buttons ------------------ */}
+                <div className="absolute   w-full inset-0 md:top-1/2 top-3/4">
+                  <div className="px-5 flex justify-between items-center">
+                    <button onClick={prevSlide}>
+                      <svg
+                        width="20"
+                        height="40"
+                        viewBox="0 0 26 46"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M23 3L3 23L23 43"
+                          stroke="#92929D"
+                          strokeWidth="5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                    <button onClick={nextSlide}>
+                      <svg
+                        width="20"
+                        height="40"
+                        viewBox="0 0 26 46"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M3 43L23 23L3 3"
+                          stroke="#92929D"
+                          strokeWidth="5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -301,7 +212,7 @@ const LeftSection = ({ product }) => {
                     <img src={profile} className="rounded-full w-[20%]" />
                     <div>
                       <h1 className="text-black font-Robot font-medium 2xl:text-3xl text-2xl">
-                        {/* John Doe */} {product?.Vendor_Name || ''}
+                        {/* John Doe */} {product?.Vendor_Name || ""}
                       </h1>
                       <p className="font-Robot font-medium 2xl:text-base text-sm text-[#92929D]">
                         Member Since Apr 2021
@@ -361,5 +272,36 @@ const LeftSection = ({ product }) => {
 
 export default LeftSection;
 
-/*  */
-
+const Verticalsettings = {
+  dots: false,
+  arrows: false,
+  infinite: true,
+  speed: 400,
+  slidesToShow: 3,
+  initialSlide: 3, // Set this to focus on the second image
+  slidesToScroll: 1,
+  vertical: true, // Add this to enable vertical sliding (note: not native support)
+  verticalSwiping: true, // Also add this for vertical swiping on touch devices
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 5,
+      },
+    },
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 5,
+      },
+    },
+    {
+      breakpoint: 425,
+      settings: {
+        slidesToShow: 3,
+        /*  slidesToShow: totalImages === 3 ? 3 : 4, */
+        vertical: false, // Add this to enable vertical sliding (note: not native support)
+      },
+    },
+  ],
+};

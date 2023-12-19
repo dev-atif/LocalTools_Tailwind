@@ -5,6 +5,8 @@ import Footer from "../../Component/Shared/Footer";
 
 const CheckoutForm = () => {
   const [select, setSelect] = useState(0);
+  const auth = JSON.parse(localStorage.getItem('user'))
+  console.warn(auth)
   return (
     <>
       <div>
@@ -19,6 +21,7 @@ const CheckoutForm = () => {
                 label={"Username"}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.username}
               />
             </div>
             <div>
@@ -27,6 +30,7 @@ const CheckoutForm = () => {
                 label={"Name"}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.name}
               />
             </div>
             <div>
@@ -35,6 +39,7 @@ const CheckoutForm = () => {
                 label={"Email"}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.email}
               />
             </div>
             <div>
@@ -43,6 +48,7 @@ const CheckoutForm = () => {
                 label={"Mobile No."}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.number}
               />
             </div>
             <div>
@@ -51,6 +57,7 @@ const CheckoutForm = () => {
                 label={"City"}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.city}
               />
             </div>
             <div>
@@ -59,6 +66,7 @@ const CheckoutForm = () => {
                 label={"Zip Code"}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.zip_code}
               />
             </div>
             <div>
@@ -67,6 +75,7 @@ const CheckoutForm = () => {
                 label={"State"}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.state}
               />
             </div>
             <div>
@@ -75,6 +84,7 @@ const CheckoutForm = () => {
                 label={"Country"}
                 color={"text-[#92929D]"}
                 textsize={"text-sm"}
+                value={auth.country}
               />
             </div>
           </div>

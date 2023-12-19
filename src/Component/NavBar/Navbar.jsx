@@ -128,7 +128,7 @@ const Navbar = () => {
               </span>
               
             </span>
-            <div className="flex lg:flex-row flex-row-reverse  items-center gap-4">
+            <div className="flex lg:flex-row flex-row-reverse  items-center gap-2">
               {auth ? (
                 <>
                   <img src={profileimage} className=" w-12 h-12 rounded-full" />
@@ -206,7 +206,7 @@ const Navbar = () => {
                     authCheck();
                   }}
                   className="font-Mont bg-color-primary-yel
-            font-[600] text-white px-5 py-2 rounded-lg "
+            font-[600] text-white px-5 py-2 rounded-lg md:w-full w-24 text-sm md:text-base" 
                 >
                   {/* <Link to="/addpost">Post Ad</Link> */}
                   Post Ad
@@ -216,9 +216,9 @@ const Navbar = () => {
           </div>
         </div>
 
-        <div>
+        <div className="pl-2">
           <span
-            className="lg:hidden relative text-xl"
+            className="lg:hidden relative text-lg"
             onClick={() => {
               setSearchOpen(!searchOpen);
             }}
