@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  background-color: #f6f7fb;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tab Animation */
+@keyframes fadeInSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-slide-up {
+  animation: fadeInSlideUp 0.5s ease-out;
+}
+.react-time-picker,
+.react-time-picker *,
+.react-time-picker *:before,
+.react-time-picker *:after {
+  @apply box-border;
+  @apply border-none;
+  @apply bg-none;
+}
+.react-time-picker__inputGroup__input.react-time-picker__inputGroup__hour {
+  width: 20px !important;
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25%, 75% {
+    transform: translateX(-10px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+/* Apply the animation to the element with the shake class */
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
