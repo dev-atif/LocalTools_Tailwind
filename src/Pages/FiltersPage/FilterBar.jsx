@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Range } from "react-range";
 
 import CategorySelect from "../../Component/Shared/CategorySelect";
+<<<<<<< HEAD
 import {
   Link,
   useNavigate,
@@ -25,6 +26,43 @@ const FilterBar = ({ product, dataFromChild }) => {
   /* const navigate = useNavigate(); */
   const [show, showMore] = useState(5);
 
+=======
+
+const Brand = [
+  {
+    id: 1,
+    name: "Kraft Seeds",
+  },
+  {
+    id: 2,
+    name: "Truphe",
+  },
+  {
+    id: 3,
+    name: "Trust Basket",
+  },
+  {
+    id: 4,
+    name: "Sharpex",
+  },
+  {
+    id: 5,
+    name: "Falcon",
+  },
+  {
+    id: 6,
+    name: "Trust Basket",
+  },
+  {
+    id: 7,
+    name: "Falcon",
+  },
+];
+const FilterBar = ({product ,dataFromChild}) => {
+  const [brand, setBrand] = useState(null);
+  const [show, showMore] = useState(5);
+  
+>>>>>>> 90b987e95603c142f9039f383ea395e6d822e1e0
   /* ---------------------------------------- */
 
   const [values, setValues] = useState([100, 4000]);
@@ -34,6 +72,7 @@ const FilterBar = ({ product, dataFromChild }) => {
   };
   const minValue = 0; // Dynamic minimum value
   const maxValue = 6000;
+
 
   const handleClick = (index, name) => {
     if (name === brand) {
@@ -49,6 +88,16 @@ const FilterBar = ({ product, dataFromChild }) => {
     }
   };
 
+
+  const handleClick = (index ,name) => {
+    
+    setBrand(index);
+   //Pass it to parent
+    dataFromChild(name);
+  };
+
+
+
   /* ----------------------------------------- */
   return (
     <>
@@ -60,18 +109,30 @@ const FilterBar = ({ product, dataFromChild }) => {
           <div className="flex items-baseline justify-between  ">
             <h1 className=" font-Mont font-bold text-lg leading-6">Filters</h1>
             <p className=" text-sm text-[#00005B] leading-6  font-normal  font-Robot cursor-pointer">
+
               <Link to={window.location.pathname}> Clear All</Link>
+
+              Clear All
+
             </p>
           </div>
           <div className="my-2">
             <h1 className="text-black text-[20px] font-Robot font-bold py-1">
               Department
             </h1>
+
             <p className="text-sm font-Cairo font-bold -mt-1">
               {product[0]?.Category}
             </p>
             <div></div>
             {/*   <ul className="text-color-primary-gr font-Robot text-base font-medium space-y-1">
+
+            <p className="text-sm font-Cairo font-bold -mt-1">{product[0]?.Category}</p>
+            <div>
+              
+            </div>
+          {/*   <ul className="text-color-primary-gr font-Robot text-base font-medium space-y-1">
+
               <li className="text-black font-Robot text-base font-medium">
                 Gardening
               </li>
@@ -100,13 +161,22 @@ const FilterBar = ({ product, dataFromChild }) => {
                   index < (!show ? Brand.length : 5) && (
                     <div
                       key={index}
+
                       /*  onClick={() => setBrand(index) } */
                       onClick={() => handleClick(index, item.name)}
+
+                     /*  onClick={() => setBrand(index) } */
+                     onClick={()=>handleClick(index,item.name)}
+
                       className={`flex items-center gap-3 cursor-pointer`}
                     >
                       <div
                         className={`h-4 w-4 rounded-sm border-2 border-black ${
+<<<<<<< HEAD
                           brand === item.name ? "bg-black" : ""
+=======
+                          brand === index ? "bg-black" : ""
+>>>>>>> 90b987e95603c142f9039f383ea395e6d822e1e0
                         }`}
                       >
                         <span></span>

@@ -4,7 +4,11 @@ import LeftBar from './../MainDashboard/LeftBar';
 import FilterBar from './FilterBar';
 import FilterMain from './FilterMain';
 import Footer from './../../Component/Shared/Footer';
+
 import { useLocation, useParams } from 'react-router';
+
+import { useParams } from 'react-router';
+
 import axios from 'axios';
 
 
@@ -13,6 +17,7 @@ const InnerPage = () => {
   const [product,setProduct] = useState([])
   const { category } = useParams();
 
+const [getbrand,setBrand] = useState()
 
   // Log the category to the console
   /* console.log('Category from URL:', category); */
@@ -32,9 +37,16 @@ const InnerPage = () => {
   }, [category]);
   
 
+
  
  
  
+  const Test=(data)=>{
+      setBrand(data)
+    
+  }
+  console.warn('from child i get',getbrand)
+
 
   return (
    <>
@@ -46,7 +58,11 @@ const InnerPage = () => {
     <div className="lg:px-2 xl:px-9  mt-2 relative">
         <div className="flex lg:flex-row flex-col lg:gap-3 justify-between ">
            <div className={`lg:w-1/4  w-full h-full rounded-lg  `} >
+
            <FilterBar product={product}   />
+
+           <FilterBar product={product}  dataFromChild={Test} />
+
            </div>
            <div className=" lg:w-3/4 w-full md:mt-0 mt-3" >
            <FilterMain product={product} />

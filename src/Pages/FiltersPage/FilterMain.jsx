@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
+=======
+import React from "react";
+>>>>>>> 90b987e95603c142f9039f383ea395e6d822e1e0
 import BreadCrums from "../../Component/BreadCrums";
 import { ProductsCardsArray } from "../MainDashboard/ProductsArray";
 import ProductCard from "../../Component/Shared/ProductCard";
 import DetailsSection from "../MainDashboard/DetailsSection";
 import sorry from "../../assets/sorry.png";
+<<<<<<< HEAD
 import { Link, useSearchParams } from "react-router-dom";
 const FilterMain = ({ product }) => {
   let [searchParams, setSearchParams] = useSearchParams();
@@ -19,6 +24,10 @@ const FilterMain = ({ product }) => {
     }
   }, [product, brand, setFilterProduct]);
 
+=======
+import { Link } from "react-router-dom";
+const FilterMain = ({ product }) => {
+>>>>>>> 90b987e95603c142f9039f383ea395e6d822e1e0
   return (
     <>
       <div>
@@ -28,11 +37,34 @@ const FilterMain = ({ product }) => {
               Home / {product[0]?.Category}
             </h1>
           </div>
+<<<<<<< HEAD
 
           {filterProduct.length > 0 ? (
             <>
               <div className="flex flex-wrap gap-3 2xl:mt-[3.5%] xl:mt-[4%] lg:mt-[5%]">
                 {filterProduct.map((item, index) => (
+=======
+          {/*  <div className='flex flex-wrap gap-3 2xl:mt-[3.5%] xl:mt-[4%] lg:mt-[5%]'>
+            {ProductsCardsArray.map((item,index)=>(
+                <div className="xl:w-[32%] 2xl:w-[32%] lg:w-[48%] md:w-[48%] w-full   bg-white relative rounded-md pb-5 h-[350px]"
+                key={index}>
+                    <ProductCard 
+                    cat={item.cat}
+                    image={item.image}
+                    Pname={item.name}
+                    price={item.price}
+                    location={item.location}
+                    LabelColor={item.LabelColor}
+                     Label={item.Label}/>
+                    </div>
+                    
+            ))}
+        </div> */}
+          {product.length > 0 ? (
+            <>
+              <div className="flex flex-wrap gap-3 2xl:mt-[3.5%] xl:mt-[4%] lg:mt-[5%]">
+                {product.map((item, index) => (
+>>>>>>> 90b987e95603c142f9039f383ea395e6d822e1e0
                   <div
                     className="xl:w-[32%] 2xl:w-[32%] lg:w-[48%] md:w-[48%] w-full   bg-white relative rounded-md pb-5 h-[350px]"
                     key={index}
