@@ -24,7 +24,7 @@ const [getbrand,setBrand] = useState()
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/category?cat=${encodeURIComponent(category)}`);
+        const response = await axios.get(`https://backend-two-blush-62.vercel.app/category?cat=${encodeURIComponent(category)}`);
         console.warn(response.data);
         setProduct(response.data);
       } catch (error) {
