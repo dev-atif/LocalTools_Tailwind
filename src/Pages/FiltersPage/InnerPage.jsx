@@ -7,7 +7,6 @@ import Footer from './../../Component/Shared/Footer';
 
 import { useLocation, useParams } from 'react-router';
 
-import { useParams } from 'react-router';
 
 import axios from 'axios';
 

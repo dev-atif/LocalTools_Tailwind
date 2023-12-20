@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Range } from "react-range";
 
 import CategorySelect from "../../Component/Shared/CategorySelect";
-<<<<<<< HEAD
+
 import {
   Link,
   useNavigate,
@@ -26,43 +26,7 @@ const FilterBar = ({ product, dataFromChild }) => {
   /* const navigate = useNavigate(); */
   const [show, showMore] = useState(5);
 
-=======
 
-const Brand = [
-  {
-    id: 1,
-    name: "Kraft Seeds",
-  },
-  {
-    id: 2,
-    name: "Truphe",
-  },
-  {
-    id: 3,
-    name: "Trust Basket",
-  },
-  {
-    id: 4,
-    name: "Sharpex",
-  },
-  {
-    id: 5,
-    name: "Falcon",
-  },
-  {
-    id: 6,
-    name: "Trust Basket",
-  },
-  {
-    id: 7,
-    name: "Falcon",
-  },
-];
-const FilterBar = ({product ,dataFromChild}) => {
-  const [brand, setBrand] = useState(null);
-  const [show, showMore] = useState(5);
-  
->>>>>>> 90b987e95603c142f9039f383ea395e6d822e1e0
   /* ---------------------------------------- */
 
   const [values, setValues] = useState([100, 4000]);
@@ -89,12 +53,7 @@ const FilterBar = ({product ,dataFromChild}) => {
   };
 
 
-  const handleClick = (index ,name) => {
-    
-    setBrand(index);
-   //Pass it to parent
-    dataFromChild(name);
-  };
+  
 
 
 
@@ -112,7 +71,7 @@ const FilterBar = ({product ,dataFromChild}) => {
 
               <Link to={window.location.pathname}> Clear All</Link>
 
-              Clear All
+            
 
             </p>
           </div>
@@ -163,7 +122,7 @@ const FilterBar = ({product ,dataFromChild}) => {
                       key={index}
 
                       /*  onClick={() => setBrand(index) } */
-                      onClick={() => handleClick(index, item.name)}
+                      /* onClick={() => handleClick(index, item.name)} */
 
                      /*  onClick={() => setBrand(index) } */
                      onClick={()=>handleClick(index,item.name)}
@@ -172,11 +131,11 @@ const FilterBar = ({product ,dataFromChild}) => {
                     >
                       <div
                         className={`h-4 w-4 rounded-sm border-2 border-black ${
-<<<<<<< HEAD
+
                           brand === item.name ? "bg-black" : ""
-=======
-                          brand === index ? "bg-black" : ""
->>>>>>> 90b987e95603c142f9039f383ea395e6d822e1e0
+
+                          
+
                         }`}
                       >
                         <span></span>
