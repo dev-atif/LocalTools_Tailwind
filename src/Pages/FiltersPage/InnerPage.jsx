@@ -1,22 +1,19 @@
-import React, { useEffect, useState } from 'react'
-import Navbar from './../../Component/NavBar/Navbar';
-import LeftBar from './../MainDashboard/LeftBar';
-import FilterBar from './FilterBar';
-import FilterMain from './FilterMain';
-import Footer from './../../Component/Shared/Footer';
+import React, { useEffect, useState } from "react";
+import Navbar from "./../../Component/NavBar/Navbar";
+import LeftBar from "./../MainDashboard/LeftBar";
+import FilterBar from "./FilterBar";
+import FilterMain from "./FilterMain";
+import Footer from "./../../Component/Shared/Footer";
 
-import { useLocation, useParams } from 'react-router';
+import { useLocation, useParams } from "react-router";
 
-
-import axios from 'axios';
-
+import axios from "axios";
 
 const InnerPage = () => {
-
-  const [product,setProduct] = useState([])
+  const [product, setProduct] = useState([]);
   const { category } = useParams();
 
-const [getbrand,setBrand] = useState()
+  const [getbrand, setBrand] = useState();
 
   // Log the category to the console
   /* console.log('Category from URL:', category); */
@@ -24,55 +21,48 @@ const [getbrand,setBrand] = useState()
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://backend-two-blush-62.vercel.app/category?cat=${encodeURIComponent(category)}`);
+        const response = await axios.get(
+          `https://backend-two-blush-62.vercel.app/category?cat=${encodeURIComponent(
+            category
+          )}`
+        );
         console.warn(response.data);
         setProduct(response.data);
       } catch (error) {
         console.warn(error);
       }
     };
-  
+
     fetchData();
   }, [category]);
-  
 
-
- 
- 
- 
-  const Test=(data)=>{
-      setBrand(data)
-    
-  }
-  console.warn('from child i get',getbrand)
-
+  const Test = (data) => {
+    setBrand(data);
+  };
+  console.warn("from child i get", getbrand);
 
   return (
-   <>
-   <div>
-    <div>
-        <Navbar/>
-    </div>
-    <div className='lg:px-0 px-3'>
-    <div className="lg:px-2 xl:px-9  mt-2 relative">
-        <div className="flex lg:flex-row flex-col lg:gap-3 justify-between ">
-           <div className={`lg:w-1/4  w-full h-full rounded-lg  `} >
-
-           <FilterBar product={product}   />
-
-           <FilterBar product={product}  dataFromChild={Test} />
-
-           </div>
-           <div className=" lg:w-3/4 w-full md:mt-0 mt-3" >
-           <FilterMain product={product} />
-           </div>
+    <>
+      <div>
+        <div>
+          <Navbar />
         </div>
-    </div>
-    </div>
-    <Footer/>
-   </div>
-   </>
-  )
-}
+        <div className="lg:px-0 px-3">
+          <div className="lg:px-2 xl:px-9  mt-2 relative">
+            <div className="flex lg:flex-row flex-col lg:gap-3 justify-between ">
+              <div className={`lg:w-1/4  w-full h-full rounded-lg  `}>
+                <FilterBar product={product} />
+              </div>
+              <div className=" lg:w-3/4 w-full md:mt-0 mt-3">
+                <FilterMain product={product} />
+              </div>
+            </div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    </>
+  );
+};
 
-export default InnerPage
+export default InnerPage;

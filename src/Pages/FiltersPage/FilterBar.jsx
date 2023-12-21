@@ -26,17 +26,14 @@ const FilterBar = ({ product, dataFromChild }) => {
   /* const navigate = useNavigate(); */
   const [show, showMore] = useState(5);
 
-
   /* ---------------------------------------- */
+  const minValue = 0;
+  const maxValue = 7000;
+  /* const [values, setValues] = useState([100, 4000]); */
+  const [startPrice, setStartPrice] = useState(minValue);
+  const [endPrice, setEndPrice] = useState(maxValue);
 
-  const [values, setValues] = useState([100, 4000]);
-
-  const handleValuesChange = (newValues) => {
-    setValues(newValues);
-  };
-  const minValue = 0; // Dynamic minimum value
-  const maxValue = 6000;
-
+ 
 
   const handleClick = (index, name) => {
     if (name === brand) {
@@ -51,11 +48,24 @@ const FilterBar = ({ product, dataFromChild }) => {
       });
     }
   };
-
-
-  
-
-
+  /*   const handleValuesChange = (newValues) => {
+    setValues(newValues);
+    setSearchParams((params)=>{
+      params.set('price',values)
+      return params;
+    })
+  }; */
+  const handleValuesChange = (newValues) => {
+    // Assuming newValues is an array with two elements [start, end]
+    setStartPrice(newValues[0].toString());
+    setEndPrice(newValues[1].toString());
+    setSearchParams((params) => {
+      params.set('startPrice',newValues[0])
+      params.set('endPrice',newValues[1])
+     return params
+    })
+  };
+  const priceStart = () => {};
 
   /* ----------------------------------------- */
   return (
@@ -68,11 +78,7 @@ const FilterBar = ({ product, dataFromChild }) => {
           <div className="flex items-baseline justify-between  ">
             <h1 className=" font-Mont font-bold text-lg leading-6">Filters</h1>
             <p className=" text-sm text-[#00005B] leading-6  font-normal  font-Robot cursor-pointer">
-
               <Link to={window.location.pathname}> Clear All</Link>
-
-            
-
             </p>
           </div>
           <div className="my-2">
@@ -120,22 +126,12 @@ const FilterBar = ({ product, dataFromChild }) => {
                   index < (!show ? Brand.length : 5) && (
                     <div
                       key={index}
-
-                      /*  onClick={() => setBrand(index) } */
-                      /* onClick={() => handleClick(index, item.name)} */
-
-                     /*  onClick={() => setBrand(index) } */
-                     onClick={()=>handleClick(index,item.name)}
-
+                      onClick={() => handleClick(index, item.name)}
                       className={`flex items-center gap-3 cursor-pointer`}
                     >
                       <div
                         className={`h-4 w-4 rounded-sm border-2 border-black ${
-
                           brand === item.name ? "bg-black" : ""
-
-                          
-
                         }`}
                       >
                         <span></span>
@@ -214,7 +210,7 @@ const FilterBar = ({ product, dataFromChild }) => {
                     step={1}
                     min={minValue}
                     max={maxValue}
-                    values={values}
+                    values={[parseInt(startPrice), parseInt(endPrice)]}
                     onChange={handleValuesChange}
                     renderTrack={({ props, children }) => (
                       <div
@@ -227,15 +223,21 @@ const FilterBar = ({ product, dataFromChild }) => {
                             position: "absolute",
                             height: "100%",
                             left: `${
-                              ((values[0] - minValue) / (maxValue - minValue)) *
-                              100
-                            }%`,
-                            right: `${
-                              100 -
-                              ((values[1] - minValue) / (maxValue - minValue)) *
+                              (
+                                ((parseInt(startPrice) - minValue) /
+                                  (maxValue - minValue)) *
                                 100
-                            }%`,
-                            backgroundColor: "#FFC10E", // Change this to your desired background color
+                              ).toFixed(2) + "%"
+                            }`,
+                            right: `${
+                              (
+                                100 -
+                                ((parseInt(endPrice) - minValue) /
+                                  (maxValue - minValue)) *
+                                100
+                              ).toFixed(2) + "%"
+                            }`,
+                            backgroundColor: "#FFC10E",
                             zIndex: "-1",
                           }}
                         ></div>
@@ -253,10 +255,10 @@ const FilterBar = ({ product, dataFromChild }) => {
                   <input
                     type="number"
                     className="w-1/2 text-gray-500 border border-gray-400 rounded-md px-2 py-1"
-                    value={values[0]}
+                    value={startPrice}
                     onChange={(e) => {
                       const newValue = parseInt(e.target.value);
-                      setValues([newValue, values[1]]);
+                      setStartPrice(newValue);
                     }}
                   />
                   <span className=" text-[#92929D] font-Robot font-medium text-base">
@@ -265,10 +267,10 @@ const FilterBar = ({ product, dataFromChild }) => {
                   <input
                     type="number"
                     className="w-1/2 text-gray-500 border border-gray-400 rounded-md px-2 py-1"
-                    value={values[1]}
+                    value={endPrice}
                     onChange={(e) => {
                       const newValue = parseInt(e.target.value);
-                      setValues([values[0], newValue]);
+                      setEndPrice(newValue);
                     }}
                   />
                 </div>

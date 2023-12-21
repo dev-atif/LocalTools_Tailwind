@@ -9,17 +9,44 @@ import sorry from "../../assets/sorry.png";
 import { Link, useSearchParams } from "react-router-dom";
 const FilterMain = ({ product }) => {
   let [searchParams, setSearchParams] = useSearchParams();
+
   const brand = searchParams.get("brand");
+
+  let start_price = searchParams.get("startPrice");
+
+  let end_price = searchParams.get("endPrice");
+
+  start_price = parseInt(start_price, 10);
+
+  end_price = parseInt(end_price, 10);
+
+  /* console.log("price from url", end_price); */
+
   const [filterProduct, setFilterProduct] = useState([]);
-  console.log({ brand });
-  useEffect(() => {
-    if (brand) {
-      const filter_Products = product.filter((item) => item.Brand === brand);
-      setFilterProduct(filter_Products);
-    } else {
-      setFilterProduct(product);
-    }
-  }, [product, brand, setFilterProduct]);
+  const [pricefilter, setPricefilter] = useState([]);
+  const [mergedFilter, setMergedFilter] = useState([]);
+
+useEffect(() => {
+  let filteredProduct = product;
+
+  if (brand) {
+    filteredProduct = filteredProduct.filter((item) => item.Brand === brand);
+  }
+
+  if (start_price || end_price) {
+    filteredProduct = filteredProduct.filter((item) => {
+      const Product_Price = parseInt(item.Rented_Price, 10);
+      return (
+        (!brand || (brand && item.Brand === brand)) &&
+        Product_Price >= start_price &&
+        Product_Price <= end_price
+      );
+    });
+  }
+
+  setFilterProduct(filteredProduct);
+}, [product, brand, start_price, end_price, setFilterProduct]);
+
 
   return (
     <>
