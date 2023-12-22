@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -6,7 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import ProductCard from "../../Component/Shared/ProductCard";
 import {  ProductsCardsArray } from "./ProductsArray";
 
-const LandingPageSlider = () => {
+const LandingPageSlider = ({products}) => {
+  const [highlight,setHighlight]= useState([])
   const sliderRef = useRef();
   const settings = {
     dots: false,
@@ -36,6 +37,14 @@ const LandingPageSlider = () => {
           },
       ],
   };
+  useEffect(()=>{
+      if(products){
+       const highlight_Filter= products.filter((item)=>{
+          return item.Highlight!==null
+        })
+        setHighlight(highlight_Filter)
+      }
+  },[products,setHighlight])
   return (
     <>
       <div>
@@ -93,17 +102,17 @@ const LandingPageSlider = () => {
           </div>
           <div className="py-6">
             <Slider {...settings} ref={sliderRef}>
-              {ProductsCardsArray.map((item, index) => (
+              {highlight.map((item, index) => (
                 <div key={index}>
                   <div className="px-1">
                     {" "}
                     {/* Add padding here */}
                     <ProductCard
-                      Pname={item.name}
-                      cat={item.cat}
-                      image={item.image}
-                      price={item.price}
-                      location={item.location}
+                      Pname={item.tittle}
+                      cat={item.Category}
+                      image={item.Product_images[0]?.images}
+                      price={item.Rented_Price}
+                      location={item.Vendor_street}
                       duration={item.Rented_as}
 
                     />

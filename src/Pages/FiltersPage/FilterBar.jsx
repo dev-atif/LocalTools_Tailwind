@@ -33,8 +33,6 @@ const FilterBar = ({ product, dataFromChild }) => {
   const [startPrice, setStartPrice] = useState(minValue);
   const [endPrice, setEndPrice] = useState(maxValue);
 
- 
-
   const handleClick = (index, name) => {
     if (name === brand) {
       setSearchParams((params) => {
@@ -60,12 +58,21 @@ const FilterBar = ({ product, dataFromChild }) => {
     setStartPrice(newValues[0].toString());
     setEndPrice(newValues[1].toString());
     setSearchParams((params) => {
-      params.set('startPrice',newValues[0])
-      params.set('endPrice',newValues[1])
-     return params
-    })
+      params.set("startPrice", newValues[0]);
+      params.set("endPrice", newValues[1]);
+      return params;
+    });
   };
-  const priceStart = () => {};
+  const handleClearAll = () => {
+    setStartPrice(minValue);
+    setEndPrice(maxValue);
+    setSearchParams((params) => {
+      params.delete("brand");
+      params.delete("startPrice");
+      params.delete("endPrice");
+      return params;
+    });
+  };
 
   /* ----------------------------------------- */
   return (
@@ -78,7 +85,10 @@ const FilterBar = ({ product, dataFromChild }) => {
           <div className="flex items-baseline justify-between  ">
             <h1 className=" font-Mont font-bold text-lg leading-6">Filters</h1>
             <p className=" text-sm text-[#00005B] leading-6  font-normal  font-Robot cursor-pointer">
-              <Link to={window.location.pathname}> Clear All</Link>
+              <Link to={window.location.pathname} onClick={handleClearAll}>
+                {" "}
+                Clear All
+              </Link>
             </p>
           </div>
           <div className="my-2">
@@ -234,7 +244,7 @@ const FilterBar = ({ product, dataFromChild }) => {
                                 100 -
                                 ((parseInt(endPrice) - minValue) /
                                   (maxValue - minValue)) *
-                                100
+                                  100
                               ).toFixed(2) + "%"
                             }`,
                             backgroundColor: "#FFC10E",
@@ -256,9 +266,17 @@ const FilterBar = ({ product, dataFromChild }) => {
                     type="number"
                     className="w-1/2 text-gray-500 border border-gray-400 rounded-md px-2 py-1"
                     value={startPrice}
+                    /*  onChange={(e) => {
+                      const newValue = parseInt(e.target.value);
+                      setStartPrice(newValue);
+                    }} */
                     onChange={(e) => {
                       const newValue = parseInt(e.target.value);
                       setStartPrice(newValue);
+                      setSearchParams((params) => {
+                        params.set("startPrice", newValue.toString());
+                        return params;
+                      });
                     }}
                   />
                   <span className=" text-[#92929D] font-Robot font-medium text-base">
@@ -271,6 +289,10 @@ const FilterBar = ({ product, dataFromChild }) => {
                     onChange={(e) => {
                       const newValue = parseInt(e.target.value);
                       setEndPrice(newValue);
+                      setSearchParams((params) => {
+                        params.set("endPrice", newValue.toString());
+                        return params;
+                      });
                     }}
                   />
                 </div>

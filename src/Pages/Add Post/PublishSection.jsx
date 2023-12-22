@@ -2,15 +2,36 @@ import React from "react";
 import ShareField from "../../Component/Shared/ShareField";
 import SharedSelect from "../../Component/Shared/SharedSelect";
 const DaysPlan = [
+  
   { value: "5 Days", label: "5 Days" },
   { value: "6 Days", label: "6 Days" },
   { value: "7 Days", label: "7 Days" },
   { value: "8 Days", label: "8 Days" },
 ];
-const PublishSection = ({formik}) => {
+
+const PublishSection = ({ formik }) => {
+  const handlePushUpPlanChange = (selectedOption) => {
+    formik.setFieldValue("Push_up_Plan", selectedOption.value);
+    formik.setFieldValue("Highlight", null);
+    formik.setFieldValue("Top_Plan", null);
+     
+  };
+
+  const handleHighlightChange = (selectedOption) => {
+    formik.setFieldValue("Highlight", selectedOption.value);
+    formik.setFieldValue("Push_up_Plan", null);
+    formik.setFieldValue("Top_Plan", null);
+    
+  };
+
+  const handleTopPlanChange = (selectedOption) => {
+    formik.setFieldValue("Top_Plan", selectedOption.value);
+    formik.setFieldValue("Push_up_Plan", null);
+    formik.setFieldValue("Highlight", null);
+  };
   return (
     <div>
-      <div >
+      <div>
         <div>
           <div className="py-7">
             <h1 className="text-xl 2xl:text-2xl font-Mont font-semibold text-black">
@@ -44,9 +65,13 @@ const PublishSection = ({formik}) => {
                     </h2>
                   </div>
                   <div className="w-1/2">
-                    <SharedSelect Values={DaysPlan} 
-                   
-                    onChange={(selectedOption)=>(formik.setFieldValue('Push_up_Plan',selectedOption.value))} />
+                    <SharedSelect
+                      Values={DaysPlan}
+                      /* onChange={(selectedOption)=>(formik.setFieldValue('Push_up_Plan',selectedOption.value))} */
+                     
+                      onChange={handlePushUpPlanChange}
+                      defaultValue={{value: "null", label: ""}}
+                    />
                   </div>
                 </div>
               </div>
@@ -73,11 +98,13 @@ const PublishSection = ({formik}) => {
                   </div>
                   <div className="w-1/2">
                     <SharedSelect
-                    onChange={(selectedOption)=>(formik.setFieldValue('Highlight',selectedOption.value))}
+                      /*  onChange={(selectedOption)=>(formik.setFieldValue('Highlight',selectedOption.value))} */
+                      onChange={handleHighlightChange}
                       Values={DaysPlan}
                       bordercolor={"white"}
                       stroke={"white"}
-                      text={'text'}
+                      text={"text"}
+                      defaultValue={{value: "null", label: ""}}
                     />
                   </div>
                   <div className="py-4">
@@ -145,17 +172,20 @@ const PublishSection = ({formik}) => {
                   </div>
                   <div className="py-5">
                     <h2 className="font-Mont font-semibold text-base 2xl:text-lg text-black">
-                    Top Plan
+                      Top Plan
                     </h2>
                   </div>
                   <div className="w-1/2">
                     <SharedSelect
-                     onChange={(selectedOption)=>(formik.setFieldValue('Top_Plan',selectedOption.value))}
-                    Values={DaysPlan} />
+                      /*  onChange={(selectedOption)=>(formik.setFieldValue('Top_Plan',selectedOption.value))} */
+                      onChange={handleTopPlanChange}
+                      Values={DaysPlan}
+                      
+                    />
                   </div>
                   <div className="py-4">
                     <h2 className="font-Mont font-semibold text-xl 2xl:text-2xl text-black">
-                    $20
+                      $20
                     </h2>
                   </div>
                 </div>
