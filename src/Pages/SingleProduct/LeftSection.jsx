@@ -9,6 +9,7 @@ import CompanyProductDetails from "./CompanyProductDetails";
 import Location from "./Map/Location";
 import CancellationPolicy from "./CancellationPolicy";
 import RelatedProduct from "./RelatedProduct";
+import { Link } from "react-router-dom";
 
 const LeftSection = ({ product }) => {
   const VerticalsliderRef = useRef();
@@ -58,7 +59,7 @@ const LeftSection = ({ product }) => {
             </div>
             <div className="md:my-0 my-3">
               <h1 className="font-Robot font-normal text-sm text-black">
-                Home / {product?.Category || ""} /{" "}
+               <Link to={'/'}> Home</Link> / {product?.Category || ""} /{" "}
                 <span className="text-color-primary-gr">
                   {product?.tittle || ""}
                 </span>
@@ -296,7 +297,7 @@ const Verticalsettings = {
       },
     },
     {
-      breakpoint: 425,
+      breakpoint: 435,
       settings: {
         slidesToShow: 3,
         /*  slidesToShow: totalImages === 3 ? 3 : 4, */

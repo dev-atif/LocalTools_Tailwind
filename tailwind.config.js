@@ -17,7 +17,10 @@ module.exports = {
         "color-primary-gr":'#92929D',
         "color-primary-light":'#F6F7FB',
         "color-border":'#E1E1E1',
-      }
+      },
+      screens: {
+        'ism': '430px', // Custom breakpoint at 430px
+      },
     },
   },
   plugins: [],

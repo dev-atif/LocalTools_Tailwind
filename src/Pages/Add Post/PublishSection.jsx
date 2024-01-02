@@ -2,7 +2,6 @@ import React from "react";
 import ShareField from "../../Component/Shared/ShareField";
 import SharedSelect from "../../Component/Shared/SharedSelect";
 const DaysPlan = [
-  
   { value: "5 Days", label: "5 Days" },
   { value: "6 Days", label: "6 Days" },
   { value: "7 Days", label: "7 Days" },
@@ -14,14 +13,12 @@ const PublishSection = ({ formik }) => {
     formik.setFieldValue("Push_up_Plan", selectedOption.value);
     formik.setFieldValue("Highlight", null);
     formik.setFieldValue("Top_Plan", null);
-     
   };
 
   const handleHighlightChange = (selectedOption) => {
     formik.setFieldValue("Highlight", selectedOption.value);
     formik.setFieldValue("Push_up_Plan", null);
     formik.setFieldValue("Top_Plan", null);
-    
   };
 
   const handleTopPlanChange = (selectedOption) => {
@@ -29,9 +26,11 @@ const PublishSection = ({ formik }) => {
     formik.setFieldValue("Push_up_Plan", null);
     formik.setFieldValue("Highlight", null);
   };
+  console.warn("pushup plans", formik.values.Push_up_Plan);
   return (
     <div>
       <div>
+        <div></div>
         <div>
           <div className="py-7">
             <h1 className="text-xl 2xl:text-2xl font-Mont font-semibold text-black">
@@ -41,7 +40,14 @@ const PublishSection = ({ formik }) => {
           </div>
           <div>
             <div className="lg:grid grid-cols-3 items-stretch gap-6">
-              <div className="border-2 border-[#FFC10E] rounded-lg">
+              <div
+                className={` rounded-lg transition-all ${
+                  formik.values.Push_up_Plan === null ||
+                  formik.values.Push_up_Plan === ""
+                    ? "border-2 border-[#FC5A5A]  "
+                    : "border-2 border-[#FFC10E] scale-105 shadow-xl"
+                }`}
+              >
                 <div className="flex flex-col items-center pt-10 pb-14">
                   <div className="w-min p-4 border border-[#00005B] rounded-lg">
                     <svg
@@ -68,14 +74,22 @@ const PublishSection = ({ formik }) => {
                     <SharedSelect
                       Values={DaysPlan}
                       /* onChange={(selectedOption)=>(formik.setFieldValue('Push_up_Plan',selectedOption.value))} */
-                     
+
                       onChange={handlePushUpPlanChange}
-                      defaultValue={{value: "null", label: ""}}
+                      defaultValue={{ value: "null", label: "" }}
                     />
                   </div>
                 </div>
               </div>
-              <div className="border border-[#86B817] bg-[#86B817] rounded-lg lg:my-0 my-4">
+              {/* <div className="border border-[#86B817] bg-[#86B817] rounded-lg lg:my-0 my-4"> */}
+              <div
+                className={` transition-all bg-[#86B817] rounded-lg lg:my-0 my-4 ${
+                  formik.values.Highlight === null ||
+                  formik.values.Highlight === ""
+                    ? "border-[#86B817] border-2"
+                    : " shadow-xl scale-105  border-2 border-yellow-500 rounded-lg"
+                }`}
+              >
                 <div className="flex flex-col items-center pt-10 ">
                   <div className="w-min p-4  rounded-lg bg-white">
                     <svg
@@ -104,7 +118,7 @@ const PublishSection = ({ formik }) => {
                       bordercolor={"white"}
                       stroke={"white"}
                       text={"text"}
-                      defaultValue={{value: "null", label: ""}}
+                      defaultValue={{ value: "null", label: "" }}
                     />
                   </div>
                   <div className="py-4">
@@ -114,7 +128,15 @@ const PublishSection = ({ formik }) => {
                   </div>
                 </div>
               </div>
-              <div className=" border-2 border-[#0064D2] rounded-lg">
+              
+              <div
+                className={`rounded-lg ${
+                  formik.values.Top_Plan === null ||
+                  formik.values.Top_Plan === ""
+                    ? "border-2 border-[#0064D2]"
+                    : "shadow-xl scale-105  border-2 border-yellow-500 rounded-lg"
+                }`}
+              >
                 <div className="flex flex-col items-center pt-10 ">
                   <div className="w-min p-4  border border-[#00005B] rounded-lg bg-white">
                     <svg
@@ -180,7 +202,6 @@ const PublishSection = ({ formik }) => {
                       /*  onChange={(selectedOption)=>(formik.setFieldValue('Top_Plan',selectedOption.value))} */
                       onChange={handleTopPlanChange}
                       Values={DaysPlan}
-                      
                     />
                   </div>
                   <div className="py-4">

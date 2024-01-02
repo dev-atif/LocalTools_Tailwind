@@ -30,7 +30,7 @@ const LandingPageSlider = ({products}) => {
           },
         },
         {
-            breakpoint: 425,
+            breakpoint: 435,
             settings: {
               slidesToShow: 1,
             },

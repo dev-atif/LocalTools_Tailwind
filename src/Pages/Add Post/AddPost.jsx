@@ -20,6 +20,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { fileToBase64 } from "../../utils/filtToBase64";
 import LoadingBar from 'react-top-loading-bar'
+import { useNavigate } from "react-router";
+
 
 export const Stocks = [];
 
@@ -34,6 +36,7 @@ const AddPost = () => {
   const [check2, setCheck2] = useState(null);
   const [lodaingBar,setLoadingbar]= useState(false)
   const loadingRef = useRef(null);
+  const Navigate = useNavigate()
   const formik = useFormik({
     initialValues: initialValues,
     onSubmit: async (values ,action) => {
@@ -70,6 +73,7 @@ const AddPost = () => {
 
         console.warn("Server Response", response.data);
         formik.resetForm()
+        
       } catch (error) {
         console.warn("Error:", error.response);
       } finally{
@@ -78,6 +82,9 @@ const AddPost = () => {
         toast.success("Product Add Successfully", {
           autoClose: 2000, // Set the duration to 3000 milliseconds (2 seconds)
         });
+        setTimeout(() => {
+          Navigate('/');
+        }, 2000);
       }
      /*  } */
     },
