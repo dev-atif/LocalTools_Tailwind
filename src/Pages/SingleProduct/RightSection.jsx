@@ -13,7 +13,7 @@ import TimePicker from "react-time-picker";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
-const Stock = [
+/* const Stock = [
   { value: "1", label: "1kit" },
   { value: "2", label: "2kit" },
   { value: "3", label: "3kit" },
@@ -21,7 +21,8 @@ const Stock = [
   { value: "5", label: "5kit" },
   { value: "6", label: "6kit" },
   { value: "7", label: "7kit" },
-];
+]; */
+
 const RightSection = ({ product }) => {
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -79,6 +80,10 @@ const RightSection = ({ product }) => {
       dispatch(add(combinedData));
     }
   };
+  const Stock = Array.from({ length: product?.quantity }, (_, index) => ({
+    value: (index + 1).toString(),
+    label: `${index + 1}kit`,
+  }));
 
   return (
     <>

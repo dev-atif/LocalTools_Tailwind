@@ -137,8 +137,8 @@ const LeftSection = ({ product }) => {
                           md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0  rounded-lg`} */
                           className={
                             index === selectimage
-                              ? " border-2 border-color-primary-yel transition-all delay-100 md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0  rounded-lg"
-                              : "md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0  rounded-lg"
+                              ? " border-2 border-color-primary-yel transition-all h-[75px] delay-100 md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0  rounded-lg"
+                              : "md:h-[120px] md:w-[170px] w-[140px] px-1 md:px-0 h-[75px]  rounded-lg"
                           }
                           onClick={() => {
                             setSelectimage(index);
@@ -149,11 +149,11 @@ const LeftSection = ({ product }) => {
                   </Slider>
                 </div>
               </div>
-              <div className=" col-span-3  relative flex items-center mx-auto ">
+              <div className=" col-span-3  relative flex items-center mx-auto justify-center ">
                 <div>
                   <img
                     src={product?.Product_images[selectimage]?.images}
-                    className="mx-auto md:w-[580px] md:h-[370px] w-[300px] h-[350px]"
+                    className=" md:w-[580px] md:h-[370px] w-[350px] h-[350px]"
                   />
                 </div>
                 {/* Navigation Buttons ------------------ */}
