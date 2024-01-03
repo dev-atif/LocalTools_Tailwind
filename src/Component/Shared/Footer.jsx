@@ -1,5 +1,6 @@
 import React from "react";
 import Logo from "../../assets/Logo.png";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div>
@@ -80,19 +81,19 @@ const Footer = () => {
                     <div className="mt-4">
                         <ul>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base">
-                            Garden tools
+                           <Link to={`/filter/${encodeURIComponent('Garden tool')}`} > Garden tools </Link> 
                             </li>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base py-3">
-                            KFZ tools
+                            <Link to={`/filter/${encodeURIComponent('KFZ tool')}`} >  KFZ tools </Link>
                             </li>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base">
-                            machines
+                            <Link to={`/filter/${encodeURIComponent('Construction machinery')}`} >   machines </Link>
                             </li>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base py-3">
-                            Forestic tools
+                            <Link to={`/filter/${encodeURIComponent('Foresting machines')}`} >   Forestic tools </Link>
                             </li>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base">
-                            Agriculture Machinery
+                            <Link to={`/filter/${encodeURIComponent('Agricultural machinery')}`} >   Agriculture Machinery </Link>
                             </li>
 
                         </ul>
@@ -120,7 +121,7 @@ const Footer = () => {
                             Shipping
                             </li>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base">
-                            Data Protection
+                           <Link to={'/dataprotection'}> Data Protection</Link>
                             </li>
 
                         </ul>
@@ -136,7 +137,7 @@ const Footer = () => {
                     <div className="mt-4">
                         <ul>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base">
-                            About
+                           <Link to={'/about'}>About</Link>
                             </li>
                             <li className="text-[#F6F7FB] font-Mont font-normal text-base py-3">
                             Team

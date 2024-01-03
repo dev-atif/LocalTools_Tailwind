@@ -300,6 +300,7 @@ const Verticalsettings = {
       breakpoint: 435,
       settings: {
         slidesToShow: 3,
+        initialSlide: 3,
         /*  slidesToShow: totalImages === 3 ? 3 : 4, */
         vertical: false, // Add this to enable vertical sliding (note: not native support)
       },

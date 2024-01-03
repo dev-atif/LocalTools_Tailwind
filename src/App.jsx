@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 
 import Documents from "./Pages/Documents";
@@ -39,25 +39,31 @@ import { Provider } from "react-redux";
 import store from "./Store/store";
 import { persistStore } from "redux-persist";
 import { PersistGate } from "redux-persist/integration/react";
-
+import { useEffect } from "react";
+import Scroll from './Component/Shared/Scroll'
 let persist = persistStore(store);
+
+
 function App() {
+
   return (
     <>
       <Provider store={store}>
         <PersistGate persistor={persist}>
           <BrowserRouter>
+          <Scroll/>
             <Routes>
+           
               <Route element={<Protected />}>
                 {/* <Route path="/" element={<Dashboard />} /> */}
 
                 <Route path="/notice" element={<CurrentNotice />} />
-                <Route path="/dataprotection" element={<DataProtection />} />
+               
                 <Route path="/saftytips" element={<SaftyTip />} />
                 <Route path="/help3" element={<Help_3 />} />
                 <Route path="/help2" element={<Help_2 />} />
                 <Route path="/help" element={<Help />} />
-                <Route path="/about" element={<About />} />
+               
                 <Route path="/notification" element={<GNotification />} />
                 <Route path="/checkout" element={<CheckOut />} />
 
@@ -72,6 +78,8 @@ function App() {
 
                 <Route path="/BusinessProfile" element={<BusinessProfile />} />
               </Route>
+              <Route path="/about" element={<About />} />
+              <Route path="/dataprotection" element={<DataProtection />} />
               <Route path="/cart" element={<ProductCart />} />
               <Route path="/filter/:category" element={<InnerPage />} />
               <Route path="/singleproduct/:id" element={<SingleProduct />} />

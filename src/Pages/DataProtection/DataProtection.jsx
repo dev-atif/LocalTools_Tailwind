@@ -4,6 +4,7 @@ import Protection_Section_1 from './Protection_Section_1'
 import Accordian from '../SaftyTip/Accordian'
 import { DataProtection_Accordian } from './Protection_Data_Accordian_Array'
 import Footer from '../../Component/Shared/Footer'
+import { Link } from 'react-router-dom'
 
 const DataProtection = () => {
   return (
@@ -17,7 +18,7 @@ const DataProtection = () => {
         <div className="flex items-center justify-center flex-col bg-[#FFC10E] py-10 ">
           <h1 className="font-Robot font-bold text-white lg:text-[72px] text-4xl ">Data Protection</h1>
           <p className="font-Robot text-sm font-normal text-black md:mt-12 mt-6">
-            Home / <span className={`text-white`}>Data Protection</span>
+            <Link to={'/'}>Home</Link> / <span className={`text-white`}>Data Protection</span>
           </p>
         </div>
         </section>
