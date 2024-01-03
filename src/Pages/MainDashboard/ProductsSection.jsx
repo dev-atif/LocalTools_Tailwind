@@ -17,6 +17,10 @@ const ProductsSection = ({ products }) => {
         (!category || product.Category === category)
       );
     }); */
+    useEffect(() => {
+      // Reset current page to 1 whenever the search term changes
+      setCurrentPage(1);
+    }, [search, category]);
     const filteredProducts = products.filter((product) => {
       return (
         (!search || Object.values(product).some(value => 
@@ -30,11 +34,11 @@ const ProductsSection = ({ products }) => {
   //pagination Code ------------
   const itemsPerPage = 6;
   const [currentPage, setCurrentPage] = useState(1);
-  const TotalProducts = products.length;
+  const TotalProducts = filteredProducts.length /* products.length */;
   const TotalPages = Math.ceil(TotalProducts / itemsPerPage);
   const start_index = (currentPage - 1) * itemsPerPage;
   const end_Index = start_index + itemsPerPage;
-  /* const Updated_Product = products.slice(start_index, end_Index); */
+
   const Updated_Product = filteredProducts.slice(start_index, end_Index);
   const getPageNumbers = () => {
     const pageNumbers = [];
@@ -64,6 +68,7 @@ const ProductsSection = ({ products }) => {
 
     return pageNumbers;
   };
+  
   return (
     <>
       <div>
@@ -98,44 +103,49 @@ const ProductsSection = ({ products }) => {
             </div>
           </>
         )}
-        <div className="text-center mt-8">
-          <div className="">
-            <button
-              className=" md:px-4 px-2 font-normal text-sm py-2 bg-gray-300 rounded-md"
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-              disabled={currentPage === 1}
-            >
-              Previous
-            </button>
-            {/* Pagination Numbers---------------------------- */}
-            {getPageNumbers().map((number, index) => (
-              <button
-                key={index}
-                className={`mx-1  py-2 rounded-md md:px-4 px-3 font-normal text-sm  ${
-                  number === "ellipsis"
-                    ? "bg-none text-gray-600 cursor-default"
-                    : currentPage === number
-                    ? "bg-color-primary-yel text-white font-semibold"
-                    : "bg-gray-200"
-                }`}
-                onClick={() =>
-                  number !== "ellipsis" ? setCurrentPage(number) : null
-                }
-              >
-                {number === "ellipsis" ? "..." : number}
-              </button>
-            ))}
-            <button
-              className="ml-1 mt-2 md:mt-0   md:px-4 px-3 font-normal text-sm py-2 bg-gray-300 rounded-md"
-              onClick={() =>
-                setCurrentPage((prev) => Math.min(prev + 1, TotalPages))
-              }
-              disabled={currentPage === TotalPages}
-            >
-              Next
-            </button>
-          </div>
-        </div>
+       {TotalProducts > itemsPerPage &&(
+         <div className="text-center mt-8">
+         <div className="">
+           <button
+             className=" md:px-4 px-2 font-normal text-sm py-2 bg-gray-300 rounded-md"
+             onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+             disabled={currentPage === 1}
+           >
+             Previous
+           </button>
+           {/* Pagination Numbers---------------------------- */}
+           {getPageNumbers().map((number, index) => (
+             <button
+               key={index}
+               className={`mx-1  py-2 rounded-md md:px-4 px-3 font-normal text-sm  ${
+                 number === "ellipsis"
+                   ? "bg-none text-gray-600 cursor-default"
+                   : currentPage === number
+                   ? "bg-color-primary-yel text-white font-semibold"
+                   : "bg-gray-200"
+               }`}
+               onClick={() =>
+                 number !== "ellipsis" ? setCurrentPage(number) : null
+               }
+             >
+               {number === "ellipsis" ? "..." : number}
+             </button>
+           ))}
+           <button
+             className="ml-1 mt-2 md:mt-0   md:px-4 px-3 font-normal text-sm py-2 bg-gray-300 rounded-md"
+             onClick={() =>
+               setCurrentPage((prev) => Math.min(prev + 1, TotalPages))
+             }
+             disabled={currentPage === TotalPages}
+           >
+             Next
+           </button>
+         </div>
+       </div>
+       )}
+
+       
+       
       </div>
     </>
   );

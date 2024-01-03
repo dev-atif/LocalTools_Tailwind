@@ -47,27 +47,21 @@ const DropdownIndicator = (props) => {
     </components.DropdownIndicator>
   );
 };
+
 const Searbars = () => {
   const [searhparams, setSearchParams] = useSearchParams();
   const [searcText, setSearchText] = useState("");
+  const Search_Text = searhparams.get("search");
+  const Search_Cat = searhparams.get("category");
+  let empty;
   const SelectValue = (selectedOption) => {
     setSearchParams((params) => {
       params.set("category", selectedOption.value);
       return params;
     });
   };
-  const Search_Cat = searhparams.get("category");
+
   const location = useLocation();
-
-  let defaultCategory;
-
-  const isRootUrl = location.pathname === "/";
-  
-  if (isRootUrl && !Search_Cat) {
-    defaultCategory = null;
-  } else {
-    defaultCategory = Category.find((option) => option.value === Search_Cat);
-  }
 
   return (
     <div className="">
@@ -143,13 +137,12 @@ const Searbars = () => {
               styles={selectStyle}
               components={{ DropdownIndicator }}
               onChange={SelectValue}
-              /*   defaultValue={Category.find(option => option.value === Search_Cat)} */
-              defaultValue={defaultCategory}
+              value={Search_Cat ? Search_Cat : ""}
             />
           </div>
 
           <div className="w-full md:w-auto pt-4 pb-4 lg:pt-0 lg:pb-0">
-            <input
+             <input
               type="text"
               className="bg-transparent text-black text-sm lg:border-l-2 px-2  md:w-auto  xl:w-[320px] 2xl:w-[470px]  lg:w-[100px] border-black font-Robot focus:outline-none "
               placeholder="Search in All "
@@ -165,7 +158,13 @@ const Searbars = () => {
                   return newParams;
                 });
               }}
+              value={Search_Text || ""}
             />
+        
+
+
+
+
           </div>
           <div>
             <span className="absolute top-[78%] right-10  lg:relative lg:top-auto lg:right-auto">
