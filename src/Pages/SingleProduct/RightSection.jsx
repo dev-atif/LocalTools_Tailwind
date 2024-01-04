@@ -12,7 +12,7 @@ import "react-clock/dist/Clock.css";
 import TimePicker from "react-time-picker";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 /* const Stock = [
   { value: "1", label: "1kit" },
   { value: "2", label: "2kit" },
@@ -31,6 +31,7 @@ const RightSection = ({ product }) => {
   const [timeTo, setTimeto] = useState();
   const [stock, setStock] = useState();
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
@@ -53,6 +54,7 @@ const RightSection = ({ product }) => {
     if (!startDate) missingFields.push("Date From");
     if (!endDate) missingFields.push("Date To");
     if (missingFields.length > 0) {
+      setError(true);
       // Display a toast for missing fields
       toast.error(
         `Please fill the following fields: ${missingFields.join(", ")}`,
@@ -62,8 +64,9 @@ const RightSection = ({ product }) => {
       );
 
       // Set the error state to true for styling or any other purpose
-      setError(true);
+      
     } else {
+      setError(false);
       const cartItem = {
         startDate: new Date(startDate),
         endDate: new Date(endDate),
@@ -78,6 +81,7 @@ const RightSection = ({ product }) => {
       };
 
       dispatch(add(combinedData));
+      navigate('/cart')
     }
   };
   const Stock = Array.from({ length: product?.quantity }, (_, index) => ({
@@ -302,7 +306,7 @@ const RightSection = ({ product }) => {
                 </button>
               </div>
               <div className="xl:w-1/2">
-               <Link to={'/cart'}>
+               
                <button
                   onClick={() => {
                     addtoCart(product);
@@ -311,7 +315,7 @@ const RightSection = ({ product }) => {
                 >
                   Add to Cart
                 </button>
-               </Link>
+               
               </div>
             </div>
             {/* ======================================================================================= */}
